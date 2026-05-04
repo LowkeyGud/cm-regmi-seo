@@ -1,94 +1,207 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+import Script from "next/script";
 
 export const runtime = "edge";
 
 export const metadata = {
-  title: "Contact — CM Regmi",
-  description: "Initiate contact for systems architecture engagements.",
+  title: "Contact CM Regmi | Technical Consulting & Systems Architecture",
+  description:
+    "Get in touch with CM Regmi for Android kernel optimization, Windows system hardening, and enterprise architecture engagements. Professional technical support.",
+  keywords:
+    "Contact CM Regmi, Systems Architecture Consulting, Android Kernel Support, Technical Documentation Services",
   openGraph: {
-    title: "Contact — CM Regmi",
-    description: "Initiate contact for systems architecture engagements.",
+    title: "Contact CM Regmi | Systems Architecture Engagements",
+    description:
+      "Inquire about professional consulting for systems optimization and architectural design.",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://cmregmi.com.np/contact",
   },
 };
 
 export default function Contact() {
+  // ContactPage Schema for Google SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact CM Regmi",
+    description: "Contact page for professional systems architecture and optimization services.",
+    url: "https://cmregmi.com.np/contact",
+    mainEntity: {
+      "@type": "Person",
+      name: "CM Regmi",
+      email: "learntechcontact@gmail.com", // Fixed the 'gmaill' typo
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-6 py-24">
-        <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">◢ Contact</p>
-        <h1 className="text-5xl font-black tracking-tight">Initiate contact.</h1>
-        <p className="mt-6 text-lg text-muted-foreground">
-          For engagements, collaborations, or low-level questions:
-        </p>
+      <Script
+        id="contact-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <form className="mt-8 space-y-6 max-w-md" action="#" method="POST">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-foreground">
-              Name
-            </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                className="block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-                placeholder="John Doe"
-              />
+      <SiteHeader />
+
+      <main className="mx-auto max-w-3xl px-6 py-12 lg:py-20">
+        {/* SEO Breadcrumbs */}
+        <Breadcrumb className="mb-8">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Contact</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
+        <header className="mb-10">
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary font-bold italic">
+            ◢ Secure Channel
+          </p>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4">Initiate contact.</h1>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            For architecture engagements, optimization collaborations, or technical inquiries.
+            Typical response time: <strong>Within 24-48 business hours.</strong>
+          </p>
+        </header>
+
+        <section className="bg-muted/30 p-8 rounded-2xl border border-border shadow-sm">
+          <form className="space-y-6" action="#" method="POST">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-semibold tracking-tight">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
+                  placeholder="e.g. John Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-semibold tracking-tight">
+                  Business Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
+                  placeholder="john@enterprise.com"
+                />
+              </div>
             </div>
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-foreground">
-              Email
-            </label>
-            <div className="mt-1">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                className="block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-                placeholder="john@example.com"
-              />
+
+            <div className="space-y-2">
+              <label htmlFor="subject" className="text-sm font-semibold tracking-tight">
+                Subject
+              </label>
+              <select
+                id="subject"
+                className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground focus:ring-2 focus:ring-primary focus:outline-none"
+              >
+                <option>Systems Architecture Review</option>
+                <option>Android Kernel Optimization</option>
+                <option>Windows Hardening Inquiry</option>
+                <option>Other / General Inquiry</option>
+              </select>
             </div>
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-foreground">
-              Message
-            </label>
-            <div className="mt-1">
+
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-semibold tracking-tight">
+                Project Requirements
+              </label>
               <textarea
                 id="message"
                 name="message"
-                rows={4}
+                rows={5}
                 required
-                className="block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-                placeholder="How can we help you?"
+                className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
+                placeholder="Describe your technical challenges or project scope..."
               />
             </div>
-          </div>
-          <div>
+
+            {/* Mandatory Disclaimer for Google Ads/Privacy Compliance */}
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="privacy"
+                required
+                className="mt-1 h-4 w-4 rounded border-border"
+              />
+              <label htmlFor="privacy" className="text-xs text-muted-foreground leading-tight">
+                I agree to the processing of my contact details for the purpose of this inquiry.
+                Read our{" "}
+                <Link href="/privacy-policy" className="text-primary hover:underline">
+                  Privacy Policy
+                </Link>{" "}
+                for details.
+              </label>
+            </div>
+
             <button
               type="submit"
-              className="w-full flex justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background transition-colors"
+              className="w-full sm:w-max flex justify-center rounded-lg bg-primary px-10 py-4 text-sm font-bold text-primary-foreground shadow-lg hover:bg-primary/90 transition-all active:scale-95"
             >
-              Send Message
+              Dispatch Message
             </button>
-          </div>
-        </form>
+          </form>
+        </section>
 
-        <div className="mt-8 border-t border-border pt-8">
-          <p className="text-sm text-muted-foreground mb-4">Or email directly:</p>
-          <a
-            href="mailto:learntechcontact@gmaill.com"
-            className="inline-block rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[var(--shadow-red-glow)]"
-          >
-            learntechcontact@gmaill.com
-          </a>
-        </div>
+        <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-border pt-12">
+          <div>
+            <h2 className="text-xl font-bold mb-4">Direct Communication</h2>
+            <p className="text-muted-foreground text-sm mb-6">
+              For PGP-encrypted communication or high-priority inquiries, use the direct address
+              below:
+            </p>
+            <a
+              href="mailto:learntechcontact@gmail.com"
+              className="group relative inline-flex items-center gap-2 rounded-md border border-border bg-muted/50 px-6 py-4 text-sm font-mono font-bold text-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+            >
+              learntechcontact@gmail.com
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+            </a>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold">Office Hours</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <strong>Monday — Friday</strong>
+              <br />
+              09:00 — 17:00 (NPT)
+              <br />
+              <span className="text-xs italic">
+                Located in Bagmati, Nepal. Remote Consulting Worldwide.
+              </span>
+            </p>
+          </div>
+        </section>
       </main>
+
       <SiteFooter />
     </div>
   );

@@ -1,14 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — CM Regmi" },
-      { name: "description", content: "Systems architect bridging hardware and software." },
-      { property: "og:title", content: "About — CM Regmi" },
-      { property: "og:description", content: "Systems architect bridging hardware and software." },
+      { title: "About CM Regmi | Systems Architect Profile" },
+      { name: "description", content: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods." },
+      { property: "og:title", content: "About CM Regmi | Systems Architect Profile" },
+      { property: "og:description", content: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cmregmi.com.np/about" },
     ],
   }),
   component: About,

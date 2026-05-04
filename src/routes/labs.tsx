@@ -5,10 +5,13 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/labs")({
   head: () => ({
     meta: [
-      { title: "Labs — CM Regmi" },
-      { name: "description", content: "Experiments at the edge of hardware and software." },
-      { property: "og:title", content: "Labs — CM Regmi" },
-      { property: "og:description", content: "Experiments at the edge of hardware and software." },
+      { title: "Labs & Experiments | Digital Workbench by CM Regmi" },
+      { name: "description", content: "Prototype workbench by CM Regmi. Discover experimental tools alongside technical documentation for Android kernel optimization and Windows system hardening." },
+      { property: "og:title", content: "Labs & Experiments | Digital Workbench by CM Regmi" },
+      { property: "og:description", content: "Prototype workbench by CM Regmi. Discover experimental tools alongside technical documentation for Android kernel optimization and Windows system hardening." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cmregmi.com.np/labs" },
     ],
   }),
   component: Labs,

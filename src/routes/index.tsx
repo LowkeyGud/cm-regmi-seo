@@ -1,33 +1,36 @@
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ArrowRight,
-  Cpu,
-  ExternalLink,
-  GitBranch,
-  Layers,
-  PlayCircle,
-  Shield,
-  Terminal,
-  Zap,
-  Download,
-  FileCode2,
+    ArrowRight,
+    Cpu,
+    Download,
+    ExternalLink,
+    FileCode2,
+    GitBranch,
+    Layers,
+    PlayCircle,
+    Shield,
+    Terminal,
+    Zap,
 } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CM Regmi | Professional Systems Engineer & Documentation Architect" },
+      { title: "CM Regmi | Systems Architect & Documentation Hub" },
       {
         name: "description",
-        content: "Android hacks, Windows system optimization, and expert technical documentation.",
+        content: "Welcome to CM Regmi's portfolio. Explore expert technical documentation covering Android kernel optimization, Windows system hardening, and fast architecture.",
       },
-      { property: "og:title", content: "CM Regmi | Professional Systems Engineer & Documentation Architect" },
+      { property: "og:title", content: "CM Regmi | Systems Architect & Documentation Hub" },
       {
         property: "og:description",
-        content: "Android hacks, Windows system optimization, and expert technical documentation.",
+        content: "Welcome to CM Regmi's portfolio. Explore expert technical documentation covering Android kernel optimization, Windows system hardening, and fast architecture.",
       },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cmregmi.com.np/" },
     ],
   }),
   component: Index,

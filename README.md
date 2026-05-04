@@ -1,6 +1,6 @@
-# Neon Engine IO - CM Regmi Portfolio & Documentation Hub
+# CM Regmi Portfolio & Documentation Hub
 
-Welcome to **Neon Engine IO** (also known as the `tanstack_start_ts` base). This project serves as the personal portfolio, experimental workbench, and digital documentation hub for **CM Regmi**, a Systems Architect and Digital Strategist specializing in Android kernel optimization, Windows system hardening, and cross-platform architecture.
+Welcome to the **CM Regmi Portfolio** (also known as the `tanstack_start_ts` base). This project serves as the personal portfolio, experimental workbench, and digital documentation hub for **CM Regmi**, a Systems Architect and Digital Strategist specializing in Android kernel optimization, Windows system hardening, and cross-platform architecture.
 
 ## 🚀 What is this project about?
 
@@ -16,22 +16,26 @@ The repository is built to provide an immensely fast, edge-ready digital footpri
 This project is engineered using a bleeding-edge frontend stack optimized for extreme performance, type safety, and seamless deployments on Cloudflare's Edge.
 
 ### Core Frameworks & Libraries
+
 - **[React 19](https://react.dev/)**: The dominant UI library powering the application.
-- **[@tanstack/react-start](https://tanstack.com/start/latest)**: A modern, Vite-based full-stack React framework. 
+- **[@tanstack/react-start](https://tanstack.com/start/latest)**: A modern, Vite-based full-stack React framework.
 - **[@tanstack/react-router](https://tanstack.com/router/latest)**: Fully type-safe and powerful client-side and SSR routing.
 - **[@tanstack/react-query](https://tanstack.com/query/latest)**: Powerful asynchronous state management and data caching.
 
 ### Styling & UI Architecture
+
 - **[Tailwind CSS v4](https://tailwindcss.com/)**: The utility-first CSS framework for rapid and highly customizable styling (`@tailwindcss/vite`).
 - **[shadcn/ui](https://ui.shadcn.com/) & Radix UI**: An extensive implementation of highly accessible, unstyled primitives (`@radix-ui/*`). Custom components include Dialogs, Tooltips, Navigation Menus, Accordions, Sliders, and more.
 - **[Lucide React](https://lucide.dev/)**: Beautiful, consistent icon set.
 
 ### Advanced Form & Data Validation
+
 - **[React Hook Form](https://react-hook-form.com/)**: Performant, flexible, and extensible forms with easy-to-use validation.
 - **[Zod](https://zod.dev/)**: TypeScript-first schema declaration and validation.
 - **`@hookform/resolvers`**: Bridges Zod with React Hook Form seamlessly.
 
 ### Feature-rich Dependencies
+
 - **Charts & Data**: `recharts` for responsive data visualizations.
 - **Carousels**: `embla-carousel-react` for smooth, touch-friendly swipe carousels.
 - **Toasts**: `sonner` for incredibly easy and attractive toast notifications.
@@ -42,6 +46,7 @@ This project is engineered using a bleeding-edge frontend stack optimized for ex
 - **Command Palettes**: `cmdk` for fast, accessible command menu interfaces.
 
 ### Build Tools & Deployment
+
 - **[Vite](https://vitejs.dev/)**: High-performance frontend build tooling.
 - **Cloudflare Integration**: Configured entirely for Cloudflare Workers & Pages deployments via `wrangler` (`wrangler.jsonc`) and `@cloudflare/vite-plugin`.
 - **TypeScript**: Strict Type checking (`v5.8+`).
@@ -74,6 +79,7 @@ src/
 Before running the application locally, ensure you have an updated version of Node.js and your preferred package manager (npm or bun).
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    # or
@@ -81,6 +87,7 @@ Before running the application locally, ensure you have an updated version of No
    ```
 
 2. **Start the development server:**
+
    ```bash
    npm run dev
    # or
@@ -88,6 +95,7 @@ Before running the application locally, ensure you have an updated version of No
    ```
 
 3. **Format & Lint:**
+
    ```bash
    npm run format
    npm run lint
@@ -102,4 +110,4 @@ Before running the application locally, ensure you have an updated version of No
 
 The contents and technical insights contained within this repository are generated and maintained by **CM Regmi**. All documentation, hacks, architecture records, and experimental code are proprietary unless expressly open-sourced under the explicit repository license.
 
-*Designed for maximum telemetry evasion, edge-cached response times, and an unapologetic reverence for raw performance.*
+_Designed for maximum telemetry evasion, edge-cached response times, and an unapologetic reverence for raw performance._

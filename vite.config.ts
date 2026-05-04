@@ -16,14 +16,13 @@ export default defineConfig({
           "/",
           "/about",
           "/docs",
-          "/labs",
           "/contact",
           "/ads-and-cookies",
           "/privacy-policy",
-          "/terms-of-service"
+          "/terms-of-service",
         ],
-        generateRobotsTxt: true
-      })
-    ]
-  }
+        generateRobotsTxt: true,
+      }),
+    ],
+  },
 });

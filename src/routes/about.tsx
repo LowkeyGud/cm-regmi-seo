@@ -6,13 +6,19 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About CM Regmi | Systems Architect Profile" },
-      { name: "description", content: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods." },
+      {
+        name: "description",
+        content:
+          "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
+      },
       { property: "og:title", content: "About CM Regmi | Systems Architect Profile" },
-      { property: "og:description", content: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods." },
+      {
+        property: "og:description",
+        content:
+          "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://cmregmi.com.np/about" },
-    ],
+    links: [{ rel: "canonical", href: "https://cmregmi.com.np/about" }],
   }),
   component: About,
 });
@@ -32,8 +38,8 @@ function About() {
           className="mt-8 rounded-lg border border-border bg-muted/20 object-cover"
         />
         <p className="mt-8 text-lg text-muted-foreground">
-          CM Regmi designs systems that respect the silicon they run on. Two decades
-          of moving bits between rings, kernels, and userland.
+          CM Regmi designs systems that respect the silicon they run on. Two decades of moving bits
+          between rings, kernels, and userland.
         </p>
       </main>
       <SiteFooter />

@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
-import { Route as LabsRouteImport } from './routes/labs'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdsAndCookiesRouteImport } from './routes/ads-and-cookies'
@@ -26,11 +25,6 @@ const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LabsRoute = LabsRouteImport.update({
-  id: '/labs',
-  path: '/labs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsRoute = DocsRouteImport.update({
@@ -65,7 +59,6 @@ export interface FileRoutesByFullPath {
   '/ads-and-cookies': typeof AdsAndCookiesRoute
   '/contact': typeof ContactRoute
   '/docs': typeof DocsRoute
-  '/labs': typeof LabsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms-of-service': typeof TermsOfServiceRoute
 }
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/ads-and-cookies': typeof AdsAndCookiesRoute
   '/contact': typeof ContactRoute
   '/docs': typeof DocsRoute
-  '/labs': typeof LabsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms-of-service': typeof TermsOfServiceRoute
 }
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/ads-and-cookies': typeof AdsAndCookiesRoute
   '/contact': typeof ContactRoute
   '/docs': typeof DocsRoute
-  '/labs': typeof LabsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms-of-service': typeof TermsOfServiceRoute
 }
@@ -98,7 +89,6 @@ export interface FileRouteTypes {
     | '/ads-and-cookies'
     | '/contact'
     | '/docs'
-    | '/labs'
     | '/privacy-policy'
     | '/terms-of-service'
   fileRoutesByTo: FileRoutesByTo
@@ -108,7 +98,6 @@ export interface FileRouteTypes {
     | '/ads-and-cookies'
     | '/contact'
     | '/docs'
-    | '/labs'
     | '/privacy-policy'
     | '/terms-of-service'
   id:
@@ -118,7 +107,6 @@ export interface FileRouteTypes {
     | '/ads-and-cookies'
     | '/contact'
     | '/docs'
-    | '/labs'
     | '/privacy-policy'
     | '/terms-of-service'
   fileRoutesById: FileRoutesById
@@ -129,7 +117,6 @@ export interface RootRouteChildren {
   AdsAndCookiesRoute: typeof AdsAndCookiesRoute
   ContactRoute: typeof ContactRoute
   DocsRoute: typeof DocsRoute
-  LabsRoute: typeof LabsRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
 }
@@ -148,13 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/labs': {
-      id: '/labs'
-      path: '/labs'
-      fullPath: '/labs'
-      preLoaderRoute: typeof LabsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs': {
@@ -201,7 +181,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdsAndCookiesRoute: AdsAndCookiesRoute,
   ContactRoute: ContactRoute,
   DocsRoute: DocsRoute,
-  LabsRoute: LabsRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,
 }

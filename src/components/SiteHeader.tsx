@@ -1,11 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/docs", label: "Documentation Hub" },
-  { to: "/labs", label: "Labs" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -32,11 +31,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <button
-          className="md:hidden"
-          aria-label="Toggle menu"
-          onClick={() => setOpen((o) => !o)}
-        >
+        <button className="md:hidden" aria-label="Toggle menu" onClick={() => setOpen((o) => !o)}>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>

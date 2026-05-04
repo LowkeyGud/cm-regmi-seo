@@ -8,7 +8,10 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — CM Regmi" },
       { name: "description", content: "Initiate contact for systems architecture engagements." },
       { property: "og:title", content: "Contact — CM Regmi" },
-      { property: "og:description", content: "Initiate contact for systems architecture engagements." },
+      {
+        property: "og:description",
+        content: "Initiate contact for systems architecture engagements.",
+      },
     ],
   }),
   component: Contact,

@@ -264,12 +264,6 @@ function Bento() {
               Engineered surfaces, not slideware.
             </h2>
           </div>
-          <Link
-            to="/labs"
-            className="hidden shrink-0 text-sm font-medium text-muted-foreground hover:text-foreground md:inline-flex"
-          >
-            Visit Labs →
-          </Link>
         </div>
 
         <div className="grid auto-rows-[200px] grid-cols-1 gap-4 md:grid-cols-3">

@@ -9,6 +9,7 @@ import Sitemap from "vite-plugin-sitemap";
 
 export default defineConfig({
   vite: {
+    base: "/", // Adjust this if your app is not hosted at the root of the domain
     plugins: [
       Sitemap({
         hostname: "https://cmregmi.com.np",
@@ -24,6 +25,5 @@ export default defineConfig({
         generateRobotsTxt: true,
       }),
     ],
-    base: "/",
   },
 });

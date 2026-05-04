@@ -29,8 +29,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CM Regmi — Systems Architect & Digital Strategist" },
-      { name: "description", content: "Bridging hardware potential and software execution. Android kernel optimization, Windows hardening, and cross-platform architecture." },
+      { title: "CM Regmi | Professional Systems Engineer & Documentation Architect" },
+      { name: "description", content: "Android hacks, Windows system optimization, and expert technical documentation." },
       { name: "author", content: "CM Regmi" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -41,6 +41,29 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "name": "CM Regmi",
+              "jobTitle": "Electronics and Communications Engineer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Learn Tech"
+              }
+            },
+            {
+              "@type": "Organization",
+              "name": "Learn Tech"
+            }
+          ]
+        })
+      }
+    ]
   }),
   shellComponent: RootShell,
   component: RootComponent,

@@ -9,6 +9,8 @@ import {
   Shield,
   Terminal,
   Zap,
+  Download,
+  FileCode2,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -16,16 +18,15 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CM Regmi — Systems Architect & Digital Strategist" },
+      { title: "CM Regmi | Professional Systems Engineer & Documentation Architect" },
       {
         name: "description",
-        content:
-          "Bridging the gap between hardware potential and software execution. Android kernel optimization, Windows hardening, cross-platform architecture.",
+        content: "Android hacks, Windows system optimization, and expert technical documentation.",
       },
-      { property: "og:title", content: "CM Regmi — Systems Architect & Digital Strategist" },
+      { property: "og:title", content: "CM Regmi | Professional Systems Engineer & Documentation Architect" },
       {
         property: "og:description",
-        content: "Bridging the gap between hardware potential and software execution.",
+        content: "Android hacks, Windows system optimization, and expert technical documentation.",
       },
     ],
   }),
@@ -39,7 +40,9 @@ function Index() {
       <main>
         <Hero />
         <DocumentationHubPreview />
+        <EngineeringInsights />
         <Bento />
+        <Resources />
         <Stack />
       </main>
       <SiteFooter />
@@ -300,6 +303,51 @@ function Bento() {
   );
 }
 
+function Resources() {
+  const resources = [
+    { title: "Android Rooting Hack-Sheet", size: "1.2 MB PDF", icon: FileCode2 },
+    { title: "Windows 11 Debloat Commands", size: "84 KB TXT", icon: Terminal },
+    { title: "Kernel Parameter Baseline", size: "240 KB PDF", icon: FileCode2 },
+    { title: "Network Stack Optimization", size: "45 KB MD", icon: Terminal },
+  ];
+
+  return (
+    <section className="border-b border-border bg-card/5">
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="mb-12">
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+            ◢ Resources
+          </p>
+          <h2 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            Active Intelligence.
+          </h2>
+          <p className="mt-4 text-muted-foreground text-lg">
+            Downloadable Hack Sheets, Command Cheat-Sheets, and parameter baselines for field operations.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {resources.map((res) => (
+            <div
+              key={res.title}
+              className="group flex flex-col justify-between rounded-lg border border-border bg-background p-6 transition-colors hover:border-primary/50 hover:bg-secondary/20"
+            >
+              <div>
+                <res.icon className="mb-4 h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                <h3 className="font-semibold tracking-tight text-foreground">{res.title}</h3>
+                <p className="mt-2 text-xs text-muted-foreground font-mono">{res.size}</p>
+              </div>
+              <button className="mt-6 inline-flex items-center gap-2 self-start rounded bg-secondary px-3 py-1.5 text-xs font-medium text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <Download className="h-3.5 w-3.5" />
+                Download
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Stack() {
   const items = [
     "Linux Kernel",
@@ -327,6 +375,67 @@ function Stack() {
               {i}
             </span>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EngineeringInsights() {
+  return (
+    <section className="border-b border-border bg-card/10">
+      <div className="mx-auto max-w-4xl px-6 py-24 md:py-32">
+        <div className="mb-12">
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+            ◢ Engineering Insights
+          </p>
+          <h2 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            The Hardware-Software Symbiosis
+          </h2>
+        </div>
+        
+        <div className="space-y-8 text-base md:text-lg leading-relaxed text-muted-foreground">
+          <p>
+            The intersection of hardware potential and software execution is where true performance is unlocked. In modern development and system architecture, theoretical benchmarks are irrelevant if the low-level interactions are not meticulously tuned. This philosophy drives my approach to hardware-specific optimizations, particularly concerning mobile, desktop, and workstation hybrid environments. To extract the ceiling of a system’s capabilities, an architect must stop treating the operating system as an opaque abstraction layer and instead manipulate the direct channels between the kernel scheduler and the silicon footprint.
+          </p>
+          <p>
+            My extensive work with the <strong className="text-foreground font-semibold">ROG Zephyrus G14 (Ryzen 9 5900HS / RTX 3060)</strong> architecture serves as a prime example of this methodology. Out-of-the-box configurations for such high-end hardware typically prioritize average consumer use cases over the raw, sustained computational throughput needed for intensive kernel compilation or continuous hypervisor virtualization. By interfacing directly with advanced ACPI tables, modifying SoC power limits, and implementing custom undervolting profiles via specialized x86 tuning utilities, I successfully redesigned the laptop's thermal and power delivery constraints. This micro-architecture tuning enables deterministic turbo boost behaviors, ensuring that complex development pipelines, multiple concurrent containers, and nested emulators run at peak efficiency without thermal throttling artificially degrading I/O performance over extended periods. 
+          </p>
+
+          <h3 className="text-2xl font-bold tracking-tight text-foreground pt-8">Kernel Optimization for Mobile Emulation</h3>
+          <p>
+            Operating at the bleeding edge of the Android ecosystem demands a testing environment that accurately mimics real-world hardware realities without compromising host system constraints. My current research and execution focus involves Android 17 virtualization and deep AVD (Android Virtual Device) manipulation. Traditional Android emulation workflows rely heavily on standardized Hyper-V or HAXM implementations that are highly abstracted and rarely optimized for the distinct I/O patterns of a modern, heavily modified Android kernel.
+          </p>
+          <p>
+            I approach AVD environments as highly dynamic targets rather than static, generic software images. This pipeline includes deploying sophisticated rooting methods specifically tailored for virtualized x86_64 and ARM64 architectures, bypassing standard bootloader verification checks, and injecting Magisk or KernelSU binaries directly into the emulator’s Ramdisk partition. Injecting a systemic root framework into an AVD is not simply an exercise in escalating computational privileges—it enables profound system instrumentation. From modifying CPU schedulers within the virtualized guest to tweaking out-of-memory (OOM) management policies, this low-level access allows developers to simulate precise hardware constraints, battery drain scenarios, and resource scarcity exactly as they appear on both flagship devices and low-end physical silicon. 
+          </p>
+          <p>
+            Concurrently, optimizing Windows as the host subsystem for this high-performance development ecosystem is equally critical. Windows hardening goes far beyond simply disabling unwanted telemetry or stripping out bloatware. It involves deploying rigorous policy baselines, configuring Hyper-V isolation features, enforcing strict AppLocker policies to prevent subsystem drift, and specifically tuning the WSL2 (Windows Subsystem for Linux) networking stack to drastically reduce packet overhead between the Windows host kernel and the Linux guest. A rigid, extremely lean Windows environment provides a deterministic host—a non-negotiable requirement when compiling millions of lines of AOSP (Android Open Source Project) code or stress-testing low-level Android 17 framework implementations.
+          </p>
+
+          <h3 className="text-2xl font-bold tracking-tight text-foreground pt-8">Foundations in Methodical Engineering</h3>
+          <p>
+            This rigorous, evidence-based approach to systems architecture is deeply rooted in formal analytic disciplines. As a registered engineer certified by the <strong className="text-foreground font-semibold">Nepal Engineering Council (NEC)</strong>, my technical execution is inherently governed by uncompromising principles of reliability, systemic safety, and mathematically reproducible outcomes. The methodologies learned through rigorous formal engineering practices directly and positively inform my approach to software architecture and documentation.
+          </p>
+          <p>
+            In mechanical or civil engineering disciplines, the failure to rigorously document a structural constraint, shear limit, or material tolerance inevitably leads to catastrophic physical failure. When directly applied to software infrastructure, the failure to properly document a kernel patch, a memory allocation strategy, or a precise virtualization configuration leads to unmaintainable codebases, extreme technical debt, and broader ecosystem fragmentation. My formal NEC certification continuously instills a disciplined mindset where undocumented code is simply considered broken code. This ensures every individual project, shell script, architectural decision, and binary patch I author is accompanied by deeply thorough, schematic-level documentation.
+          </p>
+
+          <h3 className="text-2xl font-bold tracking-tight text-foreground pt-8">The 'Learn Tech' Philosophy</h3>
+          <p>
+            In recent years, the technical education and developer-advocacy landscape has skewed heavily toward short-form, ephemeral video content designed for engagement rather than deep comprehension. While visually stimulating, these formats frequently abstract away the inevitable friction and troubleshooting necessary for genuine technical mastery. The <strong className="text-foreground font-semibold">Learn Tech</strong> philosophy pivots sharply away from this trend, arguing vigorously that structured, long-form documentation is infinitely superior for substantive, long-lasting engineering education.
+          </p>
+          <p>
+            Highly complex procedures—such as unpacking and rewriting a raw <code>boot.img</code>, compiling an optimized toolchain, or debugging a segmentation fault inside a custom cross-compiled Linux kernel—cannot be adequately represented in a rapid-fire, highly edited video timeline. Long-form, highly structured documentation fundamentally provides necessary temporal permanence. It explicitly allows an operator to cleanly search for specific hex error codes, closely study command syntaxes, and methodically understand the procedural logic at their own individual pace. The core mechanism of the Learn Tech philosophy is driven by the absolute conviction that true engineering mastery comes primarily from reading, executing, inevitably failing, and referencing explicit technical documentation, rather than passively watching a successful execution sequence without ever grasping the underlying variable states.
+          </p>
+
+          <h3 className="text-2xl font-bold tracking-tight text-foreground pt-8">The Future of Documentation in an AI-Driven Era</h3>
+          <p>
+            As the software engineering landscape moves dynamically further into an era heavily influenced by sophisticated large language models and autonomous agents, the specific role of human-authored, deeply structured technical documentation becomes significantly more vital, not less. Current AI models excel at synthesizing and reformulating existing knowledge; however, they do not natively invent novel low-level exploit chains or autonomously design bespoke thermal redistribution solutions for highly niche hardware configurations like the G14.
+          </p>
+          <p>
+            High-quality, meticulously long-form technical narratives actively serve as the necessary ground truth and high-signal training data from which AI agents can effectively assist rather than hallucinate. By consistently maintaining an objective, densely informative, and highly structural baseline standard of technical documentation, I aim to provide not just an immediate resource for human developers, but a verifiable repository of fundamental systems knowledge that structurally anchors future automated programming tools. Ultimately, foundational engineering insights must remain immutable, accurately searchable, and technically definitive—a standard I obsessively uphold across all my technical deployments, written guides, and architectural designs.
+          </p>
         </div>
       </div>
     </section>

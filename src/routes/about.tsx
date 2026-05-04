@@ -21,7 +21,14 @@ function About() {
       <main className="mx-auto max-w-3xl px-6 py-24">
         <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">◢ About</p>
         <h1 className="text-5xl font-black tracking-tight">Operator profile.</h1>
-        <p className="mt-6 text-lg text-muted-foreground">
+        <img
+          src="/images/technical-lab-setup.jpg"
+          width="800"
+          height="450"
+          alt="CM Regmi Technical Laboratory Setup"
+          className="mt-8 rounded-lg border border-border bg-muted/20 object-cover"
+        />
+        <p className="mt-8 text-lg text-muted-foreground">
           CM Regmi designs systems that respect the silicon they run on. Two decades
           of moving bits between rings, kernels, and userland.
         </p>

@@ -41,7 +41,28 @@ function AdsAndCookies() {
             and its partners to serve ads to our users based on their visit to our sites and/or
             other sites on the Internet.
           </p>
-          <p>Users may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+          <p>
+            Users may opt out of personalized advertising by visiting{" "}
+            <a
+              href="https://www.google.com/settings/ads"
+              target="_blank"
+              rel="noreferrer"
+              className="text-primary hover:underline"
+            >
+              Google's Ads Settings
+            </a>
+            . Alternatively, you can opt out of a third-party vendor's use of cookies for
+            personalized advertising by visiting{" "}
+            <a
+              href="https://youradchoices.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-primary hover:underline"
+            >
+              www.aboutads.info
+            </a>
+            .
+          </p>
         </div>
       </main>
       <SiteFooter />

@@ -39,6 +39,8 @@ export const Route = createRootRoute({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

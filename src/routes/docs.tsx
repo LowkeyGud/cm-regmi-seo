@@ -70,16 +70,20 @@ function Docs() {
               className="rounded-lg object-cover w-full h-64 border border-border"
             />
             <p className="text-muted-foreground leading-relaxed">
-              Optimizing Android kernels requires an in-depth understanding of the governor,
-              scheduling, and thermal thresholds...
+              Optimizing Android kernels requires an in-depth understanding of the CPU frequency governors, task scheduling paradigms, and aggressive thermal thresholds. By modifying parameters within EAS (Energy Aware Scheduling), developers can achieve significantly improved battery life without compromising peak UI responsiveness. Additionally, disabling extraneous wakelocks and utilizing custom EAS algorithms ensures background tasks remain strictly confined to the efficiency cluster.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Furthermore, advanced memory management via ZRAM tweaking and adjusting the swappiness parameters allows resource-constrained devices to handle large context-switching payloads efficiently. Overclocking the GPU and undervolting the CPU requires careful stability testing to prevent random soft-reboots under heavy compute workloads.
             </p>
           </section>
 
-          <section className="mt-12 space-y-6">
+          <section className="mt-12 space-y-6 flex-1 pb-12">
             <h2 className="text-3xl font-bold tracking-tight">Windows System Hardening</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Reducing the attack surface of a Windows environment through strict policy
-              enforcement, telemetry disabling, and advanced endpoint protection strategies...
+              Reducing the attack surface of a Windows environment through strict Group Policy Objects (GPO) enforcement, telemetry disabling, and advanced endpoint protection strategies is fundamental for a secured enterprise node. Hardening implementations typically begin with the principle of least privilege, stripping local administrator rights from daily workflow accounts, and restricting application execution environments using AppLocker or Windows Defender Application Control (WDAC).
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              System administrators should also implement rigorous firewall rulesets dropping all inbound traffic by default, while monitoring outbound queries. Disabling SMBv1, enforcing NTLM signing, and requiring secure RPC channels mitigate lateral movement risks. The implementation of modern Credential Guard significantly reduces the effectiveness of Pass-the-Hash (PtH) and mimikatz-style attacks on the local SAM database.
             </p>
           </section>
         </article>

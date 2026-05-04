@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { Activity, Clock } from "lucide-react";
 
 export function SiteFooter() {
@@ -27,19 +27,19 @@ export function SiteFooter() {
           <h3 className="font-bold text-lg tracking-tight text-white">Legal Documents</h3>
           <div className="flex flex-col space-y-2 text-sm md:items-end">
             <Link
-              to="/privacy-policy"
+              href="/privacy-policy"
               className="text-stone-300 hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              to="/terms-of-service"
+              href="/terms-of-service"
               className="text-stone-300 hover:text-white transition-colors"
             >
               Terms of Service
             </Link>
             <Link
-              to="/ads-and-cookies"
+              href="/ads-and-cookies"
               className="text-stone-300 hover:text-white transition-colors"
             >
               Ads & Cookies Policy

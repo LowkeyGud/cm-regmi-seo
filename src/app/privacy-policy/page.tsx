@@ -1,15 +1,13 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/privacy-policy")({
-  head: () => ({
-    meta: [{ title: "Privacy Policy — CM Regmi" }],
-  }),
-  component: PrivacyPolicy,
-});
+export const runtime = "edge";
 
-function PrivacyPolicy() {
+export const metadata = {
+  title: "Privacy Policy — CM Regmi",
+};
+
+export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

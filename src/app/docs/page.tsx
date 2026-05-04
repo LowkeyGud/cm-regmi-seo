@@ -8,30 +8,23 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import Link from "next/link";
 
-export const Route = createFileRoute("/docs")({
-  head: () => ({
-    meta: [
-      { title: "Technical Documentation & Architecture | CM Regmi" },
-      {
-        name: "description",
-        content:
-          "Explore CM Regmi's central technical documentation hub containing in-depth playbooks for Android kernel optimization and Windows system hardening strategies.",
-      },
-      { property: "og:title", content: "Technical Documentation & Architecture | CM Regmi" },
-      {
-        property: "og:description",
-        content:
-          "Explore CM Regmi's central technical documentation hub containing in-depth playbooks for Android kernel optimization and Windows system hardening strategies.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://cmregmi.com.np/docs" }],
-  }),
-  component: Docs,
-});
+export const runtime = "edge";
 
-function Docs() {
+export const metadata = {
+  title: "Technical Documentation & Architecture | CM Regmi",
+  description: "Explore CM Regmi's central technical documentation hub containing in-depth playbooks for Android kernel optimization and Windows system hardening strategies.",
+  openGraph: {
+    title: "Technical Documentation & Architecture | CM Regmi",
+    description: "Explore CM Regmi's central technical documentation hub containing in-depth playbooks for Android kernel optimization and Windows system hardening strategies.",
+  },
+  alternates: {
+    canonical: "https://cmregmi.com.np/docs",
+  },
+};
+
+export default function Docs() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
@@ -40,7 +33,7 @@ function Docs() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link to="/">Home</Link>
+                <Link href="/">Home</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />

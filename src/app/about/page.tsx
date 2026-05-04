@@ -1,29 +1,21 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About CM Regmi | Systems Architect Profile" },
-      {
-        name: "description",
-        content:
-          "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
-      },
-      { property: "og:title", content: "About CM Regmi | Systems Architect Profile" },
-      {
-        property: "og:description",
-        content:
-          "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://cmregmi.com.np/about" }],
-  }),
-  component: About,
-});
+export const runtime = "edge";
 
-function About() {
+export const metadata = {
+  title: "About CM Regmi | Systems Architect Profile",
+  description: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
+  openGraph: {
+    title: "About CM Regmi | Systems Architect Profile",
+    description: "Profile of CM Regmi, Systems Architect. Two decades of expertise in technical documentation, Android kernel optimization, and Windows system hardening methods.",
+  },
+  alternates: {
+    canonical: "https://cmregmi.com.np/about",
+  },
+};
+
+export default function About() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

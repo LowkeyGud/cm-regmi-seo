@@ -1,6 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import Link from "next/link";
 import {
   ArrowRight,
   Cpu,
@@ -15,28 +15,9 @@ import {
   Zap,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "CM Regmi | Systems Architect & Documentation Hub" },
-      {
-        name: "description",
-        content:
-          "Welcome to CM Regmi's portfolio. Explore expert technical documentation covering Android kernel optimization, Windows system hardening, and fast architecture.",
-      },
-      { property: "og:title", content: "CM Regmi | Systems Architect & Documentation Hub" },
-      {
-        property: "og:description",
-        content:
-          "Welcome to CM Regmi's portfolio. Explore expert technical documentation covering Android kernel optimization, Windows system hardening, and fast architecture.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://cmregmi.com.np/" }],
-  }),
-  component: Index,
-});
+export const runtime = "edge";
 
-function Index() {
+export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
@@ -94,7 +75,7 @@ function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <Link
-              to="/contact"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
             >
               Initiate Contact

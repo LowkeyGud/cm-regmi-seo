@@ -1,21 +1,14 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/ads-and-cookies")({
-  head: () => ({
-    meta: [
-      { title: "Ads & Cookies Policy | CM Regmi" },
-      {
-        name: "description",
-        content: "Details on our advertisement implementation and cookie tracking specifications.",
-      },
-    ],
-  }),
-  component: AdsAndCookies,
-});
+export const runtime = "edge";
 
-function AdsAndCookies() {
+export const metadata = {
+  title: "Ads & Cookies Policy | CM Regmi",
+  description: "Details on our advertisement implementation and cookie tracking specifications.",
+};
+
+export default function AdsAndCookies() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

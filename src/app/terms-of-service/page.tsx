@@ -1,15 +1,13 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/terms-of-service")({
-  head: () => ({
-    meta: [{ title: "Terms of Service — CM Regmi" }],
-  }),
-  component: TermsOfService,
-});
+export const runtime = "edge";
 
-function TermsOfService() {
+export const metadata = {
+  title: "Terms of Service — CM Regmi",
+};
+
+export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

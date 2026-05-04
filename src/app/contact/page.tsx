@@ -1,23 +1,18 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — CM Regmi" },
-      { name: "description", content: "Initiate contact for systems architecture engagements." },
-      { property: "og:title", content: "Contact — CM Regmi" },
-      {
-        property: "og:description",
-        content: "Initiate contact for systems architecture engagements.",
-      },
-    ],
-  }),
-  component: Contact,
-});
+export const runtime = "edge";
 
-function Contact() {
+export const metadata = {
+  title: "Contact — CM Regmi",
+  description: "Initiate contact for systems architecture engagements.",
+  openGraph: {
+    title: "Contact — CM Regmi",
+    description: "Initiate contact for systems architecture engagements.",
+  },
+};
+
+export default function Contact() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

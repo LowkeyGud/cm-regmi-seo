@@ -1,5 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Cpu, Shield, Layers, Terminal, Zap, GitBranch } from "lucide-react";
+import {
+  ArrowRight,
+  Cpu,
+  ExternalLink,
+  GitBranch,
+  Layers,
+  PlayCircle,
+  Shield,
+  Terminal,
+  Zap,
+} from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -7,9 +17,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "CM Regmi — Systems Architect & Digital Strategist" },
-      { name: "description", content: "Bridging the gap between hardware potential and software execution. Android kernel optimization, Windows hardening, cross-platform architecture." },
+      {
+        name: "description",
+        content:
+          "Bridging the gap between hardware potential and software execution. Android kernel optimization, Windows hardening, cross-platform architecture.",
+      },
       { property: "og:title", content: "CM Regmi — Systems Architect & Digital Strategist" },
-      { property: "og:description", content: "Bridging the gap between hardware potential and software execution." },
+      {
+        property: "og:description",
+        content: "Bridging the gap between hardware potential and software execution.",
+      },
     ],
   }),
   component: Index,
@@ -21,6 +38,7 @@ function Index() {
       <SiteHeader />
       <main>
         <Hero />
+        <DocumentationHubPreview />
         <Bento />
         <Stack />
       </main>
@@ -91,15 +109,118 @@ function Hero() {
 Linux 6.8.0-kernel
 > systemctl status
 ● architect.service
-  Active: `}<span className="text-primary">running</span>{`
+  Active: `}
+              <span className="text-primary">running</span>
+              {`
   Domains: 4
   Latency: 12ms
 > whoami
-`}<span className="text-foreground">cm.regmi</span>{`
+`}
+              <span className="text-foreground">cm.regmi</span>
+              {`
 > _`}
             </pre>
           </div>
         </aside>
+      </div>
+    </section>
+  );
+}
+
+const documentationCards = [
+  {
+    title: "Android Hacks",
+    description:
+      "Root workflows, kernel tuning, recovery tooling, and performance-centered Android modifications for power users and advanced operators.",
+    borderClass: "border-primary",
+  },
+  {
+    title: "Windows Power-Tools",
+    description:
+      "System hardening, debloating, policy baselines, and low-friction automation for leaner and more resilient Windows environments.",
+    borderClass: "border-foreground",
+  },
+  {
+    title: "iOS Optimization",
+    description:
+      "Practical device maintenance, workflow acceleration, and ecosystem-level tuning focused on stability, longevity, and daily efficiency.",
+    borderClass: "border-primary",
+  },
+];
+
+function DocumentationHubPreview() {
+  return (
+    <section id="documentation" className="border-b border-foreground/80">
+      <div className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 max-w-3xl">
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+            ◢ Documentation Hub
+          </p>
+          <h2 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            Field-tested guides across Android, Windows, and iOS.
+          </h2>
+          <p className="mt-5 text-pretty text-base leading-7 text-muted-foreground md:text-lg">
+            A preview of the technical library behind CM Regmi’s performance,
+            optimization, and system architecture practice—structured for
+            operators who want actionable documentation instead of generic
+            advice.
+          </p>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          {documentationCards.map((card) => (
+            <article
+              key={card.title}
+              className={`flex min-h-[280px] flex-col justify-between rounded-lg border bg-card/40 p-6 ${card.borderClass}`}
+            >
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight">{card.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                  {card.description}
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="https://learntech.cmregmi.com.np"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[var(--shadow-red-glow)]"
+                >
+                  Read Guides
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-lg border border-foreground bg-secondary/20 p-6 md:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+                ◢ YouTube Integration
+              </p>
+              <h3 className="text-3xl font-bold tracking-tight">Learn Tech</h3>
+              <p className="mt-4 text-base leading-7 text-muted-foreground">
+                The <span className="text-foreground">Learn Tech</span> channel
+                acts as a visual laboratory for the technical documentation on
+                this site—turning written guides into walkthroughs, testing
+                environments, optimization demos, and reproducible experiments.
+              </p>
+            </div>
+
+            <a
+              href="https://www.youtube.com/@LearnTechYT"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 self-start rounded-md border border-primary px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+            >
+              Visit Channel
+              <PlayCircle className="h-4 w-4 text-primary" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -113,8 +234,16 @@ const tiles = [
     span: "md:col-span-2 md:row-span-2",
     accent: true,
   },
-  { icon: Shield, title: "System Hardening", desc: "Windows attack-surface reduction & policy baselines." },
-  { icon: Layers, title: "Cross-Platform Architecture", desc: "Unified design across mobile, desktop, edge." },
+  {
+    icon: Shield,
+    title: "System Hardening",
+    desc: "Windows attack-surface reduction & policy baselines.",
+  },
+  {
+    icon: Layers,
+    title: "Cross-Platform Architecture",
+    desc: "Unified design across mobile, desktop, edge.",
+  },
   { icon: Terminal, title: "Low-Level Tooling", desc: "Bootloaders, recovery, diagnostics." },
   { icon: GitBranch, title: "Pipeline Strategy", desc: "Reproducible builds and signed releases." },
   { icon: Zap, title: "Performance Audits", desc: "Profiling that translates into shipped wins." },
@@ -122,7 +251,7 @@ const tiles = [
 
 function Bento() {
   return (
-    <section id="documentation" className="border-b border-border">
+    <section className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 flex items-end justify-between gap-8">
           <div>
@@ -172,7 +301,17 @@ function Bento() {
 }
 
 function Stack() {
-  const items = ["Linux Kernel", "AOSP", "Win32", "Rust", "C / C++", "TypeScript", "WebAssembly", "eBPF"];
+  const items = [
+    "Linux Kernel",
+    "AOSP",
+    "Win32",
+    "Rust",
+    "C / C++",
+    "TypeScript",
+    "WebAssembly",
+    "eBPF",
+  ];
+
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-20">

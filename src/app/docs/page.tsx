@@ -8,28 +8,51 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import type { Metadata } from "next";
 import Image from "next/image"; // Optimization: Better LCP and performance
 import Link from "next/link";
 import Script from "next/script"; // For JSON-LD
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-docs.png`;
+
+export const metadata: Metadata = {
   title: "Technical Documentation & Architecture | CM Regmi",
   description:
     "Comprehensive guides on Android kernel optimization, Windows system hardening, and enterprise-grade architecture decision records by CM Regmi.",
   keywords:
     "Android Kernel Tuning, Windows Hardening, System Architecture, EAS Scheduling, Cybersecurity Playbooks",
+  alternates: {
+    canonical: `${SITE_URL}/docs`,
+  },
   openGraph: {
     title: "Technical Documentation & Architecture | CM Regmi",
     description:
       "Explore in-depth playbooks for Android kernel optimization and Windows system hardening strategies.",
-    url: "https://cmregmi.com.np/docs",
+    url: `${SITE_URL}/docs`,
     siteName: "CM Regmi",
     type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Technical Documentation Hub - CM Regmi",
+      },
+    ],
   },
-  alternates: {
-    canonical: "https://cmregmi.com.np/docs",
+  twitter: {
+    card: "summary_large_image",
+    title: "Technical Documentation & Architecture",
+    description: "In-depth playbooks for systems optimization",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -43,7 +66,7 @@ export default function Docs() {
     author: {
       "@type": "Person",
       name: "CM Regmi",
-      url: "https://cmregmi.com.np",
+      url: SITE_URL,
     },
     datePublished: "2024-01-01",
     dateModified: new Date().toISOString(),

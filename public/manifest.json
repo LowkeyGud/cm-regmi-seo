@@ -1,0 +1,30 @@
+{
+    "name": "CM Regmi | Professional Systems Engineer & Documentation Architect",
+    "short_name": "CM Regmi",
+    "description": "Android hacks, Windows system optimization, and expert technical documentation by CM Regmi.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#ff0000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "32x32",
+            "type": "image/x-icon"
+        }
+    ],
+    "categories": [
+        "technology",
+        "productivity"
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshot-wide.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ]
+}

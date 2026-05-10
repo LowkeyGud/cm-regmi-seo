@@ -8,25 +8,49 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-contact.png`;
+
+export const metadata: Metadata = {
   title: "Contact CM Regmi | Technical Consulting & Systems Architecture",
   description:
     "Get in touch with CM Regmi for Android kernel optimization, Windows system hardening, and enterprise architecture engagements. Professional technical support.",
   keywords:
     "Contact CM Regmi, Systems Architecture Consulting, Android Kernel Support, Technical Documentation Services",
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
   openGraph: {
     title: "Contact CM Regmi | Systems Architecture Engagements",
     description:
       "Inquire about professional consulting for systems optimization and architectural design.",
+    url: `${SITE_URL}/contact`,
     type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Contact CM Regmi for Technical Consulting",
+      },
+    ],
   },
-  alternates: {
-    canonical: "https://cmregmi.com.np/contact",
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact CM Regmi",
+    description: "Professional technical consulting and systems architecture services",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -37,11 +61,11 @@ export default function Contact() {
     "@type": "ContactPage",
     name: "Contact CM Regmi",
     description: "Contact page for professional systems architecture and optimization services.",
-    url: "https://cmregmi.com.np/contact",
+    url: `${SITE_URL}/contact`,
     mainEntity: {
       "@type": "Person",
       name: "CM Regmi",
-      email: "learntechcontact@gmail.com", // Fixed the 'gmaill' typo
+      email: "learntechcontact@gmail.com",
     },
   };
 

@@ -1,32 +1,48 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-about.png`;
+
+export const metadata: Metadata = {
   title: "About CM Regmi | Systems Architect & Optimization Expert",
   description:
     "Learn about CM Regmi's 20+ years of experience in Android kernel optimization, Windows system hardening, and enterprise infrastructure architecture.",
   keywords:
     "CM Regmi, Systems Architect, Android Kernel Expert, Windows Hardening Specialist, Technical Consultant",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
   openGraph: {
     title: "About CM Regmi | Systems Architect Profile",
     description: "20 years of expertise in technical documentation and system optimization.",
+    url: `${SITE_URL}/about`,
+    type: "profile",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "CM Regmi Technical Infrastructure Lab",
       },
     ],
-    type: "profile",
   },
-  alternates: {
-    canonical: "https://cmregmi.com.np/about",
+  twitter: {
+    card: "summary_large_image",
+    title: "About CM Regmi | Systems Architect",
+    description: "20+ years of expertise in systems architecture and optimization",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -40,7 +56,7 @@ export default function About() {
       name: "CM Regmi",
       jobTitle: "Systems Architect",
       description: "Expert in Android kernel optimization and Windows enterprise hardening.",
-      url: "https://cmregmi.com.np",
+      url: SITE_URL,
       knowsAbout: [
         "Android Kernel Optimization",
         "Windows System Hardening",

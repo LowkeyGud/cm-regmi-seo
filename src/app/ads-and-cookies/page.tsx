@@ -1,20 +1,45 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-legal.png`;
+
+export const metadata: Metadata = {
   title: "Privacy & Cookie Policy | CM Regmi",
   description:
     "Our comprehensive policy regarding data collection, cookie usage, and third-party advertising transparency for CM Regmi's technical hub.",
   alternates: {
-    canonical: "https://cmregmi.com.np/cookies",
+    canonical: `${SITE_URL}/ads-and-cookies`,
   },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: "Privacy & Cookie Policy | CM Regmi",
+    description: "Comprehensive cookie and data collection policy",
+    url: `${SITE_URL}/ads-and-cookies`,
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "CM Regmi Ads and Cookies Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy & Cookie Policy | CM Regmi",
+    description: "Comprehensive cookie and data collection policy",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
   },
 };
 
@@ -24,7 +49,7 @@ export default function AdsAndCookies() {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
     name: "Ads and Cookies Policy",
-    url: "https://cmregmi.com.np/cookies",
+    url: `${SITE_URL}/ads-and-cookies`,
     datePublished: "2024-01-01",
     dateModified: new Date().toISOString().split("T")[0],
     knowsAbout: ["Data Privacy", "Cookie Usage", "GDPR Compliance"],

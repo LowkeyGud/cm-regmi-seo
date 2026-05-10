@@ -1,14 +1,43 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import type { Metadata } from "next";
 import Script from "next/script";
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-legal.png`;
+
+export const metadata: Metadata = {
   title: "Terms of Service | CM Regmi",
   description:
     "Terms and conditions for using CM Regmi's technical documentation, system hardening playbooks, and architecture records.",
-  alternates: { canonical: "https://cmregmi.com.np/terms" },
+  alternates: { canonical: `${SITE_URL}/terms-of-service` },
+  openGraph: {
+    title: "Terms of Service | CM Regmi",
+    description: "Terms and conditions for using CM Regmi services",
+    url: `${SITE_URL}/terms-of-service`,
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "CM Regmi Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | CM Regmi",
+    description: "Terms and conditions for CM Regmi services",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function TermsOfService() {
@@ -16,6 +45,9 @@ export default function TermsOfService() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Terms of Service",
+    url: `${SITE_URL}/terms-of-service`,
+    datePublished: "2024-01-01",
+    dateModified: "2026-05-10",
     publisher: { "@type": "Person", name: "CM Regmi" },
   };
 
@@ -30,12 +62,7 @@ export default function TermsOfService() {
       <main className="mx-auto max-w-3xl px-6 py-16 lg:py-24">
         <h1 className="text-4xl font-black tracking-tight mb-4">Terms of Service</h1>
         <p className="text-sm text-muted-foreground mb-8 border-b pb-4">
-          Last updated:{" "}
-          {new Date().toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
+          Last updated: May 10, 2026
         </p>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">

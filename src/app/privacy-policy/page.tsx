@@ -8,21 +8,46 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
 export const runtime = "edge";
 
-export const metadata = {
+const SITE_URL = "https://cmregmi.com.np";
+const OG_IMAGE = `${SITE_URL}/og-legal.png`;
+
+export const metadata: Metadata = {
   title: "Privacy Policy | CM Regmi Technical Documentation Hub",
   description:
     "Official Privacy Policy for CM Regmi. Learn how we handle data, execute Google AdSense implementations, and manage cookie compliance.",
   alternates: {
-    canonical: "https://cmregmi.com.np/privacy",
+    canonical: `${SITE_URL}/privacy-policy`,
   },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: "Privacy Policy | CM Regmi",
+    description: "Learn about our privacy practices and data handling policies",
+    url: `${SITE_URL}/privacy-policy`,
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "CM Regmi Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | CM Regmi",
+    description: "Learn about our privacy practices and data handling",
+    images: [OG_IMAGE],
+    creator: "@cmregmi",
   },
 };
 
@@ -32,9 +57,9 @@ export default function PrivacyPolicy() {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
     name: "Privacy Policy for CM Regmi",
-    url: "https://cmregmi.com.np/privacy",
+    url: `${SITE_URL}/privacy-policy`,
     datePublished: "2024-01-01",
-    dateModified: "2026-05-04", // Set this to your actual last edit date
+    dateModified: "2026-05-10",
   };
 
   return (
@@ -69,7 +94,7 @@ export default function PrivacyPolicy() {
           <header className="mb-10 border-b border-border pb-6">
             <h1 className="text-4xl font-black tracking-tight mb-3">Privacy Policy</h1>
             <p className="text-sm text-muted-foreground">
-              <strong>Last Updated:</strong> May 4, 2026
+              <strong>Last Updated:</strong> May 10, 2026
             </p>
           </header>
 

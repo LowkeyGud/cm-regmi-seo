@@ -51,19 +51,15 @@ export default function About() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    mainEntity: {
-      "@type": "Person",
-      name: "CM Regmi",
-      jobTitle: "Systems Architect",
-      description: "Expert in Android kernel optimization and Windows enterprise hardening.",
-      url: SITE_URL,
-      knowsAbout: [
-        "Android Kernel Optimization",
-        "Windows System Hardening",
-        "Enterprise Architecture",
-        "Cybersecurity",
-      ],
-    },
+    "@id": `${SITE_URL}/about#webpage`,
+    name: "About CM Regmi | Systems Architect & Optimization Expert",
+    description:
+      "Learn about CM Regmi's 20+ years of experience in Android kernel optimization, Windows system hardening, and enterprise infrastructure architecture.",
+    url: `${SITE_URL}/about`,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: { "@id": `${SITE_URL}/#person` },
+    inLanguage: "en-US",
   };
 
   return (

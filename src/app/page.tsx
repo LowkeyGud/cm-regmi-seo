@@ -152,6 +152,7 @@ function HomeSchemas() {
     url: SITE_URL,
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
     dateModified: new Date().toISOString().split("T")[0],
     breadcrumb: {
@@ -464,9 +465,8 @@ function Bento() {
           {tiles.map(({ icon: Icon, title, desc, span, accent }) => (
             <li key={title}>
               <article
-                className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-border p-6 transition-all hover:border-primary/60 ${
-                  accent ? "bg-card" : "bg-card/50"
-                } ${span ?? ""}`}
+                className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-border p-6 transition-all hover:border-primary/60 ${accent ? "bg-card" : "bg-card/50"
+                  } ${span ?? ""}`}
               >
                 {accent && (
                   <div

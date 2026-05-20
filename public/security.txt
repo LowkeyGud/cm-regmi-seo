@@ -1,6 +1,0 @@
-Contact: security@cmregmi.com.np
-Contact: learntechcontact@gmail.com
-Expires: 2027-05-10T00:00:00.000Z
-Preferred-Languages: en
-Canonical: https://cmregmi.com.np/.well-known/security.txt
-Policy: https://cmregmi.com.np/security-policy

@@ -59,14 +59,14 @@ export default function Contact() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    "@id": `${SITE_URL}/contact#webpage`,
     name: "Contact CM Regmi",
     description: "Contact page for professional systems architecture and optimization services.",
     url: `${SITE_URL}/contact`,
-    mainEntity: {
-      "@type": "Person",
-      name: "CM Regmi",
-      email: "learntechcontact@gmail.com",
-    },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: { "@id": `${SITE_URL}/#person` },
+    inLanguage: "en-US",
   };
 
   return (

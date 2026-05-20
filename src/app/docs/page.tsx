@@ -61,15 +61,19 @@ export default function Docs() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
+    "@id": `${SITE_URL}/docs#article`,
     headline: "Technical Documentation & Architecture Hub",
     description: "Expert guides on Android kernel optimization and Windows system hardening.",
+    url: `${SITE_URL}/docs`,
     author: {
-      "@type": "Person",
-      name: "CM Regmi",
-      url: SITE_URL,
+      "@id": `${SITE_URL}/#person`,
     },
     datePublished: "2024-01-01",
     dateModified: new Date().toISOString(),
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntityOfPage: { "@id": `${SITE_URL}/docs#webpage` },
+    inLanguage: "en-US",
   };
 
   return (

@@ -48,11 +48,24 @@ export default function AdsAndCookies() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
+    "@id": `${SITE_URL}/ads-and-cookies#policy`,
     name: "Ads and Cookies Policy",
+    description:
+      "Our comprehensive policy regarding data collection, cookie usage, and third-party advertising transparency for CM Regmi's technical hub.",
     url: `${SITE_URL}/ads-and-cookies`,
     datePublished: "2024-01-01",
     dateModified: new Date().toISOString().split("T")[0],
     knowsAbout: ["Data Privacy", "Cookie Usage", "GDPR Compliance"],
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: {
+      "@type": "CreativeWork",
+      "@id": `${SITE_URL}/ads-and-cookies#mainentity`,
+      name: "Ads and Cookies Policy",
+      url: `${SITE_URL}/ads-and-cookies`,
+    },
+    publisher: { "@id": `${SITE_URL}/#person` },
+    inLanguage: "en-US",
   };
 
   return (

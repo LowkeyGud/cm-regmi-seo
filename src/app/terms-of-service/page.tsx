@@ -44,11 +44,23 @@ export default function TermsOfService() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${SITE_URL}/terms-of-service#webpage`,
     name: "Terms of Service",
+    description:
+      "Terms and conditions for using CM Regmi's technical documentation, system hardening playbooks, and architecture records.",
     url: `${SITE_URL}/terms-of-service`,
     datePublished: "2024-01-01",
     dateModified: "2026-05-10",
-    publisher: { "@type": "Person", name: "CM Regmi" },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: {
+      "@type": "CreativeWork",
+      "@id": `${SITE_URL}/terms-of-service#terms`,
+      name: "Terms of Service",
+      url: `${SITE_URL}/terms-of-service`,
+    },
+    publisher: { "@id": `${SITE_URL}/#person` },
+    inLanguage: "en-US",
   };
 
   return (

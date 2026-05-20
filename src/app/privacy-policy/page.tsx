@@ -56,10 +56,23 @@ export default function PrivacyPolicy() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
+    "@id": `${SITE_URL}/privacy-policy#policy`,
     name: "Privacy Policy for CM Regmi",
+    description:
+      "Official Privacy Policy for CM Regmi. Learn how we handle data, execute Google AdSense implementations, and manage cookie compliance.",
     url: `${SITE_URL}/privacy-policy`,
     datePublished: "2024-01-01",
     dateModified: "2026-05-10",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#person` },
+    mainEntity: {
+      "@type": "CreativeWork",
+      "@id": `${SITE_URL}/privacy-policy#mainentity`,
+      name: "Privacy Policy",
+      url: `${SITE_URL}/privacy-policy`,
+    },
+    publisher: { "@id": `${SITE_URL}/#person` },
+    inLanguage: "en-US",
   };
 
   return (

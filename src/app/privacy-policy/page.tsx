@@ -147,7 +147,6 @@ export default function PrivacyPolicy() {
               </p>
             </section>
 
-            {/* CRITICAL FOR GOOGLE ADSENSE & ADS APPROVAL */}
             <section id="adsense" className="bg-muted/30 p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mt-0">
                 4. Google AdSense & Third-Party Advertising
@@ -202,7 +201,6 @@ export default function PrivacyPolicy() {
               </p>
             </section>
 
-            {/* RESOLVES EMAIL TYPO RED FLAG */}
             <section id="contact" className="pt-6 border-t border-border">
               <h2 className="text-2xl font-bold text-foreground mt-0">6. Contact Information</h2>
               <p>

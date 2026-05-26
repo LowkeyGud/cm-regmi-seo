@@ -1,9 +1,9 @@
 import { SiteFooter } from "@/components/SiteFooter";
+import AdsSlot from "@/components/AdsSlot";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
   ArrowRight,
   Cpu,
-  ExternalLink,
   FileCode2,
   GitBranch,
   Layers,
@@ -15,22 +15,15 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 
-// ─── Runtime ─────────────────────────────────────────────────────────────────
-// Edge runtime kept — compatible with all changes below.
 export const runtime = "edge";
 
-// ─── Site Config ─────────────────────────────────────────────────────────────
 const SITE_URL = "https://cmregmi.com.np";
 const SITE_NAME = "CM Regmi";
 const SITE_DESCRIPTION =
   "CM Regmi — Systems Architect & Digital Strategist. Expert technical documentation covering Android kernel optimization, Windows system hardening, and cross-platform architecture.";
 const OG_IMAGE = `${SITE_URL}/og-home.png`;
 
-// ─── Metadata export (Next.js App Router) ────────────────────────────────────
-// This replaces all manual <head> tag management and is the correct pattern
-// for Next.js App Router. Google AdSense reviewers verify these signals.
 export const metadata: Metadata = {
-  // ── Primary ──────────────────────────────────────────────────────────────
   title: `${SITE_NAME} | Systems Architect & Documentation Hub`,
   description: SITE_DESCRIPTION,
   keywords:
@@ -39,12 +32,8 @@ export const metadata: Metadata = {
   creator: "CM Regmi",
   publisher: "CM Regmi",
 
-  // ── Canonical ─────────────────────────────────────────────────────────────
-  // Prevents duplicate-content penalties from any trailing-slash variants.
   alternates: { canonical: SITE_URL },
 
-  // ── Robots ────────────────────────────────────────────────────────────────
-  // Explicit robots directive is a direct AdSense approval signal.
   robots: {
     index: true,
     follow: true,
@@ -56,8 +45,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-
-  // ── Open Graph ────────────────────────────────────────────────────────────
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -74,8 +61,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // ── Twitter Card ──────────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | Systems Architect`,
@@ -85,11 +70,6 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── JSON-LD Structured Data ─────────────────────────────────────────────────
-// Three schemas for E-E-A-T + rich-result signals:
-//   Person      — registers identity, credentials (NEC), expertise areas
-//   WebSite     — domain entity, enables Sitelinks Search Box
-//   ProfilePage — describes this specific page with dateModified
 function HomeSchemas() {
   const personSchema = {
     "@context": "https://schema.org",
@@ -205,6 +185,10 @@ export default function Index() {
         <Stack />
       </main>
 
+      <section className="mx-auto max-w-7xl px-6 pb-12">
+        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="home-1" />
+      </section>
+
       <SiteFooter />
     </div>
   );
@@ -300,25 +284,25 @@ function Hero() {
 // ─── Documentation Hub Preview ────────────────────────────────────────────────
 const documentationCards = [
   {
-    title: "Android Hacks",
+    title: "Editorial Standards",
     description:
-      "Root workflows, kernel tuning, recovery tooling, and performance-centred Android modifications for power users and advanced operators.",
+      "How the documentation is selected, written, reviewed, updated, and kept free from thin or copied content.",
     borderClass: "border-primary",
-    href: "https://learntech.cmregmi.com.np/category/android",
+    href: "/docs/editorial-standards",
   },
   {
-    title: "Windows Power-Tools",
+    title: "Android Device Maintenance",
     description:
-      "System hardening, debloating, policy baselines, and low-friction automation for leaner and more resilient Windows environments.",
+      "Practical, non-root maintenance steps for improving battery life, storage health, thermal stability, and reliability.",
     borderClass: "border-foreground",
-    href: "https://learntech.cmregmi.com.np/category/windows",
+    href: "/docs/android-device-maintenance",
   },
   {
-    title: "iOS Optimisation",
+    title: "Windows Security Baseline",
     description:
-      "Practical device maintenance, workflow acceleration, and ecosystem-level tuning focused on stability, longevity, and daily efficiency.",
+      "A plain-language baseline for patching, account separation, Defender, firewall, browser hardening, and backup discipline.",
     borderClass: "border-primary",
-    href: "https://learntech.cmregmi.com.np/category/ios",
+    href: "/docs/windows-security-baseline",
   },
 ];
 
@@ -345,6 +329,13 @@ function DocumentationHubPreview() {
             system architecture practice — structured for operators who want actionable
             documentation instead of generic advice.
           </p>
+          <Link
+            href="/docs"
+            className="mt-6 inline-flex items-center gap-2 rounded-md border border-primary px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+          >
+            Browse All Docs
+            <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
+          </Link>
         </header>
 
         {/* Card grid — each card now links to its specific category page */}
@@ -359,16 +350,14 @@ function DocumentationHubPreview() {
                   <p className="mt-4 text-sm leading-7 text-muted-foreground">{card.description}</p>
                 </div>
                 <div className="mt-8">
-                  <a
+                  <Link
                     href={card.href}
-                    target="_blank"
-                    rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[var(--shadow-red-glow)]"
-                    aria-label={`Read ${card.title} guides on Learn Tech`}
+                    aria-label={`Read ${card.title}`}
                   >
-                    Read Guides
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </a>
+                    Read Docs
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
                 </div>
               </article>
             </li>
@@ -493,13 +482,6 @@ function Bento() {
   );
 }
 
-// ─── Resources ────────────────────────────────────────────────────────────────
-// ⚠️  ADSENSE RED FLAG FIXED:
-// The original used <button> elements with zero href — AdSense reviewers flag
-// non-functional UI as deceptive / low-quality content and reject on that
-// basis alone. Resources are now either real <a download> anchors or clearly
-// labelled "Coming Soon" so the UI is completely honest.
-// Replace href: null + available: false with real paths when files are ready.
 const resources = [
   {
     title: "Android Rooting Hack-Sheet",
@@ -566,7 +548,6 @@ function Resources() {
 
                 <div className="mt-6">
                   {res.available && res.href ? (
-                    // Functional anchor — honest, not flagged by AdSense
                     <a
                       href={res.href}
                       download
@@ -590,7 +571,6 @@ function Resources() {
                       Download
                     </a>
                   ) : (
-                    // Clearly labelled unavailable — honest UI, no AdSense flag
                     <span className="inline-flex items-center gap-1.5 rounded bg-secondary/50 px-3 py-1.5 text-xs font-medium text-muted-foreground/60">
                       <span
                         className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40"
@@ -657,11 +637,8 @@ function EngineeringInsights() {
           <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
             ◢ Engineering Insights
           </p>
-          <h2
-            id="insights-heading"
-            className="text-balance text-4xl font-bold tracking-tight md:text-5xl"
-          >
-            The Hardware-Software Symbiosis
+          <h2 id="insights-heading" className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            How useful documentation is actually produced
           </h2>
         </header>
 
@@ -670,113 +647,66 @@ function EngineeringInsights() {
           itemType="https://schema.org/TechArticle"
           className="space-y-8 text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          {/* Hidden microdata — author + date for Google E-E-A-T */}
           <meta itemProp="author" content="CM Regmi" />
           <meta itemProp="datePublished" content="2024-01-01" />
           <meta itemProp="inLanguage" content="en-US" />
-          <meta itemProp="headline" content="The Hardware-Software Symbiosis" />
+          <meta itemProp="headline" content="How useful documentation is actually produced" />
           <meta itemProp="publisher" content="CM Regmi" />
 
           <div itemProp="articleBody">
             <p>
-              The intersection of hardware potential and software execution is where true
-              performance is unlocked. In modern development and system architecture, theoretical
-              benchmarks are irrelevant if the low-level interactions are not meticulously tuned.
-              This philosophy drives my approach to hardware-specific optimisations, particularly
-              concerning mobile, desktop, and workstation hybrid environments. To extract the
-              ceiling of a system&apos;s capabilities, an architect must stop treating the operating
-              system as an opaque abstraction layer and instead manipulate the direct channels
-              between the kernel scheduler and the silicon footprint.
+              Good technical documentation starts with a simple rule: explain what changed, why it
+              changed, how it was verified, and what could go wrong. That sequence matters more
+              than visual polish when the goal is to help a reader solve a real problem without
+              guessing.
             </p>
             <p>
-              My extensive work with the{" "}
-              <strong className="text-foreground font-semibold">
-                ROG Zephyrus G14 (Ryzen 9 5900HS / RTX 3060)
-              </strong>{" "}
-              architecture serves as a prime example of this methodology. By interfacing directly
-              with advanced ACPI tables, modifying SoC power limits, and implementing custom
-              undervolting profiles via specialised x86 tuning utilities, I successfully redesigned
-              the laptop&apos;s thermal and power delivery constraints. This micro-architecture
-              tuning enables deterministic turbo boost behaviours, ensuring that complex development
-              pipelines, multiple concurrent containers, and nested emulators run at peak efficiency
-              without thermal throttling artificially degrading I/O performance over extended
-              periods.
+              A useful page begins with the reader&apos;s problem, not the author&apos;s preferences.
+              For example, a maintenance note should identify symptoms, list the smallest safe
+              checks first, and separate permanent settings from reversible tests. That makes the
+              content easier to trust and easier to act on.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
-              Kernel Optimisation for Mobile Emulation
-            </h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">1. Start with a baseline</h3>
             <p>
-              Operating at the bleeding edge of the Android ecosystem demands a testing environment
-              that accurately mimics real-world hardware realities. My current research involves
-              Android 17 virtualisation and deep AVD (Android Virtual Device) manipulation.
-              Traditional Android emulation workflows rely heavily on standardised Hyper-V or HAXM
-              implementations that are highly abstracted and rarely optimised for the distinct I/O
-              patterns of a modern, heavily modified Android kernel.
+              Baselines are the difference between a diagnosis and a guess. A good guide records
+              the original state of the system, the observed behaviour, the version or model in use,
+              and the exact conditions under which a test was run. Without that context, even a
+              correct tip becomes hard to reproduce.
             </p>
             <p>
-              I approach AVD environments as highly dynamic targets rather than static, generic
-              software images. This pipeline includes deploying sophisticated rooting methods
-              specifically tailored for virtualised x86_64 and ARM64 architectures, bypassing
-              standard bootloader verification checks, and injecting Magisk or KernelSU binaries
-              directly into the emulator&apos;s Ramdisk partition. From modifying CPU schedulers
-              within the virtualised guest to tweaking out-of-memory (OOM) management policies, this
-              low-level access allows developers to simulate precise hardware constraints exactly as
-              they appear on both flagship devices and low-end physical silicon.
+              This site now follows that same rule. The documentation pages are text-first, narrow
+              in scope, and built to show intent quickly. A reader should be able to scan the
+              headings and know whether the page is about prevention, configuration, maintenance, or
+              recovery.
             </p>
             <p>
-              Concurrently, optimising Windows as the host subsystem is equally critical. Windows
-              hardening involves deploying rigorous policy baselines, configuring Hyper-V isolation
-              features, enforcing strict AppLocker policies to prevent subsystem drift, and
-              specifically tuning the WSL2 networking stack to reduce packet overhead between the
-              Windows host kernel and the Linux guest.
+              Validation matters more than confidence. A useful note says what was checked, what
+              actually happened, and whether the advice is reversible. If a change is experimental,
+              the page should say so. If a recommendation depends on a specific device class or
+              operating-system version, the page should say that too.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
-              Foundations in Methodical Engineering
-            </h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">2. Keep changes reversible</h3>
             <p>
-              This rigorous, evidence-based approach is deeply rooted in formal analytic
-              disciplines. As a registered engineer certified by the{" "}
-              <strong className="text-foreground font-semibold">
-                Nepal Engineering Council (NEC)
-              </strong>
-              , my technical execution is governed by uncompromising principles of reliability,
-              systemic safety, and mathematically reproducible outcomes. My NEC certification
-              continuously instils a disciplined mindset where undocumented code is simply
-              considered broken code — ensuring every project, shell script, architectural decision,
-              and binary patch I author is accompanied by deeply thorough, schematic-level
-              documentation.
+              Content with real value often looks conservative. It tells readers how to back up
+              first, how to test one variable at a time, and how to revert when results are worse
+              than expected. That kind of guidance is more useful than a dramatic promise because it
+              survives real-world edge cases.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
-              The &lsquo;Learn Tech&rsquo; Philosophy
-            </h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">3. Document the failure modes</h3>
             <p>
-              The <strong className="text-foreground font-semibold">Learn Tech</strong> philosophy
-              pivots sharply away from short-form, ephemeral video content, arguing that structured,
-              long-form documentation is infinitely superior for substantive engineering education.
-              Highly complex procedures — such as unpacking and rewriting a raw{" "}
-              <code className="rounded bg-secondary/50 px-1.5 py-0.5 font-mono text-sm text-foreground">
-                boot.img
-              </code>
-              , compiling an optimised toolchain, or debugging a segmentation fault inside a custom
-              cross-compiled Linux kernel — cannot be adequately represented in a rapid-fire,
-              heavily edited video timeline.
+              A trustworthy technical page is honest about trade-offs. If a battery-saving setting
+              reduces performance, that should be stated. If a security control may block a workflow,
+              that should be stated. Readers do not need perfection; they need clarity.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
-              The Future of Documentation in an AI-Driven Era
-            </h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">4. Finish with a maintenance note</h3>
             <p>
-              As the software engineering landscape moves further into an era influenced by large
-              language models and autonomous agents, human-authored, deeply structured technical
-              documentation becomes significantly more vital, not less. High-quality, long-form
-              technical narratives serve as the necessary ground truth from which AI agents can
-              effectively assist rather than hallucinate. By maintaining an objective, densely
-              informative baseline standard of technical documentation, I aim to provide a
-              verifiable repository of fundamental systems knowledge that structurally anchors
-              future automated programming tools.
+              The last section should tell the reader when to revisit the page, what version it was
+              based on, and who should use it. That turns static content into maintainable content,
+              which is exactly what review systems and real readers both reward.
             </p>
           </div>
         </article>

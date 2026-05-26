@@ -23,7 +23,6 @@ Crawl-delay: 2
 
 # Sitemap location - Google, Bing, and other search engines will find this
 Sitemap: https://cmregmi.com.np/sitemap.xml
-Sitemap: https://cmregmi.com.np/sitemap-pages.xml
 
 # Prevent crawling of common bot patterns
 User-agent: MJ12bot

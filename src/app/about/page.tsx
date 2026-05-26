@@ -157,13 +157,18 @@ export default function About() {
           <div className="mt-10 text-center text-sm text-muted-foreground">
             <p>Based in Nepal • Global Technical Consulting</p>
             <p className="mt-2 flex items-center justify-center gap-2">
-              <Link href="/privacy" className="hover:text-primary underline underline-offset-4">
+              <Link href="/privacy-policy" className="hover:text-primary underline underline-offset-4">
                 Privacy
               </Link>
               <span>•</span>
-              <Link href="/terms" className="hover:text-primary underline underline-offset-4">
+              <Link href="/terms-of-service" className="hover:text-primary underline underline-offset-4">
                 Terms
               </Link>
+            </p>
+            <p className="mt-4 text-sm">
+              <a href="https://www.linkedin.com/in/cmregmi" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">LinkedIn</a>
+              <span className="px-2">•</span>
+              <a href="https://github.com/cmregmi" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">GitHub</a>
             </p>
           </div>
         </section>

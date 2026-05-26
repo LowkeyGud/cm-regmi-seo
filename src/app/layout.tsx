@@ -1,3 +1,4 @@
+import CookieConsent from "@/components/CookieConsent";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -81,6 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ff0000" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -89,6 +91,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

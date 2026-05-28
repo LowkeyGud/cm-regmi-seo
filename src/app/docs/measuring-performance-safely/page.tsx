@@ -123,6 +123,23 @@ iperf3 -c server -t 10 -P 2  # on client`}</code>
       </main>
 
       <section className="mx-auto max-w-3xl px-6 pb-12">
+          <h2 className="text-2xl font-bold tracking-tight">Reproducible benchmarking and safety gates</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Define clear, repeatable test environments for performance work. Record OS, kernel,
+            firmware, and tool versions. Use containerized harnesses or ephemeral VMs so results are
+            not influenced by unrelated background noise.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Run multiple iterations and report median and interquartile ranges rather than single-run
+            peak values. Include a short checklist for sanity: CPU affinity, isolated interrupts, and
+            disabled background services for the test host.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Safety gates: verify that any tuning change can be rolled back by an automated job and that
+            application smoke tests pass after each change. Record RTO expectations for performance
+            regressions and automate alerting when thresholds are exceeded in production canaries.
+          </p>
+
         <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="perf-1" />
       </section>
 

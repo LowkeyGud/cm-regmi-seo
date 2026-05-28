@@ -195,7 +195,23 @@ export default function EditorialStandardsPage() {
         </article>
       </main>
 
-      <section className="mx-auto max-w-3xl px-6 pb-12">
+      <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
+        <h2 className="text-2xl font-bold tracking-tight">Standards, update cadence & accountability</h2>
+        <p className="text-muted-foreground leading-relaxed">
+          Set a review cadence (e.g., quarterly for runbooks, annually for references) and assign a
+          document owner. Maintain a changelog in the article's front matter and record the reason
+          for each substantive edit to support audits and compliance reviews.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hold a lightweight monthly triage for pages flagged by the QA pipeline. Prioritize fixes
+          by user impact and security risk. For each accepted change, require a test or verification
+          entry that explains how the edit was validated.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Encourage authors to include a short maintenance note indicating when the page should be
+          revisited and what external signals (library updates, API changes) should trigger updates.
+        </p>
+
         <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="editorial-1" />
       </section>
 

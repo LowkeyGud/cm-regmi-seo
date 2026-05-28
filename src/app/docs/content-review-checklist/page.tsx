@@ -101,6 +101,22 @@ export default function ContentReviewChecklistPage() {
               Content Review Checklist
             </h1>
             <p className="text-sm text-muted-foreground mb-4">
+        <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
+          <h2 className="text-2xl font-bold tracking-tight">Practical reviewer checklist and examples</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            A reviewer should confirm the article's purpose, test examples, link integrity, and whether
+            the maintenance note exists. If the article contains commands, the reviewer should run them
+            in an isolated environment or request test output from the author.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Use a short, repeatable checklist in PRs: sanity test, link check, accessibility quick-scan,
+            and accuracy confirmation by a subject-matter expert. Log the reviewer decisions in the PR.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For content that modifies system state (configs, scripts), require an automated verification
+            job or a small runnable test that proves the steps complete as described.
+          </p>
+        </section>
               By <strong>CM Regmi</strong> • Published May 26, 2026
             </p>
 

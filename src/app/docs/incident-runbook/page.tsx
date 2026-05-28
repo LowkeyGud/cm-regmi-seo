@@ -95,24 +95,42 @@ ACTIONS TAKEN:
         </div>
 
         <section className="space-y-4 mt-6">
-          <h2 className="text-xl font-semibold">Examples & commands</h2>
-          <p className="text-muted-foreground">
-            Practical commands and a short example help engineers reproduce and verify the behaviour
-            quickly.
-          </p>
-          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
-            <code>{`# capture journalctl for service xyz
-journalctl -u myservice --since "2026-05-24 09:00" --until "2026-05-24 10:00" > /tmp/myservice.log`}</code>
-          </pre>
-          <h3 className="text-lg font-semibold">Verification & outcomes</h3>
-          <p className="text-muted-foreground">
-            After applying a change, measure the outcome and record whether the problem improved.
-            Keep the verification script committed with the docs.
-          </p>
+            <h2 className="text-xl font-semibold">Operational verification</h2>
+            <p className="text-muted-foreground">
+              After each runbook action, perform short, deterministic checks to confirm progress and avoid regression.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Capture the recent journal entries for the affected service (last 60 minutes)
+  journalctl -u myservice --since "1 hour ago" -o short-iso | tail -n 200 > /tmp/myservice.log
+
+  # Quick health check: confirm a known-good endpoint returns 200
+  curl -fsS -o /dev/null -w "%{http_code}" https://localhost/health || echo "health check failed"`}</code>
+            </pre>
+            <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+              <li>Confirm service process is active: <code>systemctl is-active myservice</code>.</li>
+              <li>Verify critical endpoints return expected HTTP codes and sample responses.</li>
+              <li>Archive logs with a timestamped filename and attach to the incident ticket.</li>
+            </ul>
         </section>
       </main>
 
-      <section className="mx-auto max-w-3xl px-6 pb-12">
+      <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
+        <h2 className="text-2xl font-bold tracking-tight">Post-incident validation and runbook drills</h2>
+        <p className="text-muted-foreground leading-relaxed">
+          After an incident, run a short validation sequence to ensure the remediation is correct
+          and to catch any regressions. Capture logs, confirm service readiness, and run smoke
+          tests that exercise critical user flows.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Maintain a drill schedule: quarterly tabletop exercises and monthly automated smoke
+          checks. Each drill should end with an action item list and an ownership assignment.
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+          <li>Collect logs and preserve them with timestamps and incident IDs.</li>
+          <li>Verify that the traced remediation steps are idempotent when re-run in test mode.</li>
+          <li>Confirm monitoring alert routes and escalation contacts are up to date.</li>
+        </ul>
+
         <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="runbook-1" />
       </section>
 

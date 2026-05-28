@@ -284,23 +284,23 @@ function Hero() {
 // ─── Documentation Hub Preview ────────────────────────────────────────────────
 const documentationCards = [
   {
-    title: "Editorial Standards",
+    title: "Documentation QA Framework",
     description:
-      "How the documentation is selected, written, reviewed, updated, and kept free from thin or copied content.",
+      "Our methodologies for document review, technical verification playbooks, and universal web accessibility standards.",
     borderClass: "border-primary",
-    href: "/docs/editorial-standards",
+    href: "/docs/documentation-qa-framework",
   },
   {
-    title: "Android Device Maintenance",
+    title: "Android Hardening & Optimization",
     description:
-      "Practical, non-root maintenance steps for improving battery life, storage health, thermal stability, and reliability.",
+      "Enterprise-grade diagnostics covering Android systems architecture, background daemon management, and permission security scaling.",
     borderClass: "border-foreground",
-    href: "/docs/android-device-maintenance",
+    href: "/docs/android-hardening-optimization",
   },
   {
     title: "Windows Security Baseline",
     description:
-      "A plain-language baseline for patching, account separation, Defender, firewall, browser hardening, and backup discipline.",
+      "Rigorous operational baselines detailing Group Policy Objects (GPO), Application Control policy, and automated patch rollouts.",
     borderClass: "border-primary",
     href: "/docs/windows-security-baseline",
   },
@@ -484,10 +484,10 @@ function Bento() {
 
 const resources = [
   {
-    title: "Android Rooting Hack-Sheet",
+    title: "Android Enterprise Hardening Manual",
     size: "1.2 MB · PDF",
     icon: FileCode2,
-    href: "https://learntech.cmregmi.com.np/resources/android-rooting-hacksheet.pdf",
+    href: "https://learntech.cmregmi.com.np/resources/android-hardening-manual.pdf",
     available: true,
   },
   {
@@ -528,7 +528,7 @@ function Resources() {
             Active Intelligence.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Downloadable hack sheets, command cheat-sheets, and parameter baselines for field
+            Downloadable hardening checklists, command cheat-sheets, and parameter baselines for field
             operations.
           </p>
         </header>

@@ -197,24 +197,16 @@ export default function TechnicalWritingWorkflowPage() {
         </article>
 
         <section className="space-y-4 mt-6">
-          <h2 className="text-xl font-semibold">Examples & commands</h2>
+          <h2 className="text-xl font-semibold">Verification guidance</h2>
           <p className="text-muted-foreground">
-            Practical commands and a short example help engineers reproduce and verify the behaviour
-            quickly.
-          </p>
-          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
-            <code>{`# Quick example
-echo "verify service"`}</code>
-          </pre>
-          <h3 className="text-lg font-semibold">Verification & outcomes</h3>
-          <p className="text-muted-foreground">
-            After applying a change, measure the outcome and record whether the problem improved.
-            Keep the verification script committed with the docs.
+            Prefer concrete, article-specific verification steps. For writing workflow pages,
+            reviewers should run the QA checklist: confirm reproducibility, validate command
+            outputs in an isolated environment, and ensure the article includes a maintenance note.
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>Run the verification script</li>
-            <li>Confirm expected output</li>
-            <li>Log results and next steps</li>
+            <li>Run the documented examples in a disposable VM matching the stated OS.</li>
+            <li>Confirm outputs match expected hashes or deterministic results.</li>
+            <li>Record test environment metadata (OS, versions, and timestamps) with results.</li>
           </ul>
         </section>
       </main>

@@ -11,7 +11,8 @@ const SITE_URL = "https://cmregmi.com.np";
 
 export const metadata: Metadata = {
   title: "CM Regmi | Professional Systems Engineer & Documentation Architect",
-  description: "Professional systems engineering guides, Windows hardening baselines, and Android enterprise administration documentation.",
+  description:
+    "Professional systems engineering guides, Windows hardening baselines, and Android enterprise administration documentation.",
   authors: [{ name: "CM Regmi" }],
   creator: "CM Regmi",
   publisher: "CM Regmi",

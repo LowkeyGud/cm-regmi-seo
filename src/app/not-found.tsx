@@ -1,6 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { FileQuestion, Home, Search } from "lucide-react";
+import { FileQuestionMark as FileQuestion, Hop as Home, Search } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {

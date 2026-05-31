@@ -32,7 +32,11 @@ export default function CookieConsent() {
       setCookie("ads_personalization", String(personalized));
       // Load AdSense script if configured
       const adId = process?.env?.NEXT_PUBLIC_ADSENSE_ID;
-      if (adId && typeof document !== "undefined" && !document.querySelector(`script[data-ad-client=\"${adId}\"]`)) {
+      if (
+        adId &&
+        typeof document !== "undefined" &&
+        !document.querySelector(`script[data-ad-client=\"${adId}\"]`)
+      ) {
         const s = document.createElement("script");
         s.async = true;
         s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
@@ -55,8 +59,12 @@ export default function CookieConsent() {
     <div className="fixed bottom-6 left-1/2 z-50 w-[min(800px,calc(100%-32px))] -translate-x-1/2 rounded-lg border border-border bg-card p-4 shadow-lg">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-medium">We use cookies for site functionality and advertising.</p>
-          <p className="text-xs text-muted-foreground">You can accept or manage personalization. Ads are not loaded until you consent.</p>
+          <p className="text-sm font-medium">
+            We use cookies for site functionality and advertising.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            You can accept or manage personalization. Ads are not loaded until you consent.
+          </p>
         </div>
         <div className="mt-3 flex gap-2 sm:mt-0">
           <label className="inline-flex items-center gap-2 text-sm">
@@ -83,7 +91,9 @@ export default function CookieConsent() {
         </div>
       </div>
       <div className="mt-3 text-xs text-muted-foreground">
-        <a href="/ads-and-cookies" className="text-primary hover:underline">Ads & Cookies Policy</a>
+        <a href="/ads-and-cookies" className="text-primary hover:underline">
+          Ads & Cookies Policy
+        </a>
       </div>
     </div>
   );

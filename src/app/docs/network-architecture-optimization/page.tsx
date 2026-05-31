@@ -18,7 +18,8 @@ const SITE_URL = "https://cmregmi.com.np";
 
 export const metadata: Metadata = {
   title: "Network Architecture, Optimization & Troubleshooting Guide | CM Regmi Docs",
-  description: "Advanced TCP/IP kernel tuning, split-tunnel VPN, WireGuard site-to-site architecture, MTU discovery, and network tracing.",
+  description:
+    "Advanced TCP/IP kernel tuning, split-tunnel VPN, WireGuard site-to-site architecture, MTU discovery, and network tracing.",
   alternates: {
     canonical: `${SITE_URL}/docs/network-architecture-optimization`,
   },
@@ -30,7 +31,8 @@ export default function NetworkArchitectureOptimizationPage() {
     "@type": "TechArticle",
     "@id": `${SITE_URL}/docs/network-architecture-optimization#article`,
     headline: "Network Architecture, Optimization & Troubleshooting Guide",
-    description: "Deep-dive guide to enterprise networks, routing, and low-latency transport protocols.",
+    description:
+      "Deep-dive guide to enterprise networks, routing, and low-latency transport protocols.",
     url: `${SITE_URL}/docs/network-architecture-optimization`,
     datePublished: "2026-05-24",
     dateModified: "2026-05-27",
@@ -84,20 +86,25 @@ export default function NetworkArchitectureOptimizationPage() {
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Modern low-latency application delivery depends heavily on transport protocol efficiency, routing stability, and secure 
-              vpn tunneling. Resolving throughput constraints requires deep optimizations within sysctl settings, MTU discovery 
+              Modern low-latency application delivery depends heavily on transport protocol
+              efficiency, routing stability, and secure vpn tunneling. Resolving throughput
+              constraints requires deep optimizations within sysctl settings, MTU discovery
               mechanisms, and split-tunnel setups.
             </p>
           </header>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">1. Tuning the Linux TCP/IP Stack for High Throughput</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              1. Tuning the Linux TCP/IP Stack for High Throughput
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Default Linux kernel TCP/IP network buffers are optimized for low-bandwidth connections or localized desktop usage. 
-              On high-performance nodes, these defaults create immediate bottlenecks.
+              Default Linux kernel TCP/IP network buffers are optimized for low-bandwidth
+              connections or localized desktop usage. On high-performance nodes, these defaults
+              create immediate bottlenecks.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Administrators should optimize TCP window sizing, congestion control algorithms, and queue limits using sysctl:
+              Administrators should optimize TCP window sizing, congestion control algorithms, and
+              queue limits using sysctl:
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# Append these optimizations to /etc/sysctl.conf
@@ -124,15 +131,17 @@ net.ipv4.tcp_fastopen = 3`}</code>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">2. MTU Path Discovery & Network Fragmentation Triage</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              2. MTU Path Discovery & Network Fragmentation Triage
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Maximum Transmission Unit (MTU) conflicts are a common cause of stalled connections, failed SSL handshakes, and 
-              packet loss. When packets exceed the MTU of any intermediary node along the path, they are fragmented or dropped 
-              silently.
+              Maximum Transmission Unit (MTU) conflicts are a common cause of stalled connections,
+              failed SSL handshakes, and packet loss. When packets exceed the MTU of any
+              intermediary node along the path, they are fragmented or dropped silently.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              To locate the exact MTU constraints on a network path, run a ping probe sweeping the size while setting the 
-              "Don't Fragment" (DF) bit:
+              To locate the exact MTU constraints on a network path, run a ping probe sweeping the
+              size while setting the "Don't Fragment" (DF) bit:
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# Execute a ping probe with a size of 1472 bytes (plus 28 bytes of headers = 1500 byte packet)
@@ -145,14 +154,18 @@ ping -M do -s 1422 -c 3 example.com
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">3. Securing Connections with WireGuard VPN Site-to-Site Tunnels</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              3. Securing Connections with WireGuard VPN Site-to-Site Tunnels
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              WireGuard operates inside the Linux kernel space, offering superior performance, simpler key management, and 
-              drastically reduced overhead compared to legacy IPsec or OpenVPN solutions.
+              WireGuard operates inside the Linux kernel space, offering superior performance,
+              simpler key management, and drastically reduced overhead compared to legacy IPsec or
+              OpenVPN solutions.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              For enterprise routing, implement split-tunnel configurations that direct corporate subnet traffic through the tunnel 
-              while routing general public internet traffic through the default gateway:
+              For enterprise routing, implement split-tunnel configurations that direct corporate
+              subnet traffic through the tunnel while routing general public internet traffic
+              through the default gateway:
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# File: /etc/wireguard/wg0.conf
@@ -171,10 +184,12 @@ AllowedIPs = 10.0.0.0/8, 192.168.10.0/24`}</code>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">4. Case Study: Troubleshooting Latency Spikes inside a VPN</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              4. Case Study: Troubleshooting Latency Spikes inside a VPN
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              An offsite accounting team complained of severe application latency and disconnected sessions during high-volume data 
-              loads. We initiated a multi-layered diagnostic pass.
+              An offsite accounting team complained of severe application latency and disconnected
+              sessions during high-volume data loads. We initiated a multi-layered diagnostic pass.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               First, we performed a traceroute to inspect latency hops across the VPN gateway:
@@ -189,8 +204,8 @@ traceroute -I -q 1 10.8.0.1
 #   3  * * * (Dropped packets)`}</code>
             </pre>
             <p className="text-muted-foreground leading-relaxed">
-              The traceroute identified a bottleneck at the intermediary router. We ran a packet trace on the local server interface 
-              to inspect traffic flow and fragmentation flags:
+              The traceroute identified a bottleneck at the intermediary router. We ran a packet
+              trace on the local server interface to inspect traffic flow and fragmentation flags:
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# Run a brief packet trace on the WireGuard interface
@@ -200,29 +215,36 @@ tcpdump -n -i wg0 -c 100
 #   IP 10.8.0.2 > 10.8.0.1: Flags [DF], proto UDP, length 1500 (need to fragment but DF set)`}</code>
             </pre>
             <p className="text-muted-foreground leading-relaxed">
-              The trace confirmed that the local WireGuard client interface was attempting to push packets with a standard 1500-byte 
-              MTU. The WAN connection possessed an MTU limit of 1450, dropping UDP fragments. Lowering the WireGuard MTU setting to 
-              1420 resolved the issue, eliminating drops and restoring latency to a stable 18ms baseline.
+              The trace confirmed that the local WireGuard client interface was attempting to push
+              packets with a standard 1500-byte MTU. The WAN connection possessed an MTU limit of
+              1450, dropping UDP fragments. Lowering the WireGuard MTU setting to 1420 resolved the
+              issue, eliminating drops and restoring latency to a stable 18ms baseline.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">5. Verification & Diagnostic Playbook</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              5. Verification & Diagnostic Playbook
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
               Implement these verification steps when diagnosing network issues:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               <li>
-                <strong>Step A:</strong> Test basic reachability with `ping` to confirm local and remote gateway routing.
+                <strong>Step A:</strong> Test basic reachability with `ping` to confirm local and
+                remote gateway routing.
               </li>
               <li>
-                <strong>Step B:</strong> Trace network hops using `traceroute` to isolate path latency bottlenecks.
+                <strong>Step B:</strong> Trace network hops using `traceroute` to isolate path
+                latency bottlenecks.
               </li>
               <li>
-                <strong>Step C:</strong> Check MTU sizes using DF-bit ping sweeps to find the maximum non-fragmented packet size.
+                <strong>Step C:</strong> Check MTU sizes using DF-bit ping sweeps to find the
+                maximum non-fragmented packet size.
               </li>
               <li>
-                <strong>Step D:</strong> Monitor live packet flows with `tcpdump` to verify MTU compliance and identify drops.
+                <strong>Step D:</strong> Monitor live packet flows with `tcpdump` to verify MTU
+                compliance and identify drops.
               </li>
             </ul>
           </section>
@@ -236,12 +258,14 @@ tcpdump -n -i wg0 -c 100
       </main>
 
       <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
-        <h2 className="text-2xl font-bold tracking-tight">Validation, MTU discovery & reproducible tuning</h2>
+        <h2 className="text-2xl font-bold tracking-tight">
+          Validation, MTU discovery & reproducible tuning
+        </h2>
         <p className="text-muted-foreground leading-relaxed">
-          After applying sysctl or kernel tuning, validate the change with reproducible tests. Capture
-          before/after measurements using iperf3 for throughput, ping sweeps for MTU, and traceroute
-          for hop-level latency. Keep the exact commands and environment in your runbook so tests are
-          repeatable by other engineers.
+          After applying sysctl or kernel tuning, validate the change with reproducible tests.
+          Capture before/after measurements using iperf3 for throughput, ping sweeps for MTU, and
+          traceroute for hop-level latency. Keep the exact commands and environment in your runbook
+          so tests are repeatable by other engineers.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           For MTU issues, run DF-bit ping sweeps to locate the maximum non-fragmenting packet size,

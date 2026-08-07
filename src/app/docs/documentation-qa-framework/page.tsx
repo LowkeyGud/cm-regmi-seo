@@ -18,7 +18,8 @@ const SITE_URL = "https://cmregmi.com.np";
 
 export const metadata: Metadata = {
   title: "Technical Documentation, Writing & Quality Assurance Framework | CM Regmi Docs",
-  description: "Advanced documentation writing workflows, technical accuracy verifications, content-audit checklists, and universal web accessibility standards.",
+  description:
+    "Advanced documentation writing workflows, technical accuracy verifications, content-audit checklists, and universal web accessibility standards.",
   alternates: {
     canonical: `${SITE_URL}/docs/documentation-qa-framework`,
   },
@@ -30,7 +31,8 @@ export default function DocumentationQAFrameworkPage() {
     "@type": "TechArticle",
     "@id": `${SITE_URL}/docs/documentation-qa-framework#article`,
     headline: "Technical Documentation, Writing & Quality Assurance Framework",
-    description: "Deep-dive methodology for creating, reviewing, and maintaining technical documents.",
+    description:
+      "Deep-dive methodology for creating, reviewing, and maintaining technical documents.",
     url: `${SITE_URL}/docs/documentation-qa-framework`,
     datePublished: "2026-05-24",
     dateModified: "2026-05-27",
@@ -84,37 +86,41 @@ export default function DocumentationQAFrameworkPage() {
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Technical documentation is an engineering deliverable that demands systematic quality assurance, robust peer review, 
-              and accessibility standards. High-value documentation requires structured writing workflows and rigorous content 
-              audits.
+              Technical documentation is an engineering deliverable that demands systematic quality
+              assurance, robust peer review, and accessibility standards. High-value documentation
+              requires structured writing workflows and rigorous content audits.
             </p>
           </header>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">1. The Core Lifecycle of Technical Documentation</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              1. The Core Lifecycle of Technical Documentation
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              A document's lifecycle mirrors software development: planning, drafting, review, staging, production deployment, 
-              and scheduled maintenance. High-quality documentation begins with the user's problem. Every manual, playbook, or SOP 
-              must answer a specific operational question with reproducible procedures.
+              A document's lifecycle mirrors software development: planning, drafting, review,
+              staging, production deployment, and scheduled maintenance. High-quality documentation
+              begins with the user's problem. Every manual, playbook, or SOP must answer a specific
+              operational question with reproducible procedures.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               We categorize content into four distinct, standard documentation modes:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               <li>
-                <strong>Tutorials (Learning-Oriented):</strong> Introductory guides designed to help users build a basic mental 
-                model of a system.
+                <strong>Tutorials (Learning-Oriented):</strong> Introductory guides designed to help
+                users build a basic mental model of a system.
               </li>
               <li>
-                <strong>How-To Guides (Goal-Oriented):</strong> Direct, step-by-step procedures aimed at solving specific, real-world 
-                problems.
+                <strong>How-To Guides (Goal-Oriented):</strong> Direct, step-by-step procedures
+                aimed at solving specific, real-world problems.
               </li>
               <li>
-                <strong>Reference Material (Information-Oriented):</strong> Technical schemas, API endpoints, parameter lists, and 
-                system configuration guides.
+                <strong>Reference Material (Information-Oriented):</strong> Technical schemas, API
+                endpoints, parameter lists, and system configuration guides.
               </li>
               <li>
-                <strong>Explanation (Understanding-Oriented):</strong> Deep architectural discussions, rationale, and design trade-offs.
+                <strong>Explanation (Understanding-Oriented):</strong> Deep architectural
+                discussions, rationale, and design trade-offs.
               </li>
             </ul>
           </section>
@@ -122,13 +128,14 @@ export default function DocumentationQAFrameworkPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">2. Verifying Technical Accuracy</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Technical documentation must be accurate. Reviewers must test and verify every terminal command, configuration file, 
-              and code sample in an isolated target environment before publication:
+              Technical documentation must be accurate. Reviewers must test and verify every
+              terminal command, configuration file, and code sample in an isolated target
+              environment before publication:
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
               <li>
-                <strong>Isolate:</strong> Spin up a clean, disposable environment matching the target operating system (e.g., 
-                Ubuntu 24.04 LTS).
+                <strong>Isolate:</strong> Spin up a clean, disposable environment matching the
+                target operating system (e.g., Ubuntu 24.04 LTS).
               </li>
               <li>
                 <strong>Execute:</strong> Run all commands sequentially exactly as written.
@@ -137,7 +144,8 @@ export default function DocumentationQAFrameworkPage() {
                 <strong>Validate:</strong> Confirm outputs match the expected results.
               </li>
               <li>
-                <strong>Normalize:</strong> Strip variables like timestamps or hostnames to ensure commands are fully reproducible.
+                <strong>Normalize:</strong> Strip variables like timestamps or hostnames to ensure
+                commands are fully reproducible.
               </li>
             </ol>
             <p className="text-muted-foreground leading-relaxed">
@@ -159,33 +167,39 @@ sshd -T -C user=admin | grep -E 'passwordauthentication|pubkeyauthentication'
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">3. Accessibility, Search Engine Optimization & Navigation</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              3. Accessibility, Search Engine Optimization & Navigation
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
               Excellent content must be discoverable, accessible, and structured for all users:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               <li>
                 <strong>Universal Web Accessibility (WCAG 2.2):</strong>
-                Enforce high color-contrast ratios, semantic HTML hierarchies, keyboard navigability, and descriptive alt attributes 
-                on all image components.
+                Enforce high color-contrast ratios, semantic HTML hierarchies, keyboard
+                navigability, and descriptive alt attributes on all image components.
               </li>
               <li>
                 <strong>Search Engine Optimization (SEO):</strong>
-                Provide canonical meta tags, descriptive keywords, and semantic breadcrumbs to establish clear crawl structures for 
-                search engines.
+                Provide canonical meta tags, descriptive keywords, and semantic breadcrumbs to
+                establish clear crawl structures for search engines.
               </li>
               <li>
                 <strong>Structured JSON-LD Schema:</strong>
-                Integrate structured metadata (e.g., TechArticle schema) to enable rich search results.
+                Integrate structured metadata (e.g., TechArticle schema) to enable rich search
+                results.
               </li>
             </ul>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">4. Case Study: Redesigning a Documentation Architecture</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              4. Case Study: Redesigning a Documentation Architecture
+            </h2>
             <p className="text-muted-foreground leading-relaxed">
-              An enterprise engineering team maintained a repository of 50 short, disorganized markdown files. These files had 
-              low search-engine visibility, high exit rates, and duplicated sections.
+              An enterprise engineering team maintained a repository of 50 short, disorganized
+              markdown files. These files had low search-engine visibility, high exit rates, and
+              duplicated sections.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               We audited the documentation using a systematic content review process:
@@ -203,44 +217,56 @@ sshd -T -C user=admin | grep -E 'passwordauthentication|pubkeyauthentication'
                   <tr>
                     <td className="p-3 border border-border font-semibold">Content Depth</td>
                     <td className="p-3 border border-border">Short files (under 300 words).</td>
-                    <td className="p-3 border border-border">Consolidated related notes into rich mega-guides (>1,000 words).</td>
+                    <td className="p-3 border border-border">
+                      Consolidated related notes into rich mega-guides (&gt;1,000 words).
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-3 border border-border font-semibold">Code Repetition</td>
                     <td className="p-3 border border-border">Identical copy-paste commands.</td>
-                    <td className="p-3 border border-border">Replaced placeholders with unique, verified code recipes.</td>
+                    <td className="p-3 border border-border">
+                      Replaced placeholders with unique, verified code recipes.
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-3 border border-border font-semibold">Navigation Structure</td>
                     <td className="p-3 border border-border">Poor crawl paths; flat listing.</td>
-                    <td className="p-3 border border-border">Enforced breadcrumbs and a clean category index.</td>
+                    <td className="p-3 border border-border">
+                      Enforced breadcrumbs and a clean category index.
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Following the restructure, search engine index rates grew by 45%, application bounce rates decreased by 30%, and 
-              developer onboarding velocity doubled, proving the value of highly consolidated, comprehensive guides.
+              Following the restructure, search engine index rates grew by 45%, application bounce
+              rates decreased by 30%, and developer onboarding velocity doubled, proving the value
+              of highly consolidated, comprehensive guides.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">5. Content Review & QA Checklist</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Before publishing technical guides, reviewers must verify each condition in the QA checklist:
+              Before publishing technical guides, reviewers must verify each condition in the QA
+              checklist:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               <li>
-                <strong>Checklist Item A:</strong> Confirm the article is over the 920-word threshold.
+                <strong>Checklist Item A:</strong> Confirm the article is over the 920-word
+                threshold.
               </li>
               <li>
-                <strong>Checklist Item B:</strong> Verify all command strings in an isolated test target.
+                <strong>Checklist Item B:</strong> Verify all command strings in an isolated test
+                target.
               </li>
               <li>
-                <strong>Checklist Item C:</strong> Check for proper metadata, canonical URL structure, and Schema JSON-LD.
+                <strong>Checklist Item C:</strong> Check for proper metadata, canonical URL
+                structure, and Schema JSON-LD.
               </li>
               <li>
-                <strong>Checklist Item D:</strong> Enforce alt tags and descriptive captions on all images.
+                <strong>Checklist Item D:</strong> Enforce alt tags and descriptive captions on all
+                images.
               </li>
             </ul>
           </section>
@@ -256,13 +282,15 @@ sshd -T -C user=admin | grep -E 'passwordauthentication|pubkeyauthentication'
       <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
         <h2 className="text-2xl font-bold tracking-tight">Practical QA templates and automation</h2>
         <p className="text-muted-foreground leading-relaxed">
-          Convert the QA checklist into runnable automation jobs. For example, implement a CI job that
-          spins up an ephemeral environment, runs all code and configuration commands from the doc,
-          captures outputs, and compares them to expected results. Fail the job when outputs diverge.
+          Convert the QA checklist into runnable automation jobs. For example, implement a CI job
+          that spins up an ephemeral environment, runs all code and configuration commands from the
+          doc, captures outputs, and compares them to expected results. Fail the job when outputs
+          diverge.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Keep a small set of golden outputs per article (normalized to remove timestamps and hostnames)
-          so verification is deterministic. Record the test environment and tool versions with every run.
+          Keep a small set of golden outputs per article (normalized to remove timestamps and
+          hostnames) so verification is deterministic. Record the test environment and tool versions
+          with every run.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           Use automated link checkers, schema validators, and command verifiers as part of the PR

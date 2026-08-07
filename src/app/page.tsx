@@ -1,17 +1,7 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import AdsSlot from "@/components/AdsSlot";
 import { SiteHeader } from "@/components/SiteHeader";
-import {
-  ArrowRight,
-  Cpu,
-  FileCode2,
-  GitBranch,
-  Layers,
-  PlayCircle,
-  Shield,
-  Terminal,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, Cpu, FileCode as FileCode2, GitBranch, Layers, CirclePlay as PlayCircle, Shield, Terminal, Zap } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -454,8 +444,9 @@ function Bento() {
           {tiles.map(({ icon: Icon, title, desc, span, accent }) => (
             <li key={title}>
               <article
-                className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-border p-6 transition-all hover:border-primary/60 ${accent ? "bg-card" : "bg-card/50"
-                  } ${span ?? ""}`}
+                className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-border p-6 transition-all hover:border-primary/60 ${
+                  accent ? "bg-card" : "bg-card/50"
+                } ${span ?? ""}`}
               >
                 {accent && (
                   <div
@@ -528,8 +519,8 @@ function Resources() {
             Active Intelligence.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Downloadable hardening checklists, command cheat-sheets, and parameter baselines for field
-            operations.
+            Downloadable hardening checklists, command cheat-sheets, and parameter baselines for
+            field operations.
           </p>
         </header>
 
@@ -637,7 +628,10 @@ function EngineeringInsights() {
           <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
             ◢ Engineering Insights
           </p>
-          <h2 id="insights-heading" className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
+          <h2
+            id="insights-heading"
+            className="text-balance text-4xl font-bold tracking-tight md:text-5xl"
+          >
             How useful documentation is actually produced
           </h2>
         </header>
@@ -656,23 +650,24 @@ function EngineeringInsights() {
           <div itemProp="articleBody">
             <p>
               Good technical documentation starts with a simple rule: explain what changed, why it
-              changed, how it was verified, and what could go wrong. That sequence matters more
-              than visual polish when the goal is to help a reader solve a real problem without
-              guessing.
+              changed, how it was verified, and what could go wrong. That sequence matters more than
+              visual polish when the goal is to help a reader solve a real problem without guessing.
             </p>
             <p>
-              A useful page begins with the reader&apos;s problem, not the author&apos;s preferences.
-              For example, a maintenance note should identify symptoms, list the smallest safe
-              checks first, and separate permanent settings from reversible tests. That makes the
-              content easier to trust and easier to act on.
+              A useful page begins with the reader&apos;s problem, not the author&apos;s
+              preferences. For example, a maintenance note should identify symptoms, list the
+              smallest safe checks first, and separate permanent settings from reversible tests.
+              That makes the content easier to trust and easier to act on.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">1. Start with a baseline</h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
+              1. Start with a baseline
+            </h3>
             <p>
-              Baselines are the difference between a diagnosis and a guess. A good guide records
-              the original state of the system, the observed behaviour, the version or model in use,
-              and the exact conditions under which a test was run. Without that context, even a
-              correct tip becomes hard to reproduce.
+              Baselines are the difference between a diagnosis and a guess. A good guide records the
+              original state of the system, the observed behaviour, the version or model in use, and
+              the exact conditions under which a test was run. Without that context, even a correct
+              tip becomes hard to reproduce.
             </p>
             <p>
               This site now follows that same rule. The documentation pages are text-first, narrow
@@ -687,7 +682,9 @@ function EngineeringInsights() {
               operating-system version, the page should say that too.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">2. Keep changes reversible</h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
+              2. Keep changes reversible
+            </h3>
             <p>
               Content with real value often looks conservative. It tells readers how to back up
               first, how to test one variable at a time, and how to revert when results are worse
@@ -695,14 +692,18 @@ function EngineeringInsights() {
               survives real-world edge cases.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">3. Document the failure modes</h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
+              3. Document the failure modes
+            </h3>
             <p>
               A trustworthy technical page is honest about trade-offs. If a battery-saving setting
-              reduces performance, that should be stated. If a security control may block a workflow,
-              that should be stated. Readers do not need perfection; they need clarity.
+              reduces performance, that should be stated. If a security control may block a
+              workflow, that should be stated. Readers do not need perfection; they need clarity.
             </p>
 
-            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">4. Finish with a maintenance note</h3>
+            <h3 className="pt-8 text-2xl font-bold tracking-tight text-foreground">
+              4. Finish with a maintenance note
+            </h3>
             <p>
               The last section should tell the reader when to revisit the page, what version it was
               based on, and who should use it. That turns static content into maintainable content,

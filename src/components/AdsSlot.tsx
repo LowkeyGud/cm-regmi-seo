@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function AdsSlot({ adClientId, adSlotId }: { adClientId?: string; adSlotId?: string }) {
+export default function AdsSlot({
+  adClientId,
+  adSlotId,
+}: {
+  adClientId?: string;
+  adSlotId?: string;
+}) {
   const [consent, setConsent] = useState<boolean | null>(null);
 
   useEffect(() => {

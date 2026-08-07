@@ -196,7 +196,9 @@ export default function EditorialStandardsPage() {
       </main>
 
       <section className="space-y-6 mx-auto max-w-3xl px-6 pb-12">
-        <h2 className="text-2xl font-bold tracking-tight">Standards, update cadence & accountability</h2>
+        <h2 className="text-2xl font-bold tracking-tight">
+          Standards, update cadence & accountability
+        </h2>
         <p className="text-muted-foreground leading-relaxed">
           Set a review cadence (e.g., quarterly for runbooks, annually for references) and assign a
           document owner. Maintain a changelog in the article's front matter and record the reason

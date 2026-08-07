@@ -2,7 +2,7 @@
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { AlertTriangle, Home } from "lucide-react";
+import { TriangleAlert as AlertTriangle, Hop as Home } from "lucide-react";
 import Link from "next/link";
 
 export default function Error({

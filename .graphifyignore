@@ -1,0 +1,10 @@
+node_modules/
+.next/
+graphify-out/
+*.md
+*.txt
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.ico

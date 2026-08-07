@@ -1,0 +1,5 @@
+{
+  "plugin": [
+    "file:///D:/nextjs/neon-engine-io/.kilo/plugins/graphify.js"
+  ]
+}

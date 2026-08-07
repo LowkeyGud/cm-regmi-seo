@@ -1,7 +1,17 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import AdsSlot from "@/components/AdsSlot";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ArrowRight, Cpu, FileCode as FileCode2, GitBranch, Layers, CirclePlay as PlayCircle, Shield, Terminal, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Cpu,
+  FileCode as FileCode2,
+  GitBranch,
+  Layers,
+  CirclePlay as PlayCircle,
+  Shield,
+  Terminal,
+  Zap,
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 

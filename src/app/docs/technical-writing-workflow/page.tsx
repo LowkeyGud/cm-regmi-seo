@@ -51,8 +51,8 @@ export default function TechnicalWritingWorkflowPage() {
     description:
       "A practical workflow for researching, drafting, verifying, and maintaining technical documentation.",
     url: `${SITE_URL}/docs/technical-writing-workflow`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2025-05-24",
+    dateModified: "2025-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -101,7 +101,7 @@ export default function TechnicalWritingWorkflowPage() {
               Technical Writing Workflow
             </h1>
             <p className="text-sm text-muted-foreground mb-4">
-              By <strong>CM Regmi</strong> • Published May 26, 2026
+              By <strong>CM Regmi</strong> • Published May 26, 2025
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground">

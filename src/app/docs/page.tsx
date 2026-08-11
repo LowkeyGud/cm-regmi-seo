@@ -68,7 +68,7 @@ export default function Docs() {
     author: {
       "@id": `${SITE_URL}/#person`,
     },
-    datePublished: "2026-05-24",
+    datePublished: "2025-05-24",
     dateModified: new Date().toISOString(),
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#person` },
@@ -117,7 +117,7 @@ export default function Docs() {
                 By <strong>CM Regmi</strong>
               </span>
               <span>•</span>
-              <time dateTime="2026-05-24">Updated May 2026</time>
+              <time dateTime="2025-05-24">Updated May 2026</time>
             </div>
             <p className="text-xl text-muted-foreground leading-relaxed">
               In-depth technical notes, kernel optimization strategies, and system hardening

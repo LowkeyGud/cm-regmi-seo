@@ -1,6 +1,7 @@
 import CookieConsent from "@/components/CookieConsent";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -8,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const runtime = "edge";
 
 const SITE_URL = "https://cmregmi.com.np";
+const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID || "ca-pub-5019530661594566";
 
 export const metadata: Metadata = {
   title: "CM Regmi | Professional Systems Engineer & Documentation Architect",
@@ -28,7 +30,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
   appleWebApp: {
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
       "Android optimization, Windows system hardening, and expert technical documentation",
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/og-home.png`,
         width: 1200,
         height: 630,
         alt: "CM Regmi - Systems Engineer & Documentation Hub",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CM Regmi | Systems Engineer",
     description: "Professional technical documentation and system optimization",
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/og-home.png`],
     creator: "@cmregmi",
   },
   robots: {
@@ -89,6 +90,42 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="CM Regmi" />
+
+        {/* Google Consent Mode v2 — required for AdSense EEA/UK compliance */}
+        <script
+          id="google-consent-mode"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'granted',
+                'personalization_storage': 'granted',
+                'security_storage': 'granted',
+                'region': ['ES', 'FR', 'DE', 'IT', 'GB', 'IE']
+              });
+            `,
+          }}
+        />
+        <Script
+          id="gtag-consent"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-CONSENT"
+          data-ads-client={ADSENSE_ID}
+        />
+        {/* Google AdSense — loaded with consent-aware attributes */}
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+          crossOrigin="anonymous"
+          data-ad-client={ADSENSE_ID}
+        />
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
         {children}

@@ -77,7 +77,6 @@ function HomeSchemas() {
     "@id": `${SITE_URL}/#person`,
     name: "CM Regmi",
     url: SITE_URL,
-    image: `${SITE_URL}/profile.jpg`,
     jobTitle: "Systems Architect & Digital Strategist",
     description:
       "NEC-certified engineer specialising in Android kernel optimisation, Windows system hardening, and cross-platform architecture.",

@@ -1,7 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/**
+ * AdsSlot — Google AdSense ad unit component.
+ *
+ * Uses Google Consent Mode v2 for consent checking (not localStorage).
+ * The global adsbygoogle.js script is loaded in <RootLayout> with the
+ * correct data-ad-client, so this component only needs to render the
+ * <ins> element and push to the adsbygoogle queue once consent is granted.
+ *
+ * adSlotId: optional numeric AdSense ad unit ID. When omitted, the slot
+ *   runs in AdSense Auto-ads mode (data-ad-format="auto", no data-ad-slot).
+ *   When provided, it must be a numeric string from your AdSense dashboard.
+ */
 export default function AdsSlot({
   adClientId,
   adSlotId,
@@ -9,55 +21,83 @@ export default function AdsSlot({
   adClientId?: string;
   adSlotId?: string;
 }) {
-  const [consent, setConsent] = useState<boolean | null>(null);
+  const insRef = useRef<HTMLDivElement>(null);
+  const [consentGranted, setConsentGranted] = useState(false);
 
+  // Check consent via Google Consent Mode (gtag)
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("ads_consent");
-      setConsent(stored === "yes");
-    } catch (e) {
-      setConsent(false);
-    }
+    const checkConsent = () => {
+      if (typeof window === "undefined") return false;
+      // Google Consent Mode stores consent state in the dataLayer
+      const dl = (window as any).dataLayer;
+      if (!dl) return false;
+      // Look for the most recent consent update
+      for (let i = dl.length - 1; i >= 0; i--) {
+        const entry = dl[i];
+        if (entry && entry.consent && entry.consent.ad_storage === "granted") {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    const granted = checkConsent();
+    setConsentGranted(granted);
+
+    // Listen for consent updates from the CookieConsent banner
+    const handler = (e: CustomEvent) => {
+      setConsentGranted(e.detail?.ad_storage === "granted");
+    };
+    window.addEventListener("consent:update", handler as EventListener);
+    return () => window.removeEventListener("consent:update", handler as EventListener);
   }, []);
 
+  // Push the ad to the adsbygoogle queue once consent is granted
   useEffect(() => {
-    if (!consent) return;
+    if (!consentGranted) return;
     if (!adClientId) return;
-
-    if (!document.querySelector(`script[data-ads-client="${adClientId}"]`)) {
-      const s = document.createElement("script");
-      s.setAttribute("data-ads-client", adClientId || "");
-      s.async = true;
-      s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js`;
-      document.head.appendChild(s);
-    }
+    if (!insRef.current) return;
 
     try {
-      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-      (window as any).adsbygoogle.push({});
+      const adsbygoogle = (window as any).adsbygoogle;
+      if (adsbygoogle) {
+        // Clear any previous push for this element to avoid duplicates
+        adsbygoogle.push({});
+      }
     } catch (e) {
-      // ignore
+      // Silently ignore — ad may not be ready yet
+      console.debug("[AdsSlot] adsbygoogle push deferred", e);
     }
-  }, [consent, adClientId]);
+  }, [consentGranted, adClientId]);
 
-  if (!consent) {
+  // While consent is pending or denied, render a placeholder
+  if (!consentGranted) {
     return (
-      <div style={{ minHeight: 100 }} aria-hidden>
-        {/* Placeholder sized box */}
-      </div>
+      <div
+        ref={insRef}
+        style={{ minHeight: 100, width: "100%" }}
+        aria-label="Advertisement placeholder — awaiting consent"
+      />
     );
   }
 
+  // Build the ins element attributes
+  const insProps: Record<string, string> = {
+    className: "adsbygoogle",
+    style: "display:block",
+    "data-ad-client": adClientId || "",
+    "data-ad-format": "auto",
+    "data-full-width-responsive": "true",
+  };
+
+  // Only set data-ad-slot if a valid numeric ID is provided
+  if (adSlotId && /^\d+$/.test(adSlotId)) {
+    insProps["data-ad-slot"] = adSlotId;
+  }
+
   return (
-    <div>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client={adClientId}
-        data-ad-slot={adSlotId}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+    <div ref={insRef}>
+      <ins {...insProps}></ins>
     </div>
   );
 }

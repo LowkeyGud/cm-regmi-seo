@@ -112,12 +112,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <Script
-          id="gtag-consent"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-CONSENT"
-          data-ads-client={ADSENSE_ID}
-        />
         {/* Google AdSense — loaded with consent-aware attributes */}
         <Script
           id="adsbygoogle-init"

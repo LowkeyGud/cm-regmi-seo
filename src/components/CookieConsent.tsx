@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "ads_consent";
 const PERSONALIZATION_KEY = "ads_personalization";
@@ -22,36 +22,55 @@ function setCookie(name: string, value: string, days = 365) {
  */
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
-  const [personalized, setPersonalized] = useState(true);
+  // Seed the personalization preference once from storage so the UI checkbox
+  // and the gtag consent signal always agree (missing key defaults to true).
+  const [personalized, setPersonalized] = useState(
+    () =>
+      typeof window === "undefined" ||
+      localStorage.getItem(PERSONALIZATION_KEY) === null ||
+      localStorage.getItem(PERSONALIZATION_KEY) === "true",
+  );
+
+  // Apply a consent decision to gtag and notify AdsSlot components. Declared
+  // before the mount effect so both the banner handlers and the reload path
+  // can share it.
+  const updateGtagConsent = useCallback(
+    (granted: boolean, personalizedOverride?: boolean) => {
+      if (typeof window === "undefined" || !(window as any).gtag) return;
+      const adStorage = granted ? "granted" : "denied";
+      const adUserData = granted ? "granted" : "denied";
+      const allowPersonalization = personalizedOverride ?? personalized;
+      const adPersonalization = granted && allowPersonalization ? "granted" : "denied";
+      const analyticsStorage = granted ? "granted" : "denied";
+
+      (window as any).gtag("consent", "update", {
+        ad_storage: adStorage,
+        ad_user_data: adUserData,
+        ad_personalization: adPersonalization,
+        analytics_storage: analyticsStorage,
+      });
+
+      // Dispatch a custom event so AdsSlot components can react
+      window.dispatchEvent(
+        new CustomEvent("consent:update", {
+          detail: { ad_storage: adStorage },
+        }),
+      );
+    },
+    [personalized],
+  );
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    const pers = localStorage.getItem(PERSONALIZATION_KEY);
-    setPersonalized(pers === null ? true : pers === "true");
-    if (!stored) setVisible(true);
-  }, []);
-
-  const updateGtagConsent = (granted: boolean) => {
-    if (typeof window === "undefined" || !(window as any).gtag) return;
-    const adStorage = granted ? "granted" : "denied";
-    const adUserData = granted ? "granted" : "denied";
-    const adPersonalization = granted && personalized ? "granted" : "denied";
-    const analyticsStorage = granted ? "granted" : "denied";
-
-    (window as any).gtag("consent", "update", {
-      ad_storage: adStorage,
-      ad_user_data: adUserData,
-      ad_personalization: adPersonalization,
-      analytics_storage: analyticsStorage,
-    });
-
-    // Dispatch a custom event so AdsSlot components can react
-    window.dispatchEvent(
-      new CustomEvent("consent:update", {
-        detail: { ad_storage: adStorage },
-      })
-    );
-  };
+    if (!stored) {
+      setVisible(true);
+      return;
+    }
+    // Re-apply a previously stored decision on every page load so the consent
+    // state (gtag dataLayer + AdsSlot event) matches what the user actually
+    // chose — otherwise returning users never get ads.
+    updateGtagConsent(stored === "yes", personalized);
+  }, [personalized, updateGtagConsent]);
 
   const handleAccept = () => {
     localStorage.setItem(STORAGE_KEY, "yes");

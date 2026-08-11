@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
  *   When provided, it must be a numeric string from your AdSense dashboard.
  */
 export default function AdsSlot({
-  adClientId,
+  adClientId = "ca-pub-5019530661594566",
   adSlotId,
 }: {
   adClientId?: string;
@@ -24,27 +24,14 @@ export default function AdsSlot({
   const insRef = useRef<HTMLDivElement>(null);
   const [consentGranted, setConsentGranted] = useState(false);
 
-  // Check consent via Google Consent Mode (gtag)
+  // Restore a previously stored consent decision after hydration and listen
+  // for live updates from the CookieConsent banner. The gtag dataLayer cannot
+  // drive this on page load: its consent 'default' is always 'denied', so we
+  // read the user's stored choice directly.
   useEffect(() => {
-    const checkConsent = () => {
-      if (typeof window === "undefined") return false;
-      // Google Consent Mode stores consent state in the dataLayer
-      const dl = (window as any).dataLayer;
-      if (!dl) return false;
-      // Look for the most recent consent update
-      for (let i = dl.length - 1; i >= 0; i--) {
-        const entry = dl[i];
-        if (entry && entry.consent && entry.consent.ad_storage === "granted") {
-          return true;
-        }
-      }
-      return false;
-    };
-
-    const granted = checkConsent();
-    setConsentGranted(granted);
-
-    // Listen for consent updates from the CookieConsent banner
+    if (typeof window !== "undefined" && localStorage.getItem("ads_consent") === "yes") {
+      setConsentGranted(true);
+    }
     const handler = (e: CustomEvent) => {
       setConsentGranted(e.detail?.ad_storage === "granted");
     };

@@ -136,6 +136,9 @@ export default function Docs() {
                 <a href="#windows-hardening">Windows System Hardening</a>
               </li>
               <li>
+                <a href="#library">Documentation Library</a>
+              </li>
+              <li>
                 <a href="#resources">Additional Resources</a>
               </li>
             </ul>
@@ -188,6 +191,169 @@ export default function Docs() {
               significantly reduces the effectiveness of Pass-the-Hash (PtH) attacks on the local
               SAM database.
             </p>
+          </section>
+
+          {/* Documentation Library — internal links so every article is reachable in 1–2 clicks */}
+          <section id="library" className="mt-16 space-y-4 scroll-mt-20">
+            <h2 className="text-2xl font-bold mb-2">Documentation Library</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Every guide below is a complete, standalone article. Use the library as the index for
+              the resource center.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Link
+                href="/docs/android-hardening-optimization"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Android Hardening &amp; Optimization Guide
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Enterprise mobile security, bloatware pruning, and background tuning.
+                </p>
+              </Link>
+              <Link
+                href="/docs/battery-wear"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Battery Wear Diagnostics &amp; Management Guide
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Cycle baselines, fleet audits, and safe replacement procedures.
+                </p>
+              </Link>
+              <Link
+                href="/docs/windows-security-baseline"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Windows Security Baseline &amp; Hardening Manual
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  GPO enforcement, WDAC policies, and quarterly audit cadence.
+                </p>
+              </Link>
+              <Link
+                href="/docs/managing-app-permissions"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Managing App Permissions on Android
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Runtime permissions, special access controls, and ADB auditing.
+                </p>
+              </Link>
+              <Link
+                href="/docs/network-architecture-optimization"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Network Architecture, Optimization &amp; Troubleshooting
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Traffic shaping, routing hygiene, and connectivity diagnostics.
+                </p>
+              </Link>
+              <Link
+                href="/docs/storage-backup-dr"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Storage, Backup &amp; Disaster Recovery Playbook
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  3-2-1 strategies, Borg/Restic recipes, and restore drills.
+                </p>
+              </Link>
+              <Link
+                href="/docs/infrastructure-admin-monitoring"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Infrastructure Administration &amp; Monitoring SOP
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Service monitoring, alerting, and secure remote administration.
+                </p>
+              </Link>
+              <Link
+                href="/docs/interpreting-system-logs"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Interpreting System Logs
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Journald, event correlation, and verification checklists.
+                </p>
+              </Link>
+              <Link
+                href="/docs/measuring-performance-safely"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Measuring Performance Safely
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Benchmark methodology, measurement checklists, and safe tooling.
+                </p>
+              </Link>
+              <Link
+                href="/docs/incident-runbook"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Incident Runbook Template
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Stabilization checklist, log capture, and escalation playbook.
+                </p>
+              </Link>
+              <Link
+                href="/docs/technical-writing-workflow"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Technical Writing Workflow
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Structured authoring, QA checklists, and release hygiene.
+                </p>
+              </Link>
+              <Link
+                href="/docs/editorial-standards"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">Editorial Standards</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Tone, plain language, and review requirements for every edit.
+                </p>
+              </Link>
+              <Link
+                href="/docs/documentation-qa-framework"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Documentation &amp; QA Framework
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Content audits, runnable verification jobs, and accessibility.
+                </p>
+              </Link>
+              <Link
+                href="/docs/content-review-checklist"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Content Review Checklist
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  A short, repeatable checklist for accuracy and usefulness.
+                </p>
+              </Link>
+            </div>
           </section>
 
           {/* Critical for Google Ads: Utility & Content Depth */}

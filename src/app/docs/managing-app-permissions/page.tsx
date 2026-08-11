@@ -83,10 +83,11 @@ export default function ManagingAppPermissions() {
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Android app permissions represent the primary security boundary between applications and sensitive
-              user data. This comprehensive guide covers the Android permission model, runtime permission handling,
-              special access controls, ADB-based permission auditing, and enterprise strategies for maintaining
-              secure device configurations across organizational fleets without requiring root access.
+              Android app permissions represent the primary security boundary between applications
+              and sensitive user data. This comprehensive guide covers the Android permission model,
+              runtime permission handling, special access controls, ADB-based permission auditing,
+              and enterprise strategies for maintaining secure device configurations across
+              organizational fleets without requiring root access.
             </p>
           </header>
 
@@ -95,35 +96,36 @@ export default function ManagingAppPermissions() {
               1. Understanding the Android Permission Model
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Android employs a sandbox-based security model where each application runs in its own isolated
-              process with a unique user ID. Permissions grant apps controlled access to protected system
-              features and user data outside their sandbox. Understanding this model is essential for
-              enterprise administrators responsible for securing device fleets against data leakage and
-              unauthorized access.
+              Android employs a sandbox-based security model where each application runs in its own
+              isolated process with a unique user ID. Permissions grant apps controlled access to
+              protected system features and user data outside their sandbox. Understanding this
+              model is essential for enterprise administrators responsible for securing device
+              fleets against data leakage and unauthorized access.
             </p>
-            
+
             <h3 className="text-lg font-bold">Permission Protection Levels</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Android categorizes permissions into four protection levels, each with distinct grant mechanisms
-              and security implications. Normal permissions pose minimal risk to user privacy or device operation.
-              These include network access, vibration control, and setting the device wallpaper. Apps
-              automatically receive normal permissions at install time without user interaction, as they
-              cannot access sensitive data or affect other applications.
+              Android categorizes permissions into four protection levels, each with distinct grant
+              mechanisms and security implications. Normal permissions pose minimal risk to user
+              privacy or device operation. These include network access, vibration control, and
+              setting the device wallpaper. Apps automatically receive normal permissions at install
+              time without user interaction, as they cannot access sensitive data or affect other
+              applications.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Dangerous permissions grant access to sensitive user data or device capabilities that could
-              impact user privacy or device functionality. Examples include camera access, location services,
-              contacts, SMS, microphone, and external storage. Starting with Android 6.0 (API level 23),
-              dangerous permissions require explicit user approval at runtime, even if declared in the app
-              manifest. Users can grant or deny individual dangerous permissions through system dialogs or
-              settings menus.
+              Dangerous permissions grant access to sensitive user data or device capabilities that
+              could impact user privacy or device functionality. Examples include camera access,
+              location services, contacts, SMS, microphone, and external storage. Starting with
+              Android 6.0 (API level 23), dangerous permissions require explicit user approval at
+              runtime, even if declared in the app manifest. Users can grant or deny individual
+              dangerous permissions through system dialogs or settings menus.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Signature permissions are granted only to apps signed with the same certificate as the app
-              that declared the permission. This protection level enables secure communication between
-              related applications from the same developer while preventing third-party apps from accessing
-              privileged functionality. System-level signature permissions protect critical OS features
-              from unauthorized modification.
+              Signature permissions are granted only to apps signed with the same certificate as the
+              app that declared the permission. This protection level enables secure communication
+              between related applications from the same developer while preventing third-party apps
+              from accessing privileged functionality. System-level signature permissions protect
+              critical OS features from unauthorized modification.
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`Android Permission Protection Levels:
@@ -159,20 +161,19 @@ Privileged/System Permissions (System image only):
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              2. Runtime Permission Handling
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">2. Runtime Permission Handling</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Android 6.0 introduced the runtime permission model, fundamentally changing how apps request
-              and users grant dangerous permissions. This shift empowers users to make contextual decisions
-              about permission grants while requiring developers to implement graceful degradation when
-              permissions are denied.
+              Android 6.0 introduced the runtime permission model, fundamentally changing how apps
+              request and users grant dangerous permissions. This shift empowers users to make
+              contextual decisions about permission grants while requiring developers to implement
+              graceful degradation when permissions are denied.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              When an app requires a dangerous permission, it must first check whether the permission has
-              already been granted using ContextCompat.checkSelfPermission(). If the permission is not
-              granted, the app requests it by calling ActivityCompat.requestPermissions(), which triggers
-              a system dialog presenting the permission rationale to the user.
+              When an app requires a dangerous permission, it must first check whether the
+              permission has already been granted using ContextCompat.checkSelfPermission(). If the
+              permission is not granted, the app requests it by calling
+              ActivityCompat.requestPermissions(), which triggers a system dialog presenting the
+              permission rationale to the user.
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`// Java: Runtime Permission Request Pattern
@@ -193,15 +194,14 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              3. Special App Access
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">3. Special App Access</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Beyond standard runtime permissions, Android maintains several categories of special access
-              that require explicit user navigation through system settings. Usage stats permission grants
-              apps access to detailed information about app usage patterns. Notification access allows apps
-              to read and respond to notifications on behalf of the user. Device Administrator privileges
-              grant extensive control over device security policies.
+              Beyond standard runtime permissions, Android maintains several categories of special
+              access that require explicit user navigation through system settings. Usage stats
+              permission grants apps access to detailed information about app usage patterns.
+              Notification access allows apps to read and respond to notifications on behalf of the
+              user. Device Administrator privileges grant extensive control over device security
+              policies.
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# ADB commands for special permissions
@@ -212,13 +212,11 @@ adb shell dpm set-device-owner --name com.enterprise.mdm/.DeviceAdminReceiver`}<
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              4. ADB Permission Auditing
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">4. ADB Permission Auditing</h2>
             <p className="text-muted-foreground leading-relaxed">
-              The Android Debug Bridge provides enterprise administrators with powerful tools for auditing
-              and managing app permissions across device fleets. The dumpsys package command outputs
-              comprehensive permission information for installed apps.
+              The Android Debug Bridge provides enterprise administrators with powerful tools for
+              auditing and managing app permissions across device fleets. The dumpsys package
+              command outputs comprehensive permission information for installed apps.
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# List all permissions granted to a specific app
@@ -234,40 +232,37 @@ adb shell pm revoke com.example.app android.permission.CAMERA`}</code>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              5. Enterprise Strategies
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">5. Enterprise Strategies</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Organizations deploying Android devices at scale need systematic approaches to permission
-              management. Establish baseline policies defining acceptable permissions for different device
-              roles. Implement automated compliance monitoring scripts. Provide user training on recognizing
-              dangerous permission requests.
+              Organizations deploying Android devices at scale need systematic approaches to
+              permission management. Establish baseline policies defining acceptable permissions for
+              different device roles. Implement automated compliance monitoring scripts. Provide
+              user training on recognizing dangerous permission requests.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              6. Troubleshooting
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">6. Troubleshooting</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Common issues include app crashes after permission denial, permissions resetting after updates,
-              and ghost permissions from uninstalled apps. Use ADB logcat to identify permission-related
-              crashes. Reset permissions using adb shell pm reset-permissions when needed.
+              Common issues include app crashes after permission denial, permissions resetting after
+              updates, and ghost permissions from uninstalled apps. Use ADB logcat to identify
+              permission-related crashes. Reset permissions using adb shell pm reset-permissions
+              when needed.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">
-              7. FAQ
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">7. FAQ</h2>
             <h3 className="text-lg font-bold">Q: Can I permanently block permission requests?</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Android does not provide native functionality to permanently block permission requests,
-              but repeatedly denying will cause apps to stop asking. MDM solutions can enforce policies.
+              Android does not provide native functionality to permanently block permission
+              requests, but repeatedly denying will cause apps to stop asking. MDM solutions can
+              enforce policies.
             </p>
             <h3 className="text-lg font-bold">Q: How often should I review permissions?</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Quarterly reviews work for most users. Enterprise environments benefit from monthly audits.
+              Quarterly reviews work for most users. Enterprise environments benefit from monthly
+              audits.
             </p>
           </section>
 
@@ -275,13 +270,13 @@ adb shell pm revoke com.example.app android.permission.CAMERA`}</code>
             <h2 className="text-2xl font-bold tracking-tight">Conclusion</h2>
             <p className="text-muted-foreground leading-relaxed">
               Effective Android permission management requires understanding the permission model,
-              implementing systematic auditing, and maintaining user awareness. Enterprise administrators
-              equipped with ADB tools and clear policies can secure device fleets while enabling
-              productive application usage.
+              implementing systematic auditing, and maintaining user awareness. Enterprise
+              administrators equipped with ADB tools and clear policies can secure device fleets
+              while enabling productive application usage.
             </p>
           </section>
 
-          <AdsSlot slotId="docs_permission_bottom" />
+          <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="permissions-1" />
         </article>
       </main>
       <SiteFooter />

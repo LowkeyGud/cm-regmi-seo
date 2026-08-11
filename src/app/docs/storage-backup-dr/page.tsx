@@ -33,8 +33,8 @@ export default function StorageBackupDRPage() {
     headline: "Enterprise Storage, Backup & Disaster Recovery Playbook",
     description: "Deep-dive playbook for systems storage, backups, and disaster recovery.",
     url: `${SITE_URL}/docs/storage-backup-dr`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-27",
+    datePublished: "2025-05-24",
+    dateModified: "2025-05-27",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -81,7 +81,7 @@ export default function StorageBackupDRPage() {
               Enterprise Storage, Backup & Disaster Recovery Playbook
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
+              By <strong>CM Regmi</strong> • Published May 26, 2025 • Updated May 27, 2025
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -251,14 +251,14 @@ smartctl -A /dev/sda`}</code>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# Verify file integrity via SHA256 checksums
 sha256sum -c backups.sha256
-# Result: "backups_2026-05-20.tar.gz: FAILED"
+# Result: "backups_2024-05-20.tar.gz: FAILED"
 
 # Run recovery in a isolated environment, restoring the last clean snapshot
 restic restore b2a4c1f9 --target /mnt/recovery-volume
 
 # Recalculate checksums to confirm integrity restoration
 sha256sum -c /mnt/recovery-volume/backups.sha256
-# Result: "backups_2026-05-20.tar.gz: OK"`}</code>
+# Result: "backups_2024-05-20.tar.gz: OK"`}</code>
             </pre>
             <p className="text-muted-foreground leading-relaxed">
               The restore resolved the issue, and the corrupt RAM module was identified and replaced

@@ -1,45 +1,36 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+```
+# Dependencies
+node_modules/
 
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
-.next
-*.local
+# Build artifacts
+dist/
+build/
+.next/
+out/
 
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-# TypeScript build artifacts
-*.tsbuildinfo
-
-# graphify knowledge graph output (regenerable with `graphify update .`)
-graphify-out/
-
-# Claude Code personal settings (machine-specific absolute hook paths)
-.claude/settings.json
-.claude/settings.local.json
-
-# Environment variables
+# Environment
 .env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+```

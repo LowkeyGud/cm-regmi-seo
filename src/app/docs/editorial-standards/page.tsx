@@ -214,7 +214,7 @@ export default function EditorialStandardsPage() {
           revisited and what external signals (library updates, API changes) should trigger updates.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="editorial-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

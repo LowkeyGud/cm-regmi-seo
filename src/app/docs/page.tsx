@@ -69,7 +69,7 @@ export default function Docs() {
       "@id": `${SITE_URL}/#person`,
     },
     datePublished: "2025-05-24",
-    dateModified: new Date().toISOString(),
+    dateModified: "2026-05-24",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#person` },
     mainEntityOfPage: { "@id": `${SITE_URL}/docs#webpage` },

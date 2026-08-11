@@ -18,7 +18,7 @@ export function SiteFooter() {
             </div>
             <div className="flex items-center gap-2 text-stone-400">
               <Clock className="h-3.5 w-3.5" />
-              <span>Last Documentation Update: May 4, 2026</span>
+              <span>Last Documentation Update: May 24, 2026</span>
             </div>
           </div>
         </div>

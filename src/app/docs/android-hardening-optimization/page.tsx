@@ -297,7 +297,7 @@ adb shell dumpsys meminfo
           test in a staging ring and automated verification of health metrics.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="android-hardening-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

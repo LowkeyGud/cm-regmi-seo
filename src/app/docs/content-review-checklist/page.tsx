@@ -290,7 +290,7 @@ Author: CM Regmi`}</code>
       </main>
 
       <section className="mx-auto max-w-3xl px-6 pb-12">
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="review-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

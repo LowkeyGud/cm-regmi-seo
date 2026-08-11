@@ -322,7 +322,7 @@ sha256sum -c /mnt/recovery-volume/backups.sha256
           exceeds target.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="storage-backup-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

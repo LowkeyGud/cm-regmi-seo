@@ -321,7 +321,7 @@ dism /Image:D:\\ /Remove-Driver /Driver:oem32.inf
           rollback jobs restore known-good states within defined SLA windows.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="winsec-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

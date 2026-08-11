@@ -681,10 +681,7 @@ done`}</code>
           marginal value extracted from pushing batteries to absolute end-of-life.
         </p>
 
-        <AdsSlot
-          adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
-          adSlotId="battery-wear-diagnostics-1"
-        />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

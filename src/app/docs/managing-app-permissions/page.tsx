@@ -276,7 +276,7 @@ adb shell pm revoke com.example.app android.permission.CAMERA`}</code>
             </p>
           </section>
 
-          <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="permissions-1" />
+          <AdsSlot />
         </article>
       </main>
       <SiteFooter />

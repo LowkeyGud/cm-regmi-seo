@@ -313,7 +313,7 @@ export default function TechnicalWritingWorkflowPage() {
       </main>
 
       <section className="mx-auto max-w-3xl px-6 pb-12">
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="writing-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

@@ -1,4 +1,5 @@
 import { SiteFooter } from "@/components/SiteFooter";
+import ContactForm from "@/components/ContactForm";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
   Breadcrumb,
@@ -107,92 +108,7 @@ export default function Contact() {
         </header>
 
         <section className="bg-muted/30 p-8 rounded-2xl border border-border shadow-sm">
-          <form className="space-y-6" action="#" method="POST">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-semibold tracking-tight">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
-                  placeholder="e.g. John Doe"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-semibold tracking-tight">
-                  Business Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
-                  placeholder="john@enterprise.com"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="subject" className="text-sm font-semibold tracking-tight">
-                Subject
-              </label>
-              <select
-                id="subject"
-                className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground focus:ring-2 focus:ring-primary focus:outline-none"
-              >
-                <option>Systems Architecture Review</option>
-                <option>Android Kernel Optimization</option>
-                <option>Windows Hardening Inquiry</option>
-                <option>Other / General Inquiry</option>
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-semibold tracking-tight">
-                Project Requirements
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                required
-                className="block w-full rounded-lg border border-input bg-background px-4 py-3 text-foreground transition-all focus:ring-2 focus:ring-primary focus:outline-none"
-                placeholder="Describe your technical challenges or project scope..."
-              />
-            </div>
-
-            {/* Mandatory Disclaimer for Google Ads/Privacy Compliance */}
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="privacy"
-                required
-                className="mt-1 h-4 w-4 rounded border-border"
-              />
-              <label htmlFor="privacy" className="text-xs text-muted-foreground leading-tight">
-                I agree to the processing of my contact details for the purpose of this inquiry.
-                Read our{" "}
-                <Link href="/privacy-policy" className="text-primary hover:underline">
-                  Privacy Policy
-                </Link>{" "}
-                for details.
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full sm:w-max flex justify-center rounded-lg bg-primary px-10 py-4 text-sm font-bold text-primary-foreground shadow-lg hover:bg-primary/90 transition-all active:scale-95"
-            >
-              Dispatch Message
-            </button>
-          </form>
+          <ContactForm />
         </section>
 
         <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-border pt-12">

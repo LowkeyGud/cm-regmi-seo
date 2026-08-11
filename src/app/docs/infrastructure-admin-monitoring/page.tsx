@@ -284,7 +284,7 @@ kill -15 2412
       </main>
 
       <section className="mx-auto max-w-3xl px-6 pb-12">
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="infra-admin-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

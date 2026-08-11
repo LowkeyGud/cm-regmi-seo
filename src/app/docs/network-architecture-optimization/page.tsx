@@ -277,7 +277,7 @@ tcpdump -n -i wg0 -c 100
           values; do not rely on a single test which can be skewed by transient traffic.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="network-hardening-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

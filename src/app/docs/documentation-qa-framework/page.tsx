@@ -297,7 +297,7 @@ sshd -T -C user=admin | grep -E 'passwordauthentication|pubkeyauthentication'
           checklist. Reject PRs that add commands without an accompanying verification entry.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="doc-qa-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

@@ -184,7 +184,7 @@ journalctl -u myservice --since "2025-05-24" | grep -i error | sort | uniq -c | 
           quickly.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="logs-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

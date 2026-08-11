@@ -112,14 +112,6 @@ function HomeSchemas() {
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   const webpageSchema = {
@@ -133,7 +125,7 @@ function HomeSchemas() {
     about: { "@id": `${SITE_URL}/#person` },
     mainEntity: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
-    dateModified: new Date().toISOString().split("T")[0],
+    dateModified: "2026-05-24",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE_URL }],
@@ -185,7 +177,7 @@ export default function Index() {
       </main>
 
       <section className="mx-auto max-w-7xl px-6 pb-12">
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="home-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

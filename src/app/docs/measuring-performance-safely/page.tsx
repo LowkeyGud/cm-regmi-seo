@@ -217,7 +217,7 @@ iperf3 -c server -t 10 -P 2  # on client`}</code>
           canaries.
         </p>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="perf-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

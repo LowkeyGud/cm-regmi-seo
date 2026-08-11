@@ -237,7 +237,7 @@ ACTIONS TAKEN:
           <li>Confirm monitoring alert routes and escalation contacts are up to date.</li>
         </ul>
 
-        <AdsSlot adClientId={process.env.NEXT_PUBLIC_ADSENSE_ID} adSlotId="runbook-1" />
+        <AdsSlot />
       </section>
 
       <SiteFooter />

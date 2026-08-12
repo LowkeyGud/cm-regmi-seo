@@ -189,6 +189,226 @@ ACTIONS TAKEN:
           </li>
         </ul>
 
+        <h2 className="text-xl font-semibold mt-6">
+          1. Worked example: recovering from a container restart loop
+        </h2>
+        <p className="text-muted-foreground leading-relaxed">
+          A monitoring alert fired at 03:20 because a containerized order-processing service had
+          restarted nine times in twelve minutes. Each restart dropped in-flight requests, and an
+          automated health check that simply restarted the container on failure was keeping a broken
+          unit alive without ever fixing it. The on-call engineer opened the incident ticket,
+          captured the journal before touching anything, and then inspected the restart sequence
+          instead of restarting again.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          The journal showed the process exiting with the identical error at almost the same second
+          on every run, which pointed to a startup dependency rather than a crash under load. A
+          quick reproduction in a clean directory confirmed that the service could not initialize
+          without a configuration key that the latest deploy had renamed.
+        </p>
+        <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+          <code>{`# Capture the restart sequence before taking any action
+journalctl -u order-worker --since "-30 min" -o short-iso | grep -E "Started|fatal|Failed" | tail -n 20
+
+# Output (abbreviated)
+# mar 21 03:10:04 app-02 systemd[1]: Started order-worker.service
+# mar 21 03:10:04 app-02 order-worker[2412]: fatal: config key 'queue' missing
+# mar 21 03:12:11 systemd[1]: order-worker.service: Main process exited`}</code>
+        </pre>
+        <p className="text-muted-foreground leading-relaxed">
+          Because the team had recorded a tested rollback and a known-good image tag in the runbook,
+          the fix was a single tagged rollback instead of speculative debugging. The engineer rolled
+          the image back to the previous tag, confirmed the worker reached a steady state, and only
+          then opened an after-action note to restore the configuration key for the next release.
+          Total time from alert to restored service was about forty minutes, and the restart count
+          dropped to zero immediately. This is the difference a pre-recorded rollback path makes:
+          the same incident without an image tag history could have consumed an entire shift. Two
+          habits made this response faster than the previous incident of the same shape: the
+          rollback target was verified to exist before the incident, and the journal was captured
+          before any action was taken. Both belong in the immediate-actions list as default
+          behaviour rather than as decisions made under pressure. For related incident structure,
+          see the{" "}
+          <Link
+            href="/docs/infrastructure-admin-monitoring"
+            className="text-primary hover:underline"
+          >
+            infrastructure and monitoring SOP
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-xl font-semibold mt-6">
+          2. Escalation matrix and communication templates
+        </h2>
+        <p className="text-muted-foreground leading-relaxed">
+          An incident commander who escalates too slowly extends the outage, while one who escalates
+          too early burns senior attention. A written matrix removes the judgement call. Define tier
+          one as the on-call engineer and the incident commander; tier two as the service owner and
+          the database administrator; and tier three as management and external communication.
+          Escalate immediately when the current tier cannot restore service within a defined window,
+          when impact touches more than one service, or when a decision with financial or compliance
+          consequences is required.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Keep the escalation matrix inside the runbook with names, roles, contact numbers, and the
+          exact condition that triggers each tier. Test it quarterly with a tabletop exercise so
+          nobody has to learn a number at 03:00. Below is a copyable template for the status posts
+          that keep everyone aligned during the response:
+        </p>
+        <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+          <code>{`# Paste into the incident channel and update in place
+STATUS: DEGRADED / DOWN / RESOLVED  (delete the wrong ones)
+IMPACTED: order-worker, queue depth at 400
+CURRENT ACTION: rolling back image tag to v2026.05.20
+NEXT UPDATE: in 20 minutes
+ESCALATED TO: service owner, database admin
+NEEDED: none`}</code>
+        </pre>
+        <p className="text-muted-foreground leading-relaxed">
+          The template is short on purpose. Long statuses are never read during an incident. One
+          person owns the updates and writes only the fields above. If you find yourself writing
+          paragraphs, stop and set a shorter update cadence instead. Pair the escalation path with
+          monitoring that detects the failure earlier, as described in the{" "}
+          <Link href="/docs/service-monitoring" className="text-primary hover:underline">
+            service monitoring guide
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-xl font-semibold mt-6">
+          3. Troubleshooting: when the runbook steps do not resolve it
+        </h2>
+        <p className="text-muted-foreground leading-relaxed">
+          When an incident seems to resist every listed step, work through these checks in order
+          instead of improvising a fix. Each check eliminates one layer of the stack and preserves
+          evidence for the postmortem.
+        </p>
+        <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
+          <li>
+            <strong>Confirm you are looking at the right node.</strong>
+            <p className="text-sm mt-1">
+              A load balancer or scheduler may be routing requests to a host that is not the one on
+              screen. Compare the hostname and the instance ID in the alert payload against the
+              journal you are reading before treating journal output as authoritative.
+            </p>
+          </li>
+          <li>
+            <strong>Re-read the last entry in the timeline.</strong>
+            <p className="text-sm mt-1">
+              The most recent action often caused the current symptom. If a config change, deploy,
+              or restart precedes the failure inside the incident window, suspect that change before
+              the hardware underneath it.
+            </p>
+          </li>
+          <li>
+            <strong>Verify the rollback target actually exists.</strong>
+            <p className="text-sm mt-1">
+              Check that the image tag, package version, or snapshot you plan to restore is present
+              in the registry or repository. Attempting a rollback to a missing artifact adds
+              minutes at the worst moment.
+            </p>
+          </li>
+          <li>
+            <strong>Check whether a second change landed at the same time.</strong>
+            <p className="text-sm mt-1">
+              Compare deploy timestamps across services. A coordinated release that touched two
+              services simultaneously often produces a failure that neither rollback fixes in
+              isolation. In that case, roll back both to the same known-good point.
+            </p>
+          </li>
+          <li>
+            <strong>Record what you tried before escalating.</strong>
+            <p className="text-sm mt-1">
+              Write each attempted step, its result, and its timestamp into the ticket. The senior
+              engineer who takes over must see the full picture without asking, and the postmortem
+              needs the same trail.
+            </p>
+          </li>
+        </ol>
+
+        <h2 className="text-xl font-semibold mt-6">4. Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold">
+            When should I escalate instead of waiting for the alert to clear?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Escalate the moment the current tier cannot restore service within the defined window,
+            or as soon as the impact exceeds the tier's authority, for example when it touches
+            multiple services or produces a compliance concern. Waiting only compresses the time the
+            next tier has to respond. Escalate early, then down-escalate if the issue resolves
+            quickly.
+          </p>
+          <h3 className="text-lg font-bold">
+            What if the rollback path fails during the incident?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Treat the failed rollback as a new signal, not a dead end. Verify the artifact exists
+            and the checksum matches, then check whether a second change landed at the same time. If
+            both checks are clean, stop trying isolated rollbacks and escalate with your attempted
+            steps recorded, because the fault is likely shared across services rather than in one
+            build.
+          </p>
+          <h3 className="text-lg font-bold">
+            Should automated health checks restart a failing service forever?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            No. A service that restarts repeatedly is masking a real fault, and every restart drops
+            in-flight work. Add a maximum restart threshold and alert when it is crossed, then treat
+            the recurring restarts as an incident. A health check is a bridge, not a permanent fix.
+          </p>
+          <h3 className="text-lg font-bold">
+            How do I stop an incident runbook from growing until nobody reads it?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Keep the runbook to a single page per failure class and force changes through the
+            postmortem process. When the document grows past one page, split it into a new page for
+            that specific failure instead of appending. Small, targeted runbooks survive; long
+            essays do not.
+          </p>
+          <h3 className="text-lg font-bold">
+            How can I practice incidents without causing a real outage?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Use a staging or isolated environment that mirrors production and run the full sequence
+            there, or run a tabletop drill where responders walk through steps verbally. Measure how
+            long the team takes to reach each checkpoint. See the guide on{" "}
+            <Link
+              href="/docs/measuring-performance-safely"
+              className="text-primary hover:underline"
+            >
+              measuring performance safely
+            </Link>{" "}
+            for how to test without harming live services.
+          </p>
+          <h3 className="text-lg font-bold">
+            What is the difference between a runbook and a postmortem?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            A runbook is the action checklist followed during the incident, written in advance. A
+            postmortem is the review written afterward that records what happened, why, and which
+            single runbook step changes to prevent recurrence. They serve different moments, and a
+            postmortem that does not add at least one concrete step to a runbook has not done its
+            job.
+          </p>
+          <h3 className="text-lg font-bold">
+            Why did my status update feel like it made things worse?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Status updates made without field discipline introduce noise that followers must
+            re-parse. Stick to the template: impact, current action, next update, escalation. If
+            followers ask for clarification, your update was missing one of those four fields rather
+            than being too short.
+          </p>
+          <h3 className="text-lg font-bold">How long should the first status update wait?</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Post the first update within the first five minutes, even if all it says is that the
+            incident is acknowledged and investigation is under way. A short, honest first post
+            reduces duplicate reports, sets expectations, and lets leadership stop polling
+            individual engineers. It also forces the commander to name an impact and an owner
+            immediately, which structures the rest of the response.
+          </p>
+        </div>
+
         <div className="mt-8">
           <Link href="/docs" className="text-primary hover:underline">
             Back to Docs Hub

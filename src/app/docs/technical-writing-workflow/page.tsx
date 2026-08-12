@@ -273,6 +273,213 @@ export default function TechnicalWritingWorkflowPage() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              7. Pin versions and capture reproducible examples
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Documentation rots fastest in the examples that cannot be re-run. When a procedure
+              mentions a package version, a kernel parameter, or an image tag, pin it in a code
+              block so a reader can reproduce the exact environment instead of guessing. Capture the
+              full command list that produces the output you show, not a paraphrase of it. If you
+              display command output, generate it with the pinned tools so the numbers in the page
+              are real and checkable.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              The environment block below takes seconds to write and removes an entire class of
+              reader questions. It also gives you a record of what you actually tested, which is the
+              same evidence the verification step will ask for later.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Record the exact environment so a reader can reproduce the example
+cat /etc/os-release | grep PRETTY_NAME
+uname -r
+python3 --version
+pip show restic 2>/dev/null | grep Version`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Without a pinned environment, a reader on a different version may follow the steps and
+              fail for reasons unrelated to their task. With it, they can either match the version
+              or recognize immediately that the example does not apply to their build and stop
+              before wasting time.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              8. Worked example: documenting a rollback procedure
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              A writer documented a rollback procedure for a five-server checkout service. The first
+              draft said simply "restore the previous version from the registry." Reviewers flagged
+              it as unreproducible because it did not say how to identify the previous version or
+              how to confirm the rollback had actually landed. The writer went back to the
+              gather-evidence step: they listed the last three image tags, picked a known-good tag,
+              and ran the rollback twice in staging while recording the output verbatim.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# The evidence the writer captured before drafting
+docker images --format "{{.Repository}}:{{.Tag}} {{.CreatedSince}}"
+# v2026.05.20  2 days ago
+# v2026.05.13  9 days ago   <-- known good
+
+kubectl set image deploy/checkout web=registry/checkout:v2026.05.13
+kubectl rollout status deploy/checkout
+# deployment "checkout" successfully rolled out`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              The final page showed the exact command and the exact confirmation line that proves
+              the rollback succeeded. Six months later the page required fewer corrections than the
+              previous draft did in a single week, because the command was pinned, the confirmation
+              was explicit, and the rollback target was named rather than described vaguely. That is
+              the practical outcome of gathering evidence first: a page that survives contact with
+              the real system and stays useful instead of drifting into folklore. The same evidence
+              became the acceptance test for future edits: any proposed change to the page had to
+              reproduce the pinned command and its confirmation line before it could merge, which
+              kept the procedure honest long after the original author moved on.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              9. Troubleshooting: when a draft gets stuck
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Every writer hits the point where a draft stops improving. The usual causes are not a
+              lack of effort but a missing piece of evidence, an unclear reader, or an outline that
+              does not match the task. Work through these checks before rewriting the same sentences
+              again.
+            </p>
+            <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
+              <li>
+                <strong>Return to the reader definition.</strong>
+                <p className="text-sm mt-1">
+                  If the draft is drifting, the reader profile and the success criterion were
+                  probably not specific enough. Rewrite them in one sentence each and delete
+                  anything in the draft that does not serve either.
+                </p>
+              </li>
+              <li>
+                <strong>Run the procedure yourself once more.</strong>
+                <p className="text-sm mt-1">
+                  A draft that feels vague is usually missing an observed step. Re-run the commands
+                  in a clean environment and record each keystroke you actually typed, including the
+                  ones you assumed were obvious.
+                </p>
+              </li>
+              <li>
+                <strong>Ask what the reader will check when they finish.</strong>
+                <p className="text-sm mt-1">
+                  If you cannot state the verification in one sentence, the verification section is
+                  missing or the procedure is incomplete. Write the check that proves the task
+                  succeeded, then make sure the steps lead to it.
+                </p>
+              </li>
+              <li>
+                <strong>Get a second reader early.</strong>
+                <p className="text-sm mt-1">
+                  A fresh pair of eyes will find the assumption that made sense to you but not to
+                  anyone else. Ask one question: "What would you type first, and what would you
+                  expect to happen?" Their answer reveals the gap.
+                </p>
+              </li>
+            </ol>
+            <p className="text-muted-foreground leading-relaxed">
+              If none of these resolves the block, the page is probably trying to do two jobs at
+              once. Split it into two pages, each with its own reader, and the friction usually
+              disappears. The{" "}
+              <Link
+                href="/docs/documentation-qa-framework"
+                className="text-primary hover:underline"
+              >
+                documentation QA framework
+              </Link>{" "}
+              and the{" "}
+              <Link href="/docs/content-review-checklist" className="text-primary hover:underline">
+                content review checklist
+              </Link>{" "}
+              describe the review checks that catch these problems before publication.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">10. Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold">
+                How much evidence is enough before I start writing?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Enough to write the outline without guessing. If you can outline the procedure, the
+                verification, and the maintenance note from the evidence you have gathered, you have
+                enough. If any section requires a placeholder, gather the missing fact before
+                drafting prose around it.
+              </p>
+              <h3 className="text-lg font-bold">
+                Should I document what I already know from memory?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Not for procedures. Memory is where subtle errors enter documentation, especially
+                version numbers and option names. Verify claims against a real run or a primary
+                source before committing them to a page that others will follow as fact.
+              </p>
+              <h3 className="text-lg font-bold">
+                How do I keep a page accurate after upstream changes?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Record a last-updated date and a version scope, then schedule a review cycle for
+                high-traffic pages. When the upstream tool changes, update the page or add a note
+                that it has not been tested on the new version rather than silently leaving stale
+                steps.
+              </p>
+              <h3 className="text-lg font-bold">
+                What is the difference between a style guide and a workflow?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                A workflow is the sequence of steps for producing and maintaining a page, which this
+                article describes. A style guide, like the{" "}
+                <Link href="/docs/editorial-standards" className="text-primary hover:underline">
+                  editorial standards page
+                </Link>
+                , is the set of rules about voice, tone, and formatting applied within those steps.
+                You need both, and they serve different purposes.
+              </p>
+              <h3 className="text-lg font-bold">
+                Why do my examples keep getting ignored by readers?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Examples that restate the surrounding text without adding a specific number,
+                version, or real output teach readers to skip them. Keep only examples that add
+                verifiable detail, and readers will start reading them again because they carry
+                information the prose does not.
+              </p>
+              <h3 className="text-lg font-bold">
+                How do I verify a page without breaking a live system?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Run procedures in a disposable environment that matches the stated OS and versions,
+                and capture output with timestamps. For measurement claims, record the conditions of
+                the test rather than treating one run as universal truth. See{" "}
+                <Link
+                  href="/docs/measuring-performance-safely"
+                  className="text-primary hover:underline"
+                >
+                  measuring performance safely
+                </Link>{" "}
+                for a full approach.
+              </p>
+              <h3 className="text-lg font-bold">
+                What should I do with feedback that contradicts the page?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Treat the contradiction as a signal to verify, not to delete. Re-run the procedure,
+                and if the reader is correct, update the page and note what changed. If the page is
+                correct, add the version or condition that explains the difference so the next
+                reader is not confused. Unresolved contradictions are the fastest way a page loses
+                trust.
+              </p>
+            </div>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">A reusable article template</h2>
             <div className="rounded-xl border border-border bg-muted/30 p-6 text-muted-foreground">
               <p className="font-semibold text-foreground">Template:</p>

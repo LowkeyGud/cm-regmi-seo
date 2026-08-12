@@ -182,12 +182,12 @@ export default function About() {
               </a>
               <span className="px-2">•</span>
               <a
-                href="https://github.com/cmregmi"
+                href="https://www.youtube.com/@LearnTechYT"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary underline"
               >
-                GitHub
+                YouTube
               </a>
             </p>
           </div>

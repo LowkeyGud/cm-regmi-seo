@@ -57,6 +57,7 @@ graphify-out/
 # Claude Code personal settings (machine-specific absolute hook paths)
 .claude/settings.json
 .claude/settings.local.json
+.reasonix
 
 # Python
 __pycache__/

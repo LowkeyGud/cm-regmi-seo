@@ -189,6 +189,254 @@ iperf3 -c server -t 10 -P 2  # on client`}</code>
           </ol>
         </section>
 
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">
+            4. A real-world example: a stretched home-lab disk
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            A home-lab operator running a small file server noticed nightly backup jobs had slowly
+            crept from forty minutes to just under three hours over several months. The instinct was
+            to blame the backup software, but the operator first captured a careful baseline with
+            fio using a small, realistic profile rather than a destructive full-volume test. The
+            baseline showed read latency climbing sharply once the target file grew past a certain
+            size, which pointed at the disk filling rather than the tooling being slow.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Because the measurement was non-destructive and small, the server stayed online
+            throughout the test and no data was at risk. The operator then checked the mount options
+            and free space, confirmed the filesystem was over ninety percent full, freed several
+            stale snapshots, and re-ran the exact same fio profile. Median latency returned to the
+            original baseline and the next backup finished in about forty-five minutes. The
+            practical outcome was a server that ran hotter-free, a recovery that affected no other
+            users, and a lesson that a safe, targeted measurement identified the bottleneck without
+            a multi-hour synthetic stress run.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            The same discipline applies on larger fleets. Keep the measurement small enough to fit
+            inside a maintenance window, capture the environment metadata before you start, and
+            always be ready to stop. A test that must be abandoned at the first sign of trouble is
+            not a failure; it is a successful safety gate. For guidance on correlating the resulting
+            numbers with the rest of your operational picture, see the{" "}
+            <Link href="/docs/interpreting-system-logs" className="text-primary hover:underline">
+              interpreting system logs
+            </Link>{" "}
+            guide, and for ongoing early warnings leverage the process covered in{" "}
+            <Link href="/docs/service-monitoring" className="text-primary hover:underline">
+              service monitoring
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">5. Capturing a safe baseline with minimal risk</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            A baseline is only useful if it is reproducible and captured under controlled
+            conditions. The examples below keep the test surface small and the environment intact.
+            The first captures a short CPU sample; the second measures disk behaviour with bounded
+            size and runtime so it terminates on its own even if you forget to stop it.
+          </p>
+          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+            <code>{`# Short, self-terminating CPU sample with a clear label
+perf stat -e cycles,instructions,stalled-cycles-frontend \\
+  -- sleep 5
+echo "baseline captured $(date -Is) kernel $(uname -r)" > run.env  # document environment
+
+# Bounded disk read test that always finishes
+fio --name=baseline --rw=randread --bs=4k --size=64M \\
+     --numjobs=1 --runtime=5 --time_based --group_reporting`}</code>
+          </pre>
+          <p className="text-muted-foreground leading-relaxed">
+            Note the environment line written alongside the results. Kernel version, CPU governor,
+            and mount options can move storage numbers by tens of percent, and without that metadata
+            the next run cannot be compared honestly. Keep each run bounded so a forgotten terminal
+            cannot turn a small test into an unstoppable load, and set a hard wall-clock timeout as
+            a backstop on shared systems.
+          </p>
+          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+            <code>{`# Bounded network check between two hosts with a hard timeout
+timeout 10 iperf3 -c server-host -t 5 -P 1 -R  # reverse-mode download test
+
+# Guard any batch job so it cannot exceed a fixed duration
+timeout 300 ./benchmark_suite.sh && echo "run completed within budget"`}</code>
+          </pre>
+          <p className="text-muted-foreground leading-relaxed">
+            The timeout wrapper is a cheap insurance policy. On a fragile or shared system it is the
+            difference between a short measurement and an accidental stress test that bleeds into
+            production traffic. Reach for these same patterns when you automate benchmarking as part
+            of a regression gate rather than running each measurement by hand.
+          </p>
+        </section>
+
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">6. Troubleshooting a confusing measurement</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Sometimes the numbers do not make sense: a "faster" machine measures slower, or the same
+            test gives wildly different results across runs. Work through these steps in order
+            rather than re-running the same test and hoping for a different answer.
+          </p>
+          <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
+            <li>
+              <strong>Confirm nothing else is running:</strong> check top, uptime load, and running
+              cron or backup jobs. A stray backup can easily explain a doubled latency result.
+            </li>
+            <li>
+              <strong>Compare environment metadata:</strong> verify kernel version, governor, mount
+              options, and network MTU match the baseline. A changed governor alone can shift
+              results by a wide margin.
+            </li>
+            <li>
+              <strong>Check thermal state:</strong> read sensors for temperature. If the machine has
+              been heating up, throttling will make identical hardware look slower than the last
+              run.
+            </li>
+            <li>
+              <strong>Increase the sample count:</strong> run a few more iterations and compare
+              medians. A single outlier should not trigger an "optimisation" or a rollback.
+            </li>
+            <li>
+              <strong>Recreate the baseline:</strong> if the old baseline cannot be reproduced with
+              the current environment, treat it as stale, re-capture it, and update your recorded
+              metadata.
+            </li>
+          </ol>
+          <p className="text-muted-foreground leading-relaxed">
+            If a regression seems real, verify the signal on a different machine before acting.
+            Reproducing the drop elsewhere confirms the change is systemic rather than a quirk of a
+            single host or a single run. Only then open a change, and make sure you have a
+            documented rollback before you apply it.
+          </p>
+        </section>
+
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">7. Frequently asked questions</h2>
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold">Q: Is it ever safe to run a full stress test?</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Yes, but only on dedicated hardware or disposable VMs where data loss is acceptable
+              and thermal controls are monitored. Never run a full stress test against a system that
+              holds production data or serves live traffic without a documented rollback and an
+              abort plan.
+            </p>
+            <h3 className="text-lg font-bold">
+              Q: Why does my benchmark disagree with a colleague's?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Environment differences usually explain the gap: kernel version, CPU governor, mount
+              options, network MTU, and background load all shift results. Compare the recorded
+              metadata of both runs before trusting any discrepancy.
+            </p>
+            <h3 className="text-lg font-bold">Q: How many samples are enough?</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              There is no single magic number, but five iterations with a reported median and
+              interquartile range is a reasonable starting point. Add more samples when results are
+              noisy or when the change you are measuring is small relative to the variance.
+            </p>
+            <h3 className="text-lg font-bold">Q: Should I disable antivirus during the test?</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              If you disable protection, do it only with approval and across a short window, then
+              re-enable it immediately. The safer approach is to leave it running and record it as
+              part of the environment so you can compare like for like.
+            </p>
+            <h3 className="text-lg font-bold">
+              Q: What do I do if the system starts to error during a test?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Stop immediately, archive any logs and the timestamped run metadata, and treat the
+              partial result as invalid. Continuing past thermal limits or I/O errors risks hardware
+              damage and produces data you cannot trust.
+            </p>
+            <h3 className="text-lg font-bold">
+              Q: Can I benchmark a system that is serving live traffic?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              You can, but only with low-intensity sampling tools and careful limits, during a
+              low-traffic window, and with alerting watching for any test-induced load. Prefer a
+              separate environment whenever one is available, and treat any live test as a temporary
+              exception rather than the default.
+            </p>
+            <h3 className="text-lg font-bold">
+              Q: What is the difference between a baseline and a benchmark?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              A baseline is a reference measurement taken under a known environment that you compare
+              later results against. A benchmark is the individual test run itself. You keep many
+              benchmarks but you need a stable baseline to interpret any of them meaningfully.
+            </p>
+          </div>
+        </section>
+
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">9. Reviewing the process before you commit</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Before you treat a measurement as trustworthy enough to act on, run a final mental
+            review. Confirm that the environment metadata was captured, that you ran more than one
+            sample and looked at the distribution, and that you can reproduce the result on another
+            machine. If any of those checks fail, the numbers are not ready to drive a decision.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Equally important is the decision that follows the measurement. A favourable benchmark
+            is a reason to trial a change in a canary or staging environment, not a license to apply
+            it broadly. Keep the rollback documented, keep the harness versioned, and re-measure
+            after the change goes live so a regression in the real workload is caught early rather
+            than discovered weeks later during an unrelated incident.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Finally, keep the whole loop lightweight. The goal is a measurement habit you can
+            sustain without a dedicated lab: short, bounded runs, versioned harnesses, recorded
+            metadata, and a clear stop rule. When measuring performance is boring and routine, it is
+            also safe, and that is precisely the outcome this guide is meant to produce.
+          </p>
+        </section>
+
+        <section className="space-y-4 mt-6">
+          <h2 className="text-xl font-semibold">8. Building a safe, repeatable harness</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            The most reliable way to keep performance work safe is to stop assembling commands by
+            hand and instead run a small, versioned harness that encodes the safety rules you would
+            otherwise have to remember. A harness fixes the workload, the sample count, the metadata
+            capture, and the hard time limit, so every run is comparable and no single run can turn
+            into an unbounded stress test.
+          </p>
+          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+            <code>{`#!/usr/bin/env bash
+# safe-bench.sh - run one bounded CPU sample and record its environment
+set -euo pipefail
+WORKLOAD=$1
+DURATION=$2
+OUT=results/$(date -Is).txt
+mkdir -p results
+{
+  echo "workload=$WORKLOAD duration=$DURATION"
+  echo "kernel=$(uname -r) governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)"
+  perf stat -e cycles,instructions -a -- sleep "$DURATION"
+} > "$OUT" 2>&1
+tail -20 "$OUT"`}</code>
+          </pre>
+          <p className="text-muted-foreground leading-relaxed">
+            Notice that the harness writes its environment metadata to the same file as the results.
+            This single detail makes later comparisons trustworthy, because you can always see
+            whether two runs were measured under the same kernel and governor. It also forces the
+            run to finish on its own: the sleep-based duration guarantees the sampling stops even if
+            the terminal is forgotten.
+          </p>
+          <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+            <code>{`# Run three iterations and report a compact summary
+for i in 1 2 3; do ./safe-bench.sh webserver 5; done
+ls -1 results/ | tail -3   # confirm the latest captures
+
+# Summarise median cycles across the three runs (rough sketch)
+grep -h "instructions" results/*.txt | awk '{a[NR]=$NF} END{print "runs="NR}'`}</code>
+          </pre>
+          <p className="text-muted-foreground leading-relaxed">
+            Commit the harness to version control alongside the baselines it produces. When someone
+            later changes the kernel or upgrades the server, they can re-run the harness, compare
+            the medians, and decide with evidence whether the change was a win or a regression. This
+            turns performance measurement from a one-off investigation into a routine, low-risk
+            practice that the whole team can reuse.
+          </p>
+        </section>
+
         <div className="mt-8">
           <Link href="/docs" className="text-primary hover:underline">
             Back to Docs Hub

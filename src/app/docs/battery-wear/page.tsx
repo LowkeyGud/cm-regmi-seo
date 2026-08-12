@@ -281,7 +281,7 @@ if [ "$HEALTH" -ne 2 ]; then
     echo "⚠️  ALERT: Battery health not optimal (code: $HEALTH)"
 fi
 if [ "$TEMP" -lt 150 ]; then
-    echo "⚠️  NOTICE: Low temperature may reduce performance (<15°C)"
+    echo "⚠️  NOTICE: Low temperature may reduce performance (under 15°C)"
 fi
 
 echo ""
@@ -644,6 +644,396 @@ done`}</code>
               drop below 30%. Properly stored lithium-ion batteries lose approximately 2-3% capacity
               per year even without use, significantly better than the 15-20% annual loss from
               improper storage conditions.
+            </p>
+
+            <h3 className="text-lg font-bold">
+              Q: How do battery health checks relate to device hardening work?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Battery diagnostics are one part of a broader device-health and hardening program. The{" "}
+              <Link
+                href="/docs/android-hardening-optimization"
+                className="text-primary hover:underline"
+              >
+                Android hardening and optimization
+              </Link>{" "}
+              guide covers package removal, permission scoping, and thermal management as a combined
+              posture, while this guide focuses specifically on the battery subsystem.
+            </p>
+
+            <h3 className="text-lg font-bold">
+              Q: Should battery checks be grouped with other hardware diagnostics?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Yes. Treat battery metrics as one signal in a broader hardware-health review that also
+              includes storage. Run the same audit cadence as your{" "}
+              <Link href="/docs/disk-health" className="text-primary hover:underline">
+                disk health
+              </Link>{" "}
+              checks so that both wear indicators are evaluated together during maintenance windows
+              and staging reviews.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              7. Case Study: Controlled Charging Experiment in a Warehouse
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              A regional distributor operating 130 handheld scanners ran a controlled experiment to
+              quantify the benefit of a charging-limit policy before committing to a fleet-wide
+              change. Two identical batches of 30 scanners were selected, both carrying batteries
+              aged roughly 15 months under identical workloads. Batch A continued with overnight
+              charging to 100% using the standard cradles. Batch B was configured through the MDM to
+              stop charging at 80% and to defer the top-up until one hour before the first shift.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Baseline capacity was measured using the controlled discharge method described in this
+              guide. Both batches started at an average of 88% retained capacity. After six months,
+              Batch B retained an average of 81% of original capacity, while Batch A had fallen to
+              74%. The difference was driven almost entirely by reduced hours spent at 100% state of
+              charge, which the batch-averaged temperature telemetry confirmed was not a thermal
+              artifact.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Sample telemetry one week apart and diff the trend
+adb -s <serial> shell dumpsys battery | grep -E "level|temp|voltage"
+
+# Example batch summary written by the audit script
+# Batch A avg level: 100  avg temp: 31.4C  avg retention: 74%
+# Batch B avg level: 81   avg temp: 29.8C  avg retention: 81%`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              The seven-percentage-point capacity advantage translated into roughly nine additional
+              months of usable service life per device before hitting the 70% replacement threshold.
+              Management adopted the charging-limit policy for the entire 130-device fleet,
+              projecting annual replacement savings near $9,000 once the policy applies to a full
+              device generation. The result confirms that a modest 20% capacity sacrifice at the
+              plug pays back many times over in deferred hardware purchases.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              8. Fleet Automation, Alerting & MDM Integration
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Manual battery audits work for a pilot but are not sustainable at fleet scale. The
+              goal of automation is to turn raw dumpsys output into a short list of devices that
+              need attention, delivered to the people who can act on it, with minimal false
+              positives. Start with the audit script from section 2 and add a classification pass
+              that flags only devices crossing a real threshold.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Decide whether alerts should be generated by polling devices over ADB or by consuming
+              metrics the MDM already exports. Polling gives you direct control and
+              chemistry-independent numbers, while MDM telemetry is easier to scale across many
+              endpoints. Many deployments use both: MDM for fleet-wide trending and a targeted ADB
+              poll for the handful of devices flagged as suspect.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Flag devices whose temperature or voltage cross thresholds
+#!/bin/bash
+for SERIAL in $(adb devices | awk 'NR>1{print $1}'); do
+  INFO=$(adb -s $SERIAL shell dumpsys battery)
+  TEMP=$(echo "$INFO" | grep temperature | awk '{print $2}')
+  LEVEL=$(echo "$INFO" | grep level: | awk '{print $2}')
+  if [ "$TEMP" -gt 420 ]; then
+    echo "$SERIAL: high temp (\${TEMP}) - schedule thermal review"
+  fi
+  if [ "$LEVEL" -lt 15 ]; then
+    echo "$SERIAL: low charge (\${LEVEL}%) - prep for charging"
+  fi
+done`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Whatever collection method you choose, keep a historical baseline per device family
+              and compare trends rather than raw snapshots. A single warm reading means little; a
+              device whose operating temperature climbs steadily over consecutive audits points to
+              failing cells or a blocked vent. Route the output into your service monitoring and
+              alerting stack so a battery issue becomes a tracked incident instead of a surprise
+              field failure.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">9. Troubleshooting</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Battery diagnostics occasionally produce confusing output, especially after an OS
+              update changes how the fuel gauge reports values. Use these steps to separate a real
+              hardware problem from a measurement or configuration issue.
+            </p>
+            <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
+              <li>
+                <strong>The battery level jumps from 40% to 5%:</strong> This usually indicates
+                capacity loss rather than a reporting bug. Confirm with a controlled discharge test
+                and measure voltage sag; a failing cell drops voltage rapidly under load.
+              </li>
+              <li>
+                <strong>Temperature reads far above normal:</strong> Verify the reading is not
+                during a fast charge or heavy GPS session. Re-test the device at rest for ten
+                minutes before concluding there is a thermal problem.
+              </li>
+              <li>
+                <strong>The charge limit setting appears to have no effect:</strong> Some OEM
+                firmwares ignore third-party charging limits during fast charge. Check whether the
+                MDM profile requires the OEM-specific extension or a supported power profile.
+              </li>
+              <li>
+                <strong>dumpsys battery returns stale values:</strong> The service caches readings
+                for the attached battery. Run{" "}
+                <code className="rounded bg-black/5 px-1 py-0.5">
+                  adb shell dumpsys battery reset
+                </code>{" "}
+                and read again to refresh the snapshot.
+              </li>
+              <li>
+                <strong>A swollen battery is discovered:</strong> Remove the device from service
+                immediately, isolate the battery in a fire-resistant container, and do not attempt
+                to charge or puncture it. Follow your disposal protocol with a certified recycler.
+              </li>
+            </ol>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Refresh cached battery data after an OS update
+adb shell dumpsys battery reset
+
+# Re-check voltage sag under a fixed load (screen on, camera preview)
+adb shell dumpsys battery | grep voltage
+# Healthy cells hold within 0.1-0.2V of resting under moderate load`}</code>
+            </pre>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              10. Charging Infrastructure & Power Delivery Verification
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Battery health is only partly a property of the cell itself. The charging
+              infrastructure a fleet plugs into can quietly damage batteries if it delivers the
+              wrong voltage, supplies unstable current, or sits in a hot location. Verifying the
+              charging environment is a cheap, high-leverage maintenance task that often surfaces
+              problems long before a battery fails on its own.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              A charger that is undersized for the device, or a power strip shared with high-draw
+              equipment, can sag voltage and cause a device to cycle between charge and discharge
+              states repeatedly. That oscillation is exactly the kind of stress that accelerates
+              cell wear. Use the device's own diagnostics to confirm it is actually charging at the
+              expected rate and not browning out under load.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Verify the actual charging current and voltage during a session
+adb shell dumpsys battery | grep -E "Max charging current|Max charging voltage|voltage|status"
+
+# A healthy session while plugged in should show:
+#   status: 2 (Charging)
+#   voltage climbing steadily toward the 4.2V target
+#   no repeated level drops that indicate brownouts`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Audit every charging location the same way you audit devices. Label each station with
+              its intended device family and rated output, and periodically sample a connected
+              device to confirm the station still delivers its rated power. When a device repeatedly
+              fails to reach full charge on a specific station, treat the station as the suspect
+              before the battery, and replace or service it rather than blaming the cell.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              11. Spare Battery Stock Management & Vendor Management Inventory
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Reactive battery replacement creates two problems: field failures force expensive
+              emergency logistics, and holding too much stock ties up capital in cells that degrade
+              on the shelf. A disciplined spares program uses the health data this guide produces to
+              predict demand and keep the right number of ready batteries on hand.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Track two quantities for each spare battery: its serial and its state of charge at
+              storage. Because stored lithium-ion batteries lose capacity when left at extremes,
+              schedule a quarterly inspection that recharges spares held below 30% back to 50%. Age
+              spares on a first-in, first-out basis so no cell sits in a drawer for years past its
+              useful life.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+              <li>
+                <strong>Set a minimum stock level:</strong> Keep enough spares to cover the
+                projected failure rate for one quarter, not one year.
+              </li>
+              <li>
+                <strong>Mark every battery with a received date:</strong> Storage age is invisible
+                otherwise and silently degrades the spares.
+              </li>
+              <li>
+                <strong>Dispose on expiry:</strong> Move batteries past their dated useful life out
+                of service before they become a safety concern.
+              </li>
+            </ul>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Quick stock ledger you can maintain as plain text
+# Serial, Received, Storage SoC, Next Inspection
+BAT-0001, 2024-03-12, 52%, 2025-03-12
+BAT-0002, 2024-03-12, 48%, 2025-03-12
+BAT-0003, 2025-01-05, 55%, 2026-01-05
+
+# Every spare inspected quarterly: recharge below 30% back to ~50%`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              When the audit script reports a battery crossing the replacement threshold, pull the
+              newest spare from stock, install it, and log the swap so the new cell enters the
+              monitoring cycle immediately. Over several quarters, the ledger becomes the input for
+              a simple purchasing forecast: you will know exactly how many batteries cross the
+              threshold each month and can align orders to that rhythm instead of reacting to
+              crises.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              12. Policy Documentation, Ownership & Sustained Compliance
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Battery management is not a one-time tuning exercise. It is an ongoing operational
+              discipline that only delivers results when documented, owned, and repeated. Document
+              the charging limits, the audit cadence, the replacement thresholds, and the storage
+              rules in a single owner document so that a new technician can run the program without
+              interviewing the person who built it.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Assign a named owner for the battery program, just as you would for patching or
+              backups. That owner is responsible for keeping the thresholds current, reconciling the
+              spare ledger, and escalating safety findings such as swelling batteries. Without a
+              named owner, the program is the first thing dropped when the team gets busy.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# One-line policy summary to embed in onboarding docs
+# Battery Policy v2.1
+#   - Overnight charge cap: 80%
+#   - Audit cadence: monthly automated, bi-weekly for hot environments
+#   - Replace at: capacity < 70% OR voltage sag > 0.25V OR visible swelling
+#   - Storage: 50% SoC, 15-20C, quarterly inspection, FIFO rotation`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Finally, review the policy itself on a fixed schedule. Chemistries, device models, and
+              operational demands change, so a battery policy written for one fleet generation may
+              not fit the next. Treat the quarterly review as a chance to tighten thresholds where
+              data shows early replacement pays off, and to relax them where over-caution is wasting
+              budget. The measurement program this guide describes gives you the evidence to make
+              those calls confidently instead of by guesswork.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              13. Reporting, Dashboards & Evidence for Business Decisions
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              The raw telemetry this guide produces is most valuable when it is summarized into a
+              form that non-technical stakeholders can act on. A fleet manager does not need to read
+              a raw dumpsys output, but they do need to know how many devices are within a year of
+              the replacement threshold and what that implies for next quarter's budget. Build a
+              small dashboard that rolls the per-device health classification up into fleet-level
+              numbers.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Define the three health buckets consistently with the replacement matrix from section
+              5: healthy, watch, and replace. For each bucket, report the count, the percentage of
+              the fleet, and the expected replacement cost if those devices were replaced today. A
+              quarterly snapshot of these three numbers gives management a defensible basis for
+              procurement, staffing, and vendor-service decisions.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Aggregate per-device health into a fleet summary
+# expected output per device line: serial,health_bucket,retention_pct
+awk -F, '{
+  bucket[$2]++
+  sum[$2]+=$3
+  n[$2]++
+}
+END {
+  for (b in bucket) {
+    printf "%s: %d devices, avg retention %.1f%%\\n", b, bucket[b], sum[b]/n[b]
+  }
+}' battery_report.csv`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Keep the underlying dataset auditable. Because the numbers are derived from a
+              repeatable script rather than a hand-written estimate, the dashboard doubles as
+              evidence during budget reviews or compliance audits. When someone challenges a
+              replacement request, the answer is not an opinion but a script and a report that can
+              be rerun on demand to reproduce the same conclusion.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              14. Choosing Replacement Devices & Batteries
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              When a device generation reaches end-of-life, the procurement decision should be
+              informed by the battery data collected over the fleet's lifetime. A fleet that runs
+              hot outdoors has different needs than a climate-controlled office fleet. Choosing the
+              wrong battery chemistry or capacity for the operating environment repeats the very
+              degradation problems the monitoring program was built to avoid.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Prefer devices with easily replaceable batteries for fleets that run hot or long
+              shifts, because a swappable cell converts a whole-device failure into a ten-minute
+              repair. For sealed devices, insist on documented battery replacement programs and
+              verify the rated cycle life under conditions that match your environment. The cycle
+              life figures in manufacturer datasheets are usually measured at 25°C, which rarely
+              matches a vehicle mount in summer.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Procurement scoring template (fill per candidate model)
+# Model, Swappable battery, Rated cycles@25C, Est. cycles in your env, Cost
+Model A, yes, 1000, ~700, 249
+Model B, no,  1200, ~600, 299
+Model C, yes,  900, ~650, 199
+
+# Rule of thumb: multiply datasheet cycles by 0.6-0.8 for hot deployments`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Use the historical data to sanity-check vendor claims. If your old fleet averaged 420
+              cycles before failure in a hot environment and a vendor quotes 1000 cycles at 25°C,
+              expect roughly 600 to 650 cycles in practice. Bake that corrected figure into the
+              total-cost-of-ownership model so the procurement decision reflects the real operating
+              environment rather than an ideal laboratory one.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">
+              15. Extending the Program: Beyond the Battery Subsystem
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              The monitoring discipline in this guide—baseline, periodic audit, threshold, alert,
+              action, review—applies far beyond the battery. The same loop keeps storage, firmware,
+              and network behavior healthy. The point of building the battery program first is that
+              its failure mode is dramatic and measurable, which makes it the ideal template for the
+              broader device-health program.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              When you are ready to extend, apply the identical structure to the next most expensive
+              or most disruptive failure mode in your fleet. Add the new metric to the same audit
+              script, set a threshold, and fold the result into the same dashboard. Keeping one
+              unified health program rather than several disconnected ones means a technician sees a
+              single view of each device's condition instead of juggling separate reports.
+            </p>
+            <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
+              <code>{`# Expand the audit to include storage and connectivity health
+adb shell dumpsys diskstats | grep -E "Total|Free|Data"
+adb shell dumpsys netstats | grep -E "rxBytes|txBytes" | head -5
+
+# Keep one unified per-device health record so all metrics share a cadence`}</code>
+            </pre>
+            <p className="text-muted-foreground leading-relaxed">
+              Whatever subsystem you add, resist the temptation to over-alert. A dashboard that
+              fires constantly is ignored within a month. Reserve automated alerts for conditions
+              that genuinely require immediate action—swelling, thermal runaway risk, sudden
+              capacity collapse—and let slower-moving metrics feed a periodic report instead. That
+              restraint is what keeps the whole program trusted and sustainable for years.
             </p>
           </section>
 

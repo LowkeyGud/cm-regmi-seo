@@ -105,8 +105,7 @@ export default function ContactForm() {
           className="mt-1 h-4 w-4 rounded border-border"
         />
         <label htmlFor="privacy" className="text-xs text-muted-foreground leading-tight">
-          I agree to the processing of my contact details for the purpose of this inquiry. Read
-          our{" "}
+          I agree to the processing of my contact details for the purpose of this inquiry. Read our{" "}
           <Link href="/privacy-policy" className="text-primary hover:underline">
             Privacy Policy
           </Link>{" "}

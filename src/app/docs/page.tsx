@@ -13,8 +13,6 @@ import Image from "next/image"; // Optimization: Better LCP and performance
 import Link from "next/link";
 import Script from "next/script"; // For JSON-LD
 
-export const runtime = "edge";
-
 const SITE_URL = "https://cmregmi.com.np";
 const OG_IMAGE = `${SITE_URL}/og-docs.png`;
 

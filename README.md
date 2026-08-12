@@ -1,6 +1,6 @@
 # CM Regmi Portfolio & Documentation Hub
 
-Welcome to the **CM Regmi Portfolio** (also known as the `tanstack_start_ts` base). This project serves as the personal portfolio, experimental workbench, and digital documentation hub for **CM Regmi**, a Systems Architect and Digital Strategist specializing in Android kernel optimization, Windows system hardening, and cross-platform architecture.
+Welcome to the **CM Regmi Portfolio & Documentation Hub**. This project serves as the personal portfolio and digital documentation hub for **CM Regmi**, a Systems Architect and Digital Strategist specializing in Android kernel optimization, Windows system hardening, and cross-platform architecture.
 
 ## 🚀 What is this project about?
 
@@ -13,18 +13,16 @@ The repository is built to provide an immensely fast, edge-ready digital footpri
 
 ## 🛠 Tech Stack & Ecosystem
 
-This project is engineered using a bleeding-edge frontend stack optimized for extreme performance, type safety, and seamless deployments on Cloudflare's Edge.
+This project is built with the Next.js App Router for static-first rendering (SSG/SSR), type safety, and fast edge delivery. It is deployed on **Vercel**, with DNS managed on **Cloudflare**.
 
 ### Core Frameworks & Libraries
 
+- **[Next.js 15 (App Router)](https://nextjs.org/)**: React framework with static generation (SSG) and server-side rendering (SSR).
 - **[React 19](https://react.dev/)**: The dominant UI library powering the application.
-- **[@tanstack/react-start](https://tanstack.com/start/latest)**: A modern, Vite-based full-stack React framework.
-- **[@tanstack/react-router](https://tanstack.com/router/latest)**: Fully type-safe and powerful client-side and SSR routing.
-- **[@tanstack/react-query](https://tanstack.com/query/latest)**: Powerful asynchronous state management and data caching.
 
 ### Styling & UI Architecture
 
-- **[Tailwind CSS v4](https://tailwindcss.com/)**: The utility-first CSS framework for rapid and highly customizable styling (`@tailwindcss/vite`).
+- **[Tailwind CSS v4](https://tailwindcss.com/)**: The utility-first CSS framework for rapid and highly customizable styling (`@tailwindcss/postcss`).
 - **[shadcn/ui](https://ui.shadcn.com/) & Radix UI**: An extensive implementation of highly accessible, unstyled primitives (`@radix-ui/*`). Custom components include Dialogs, Tooltips, Navigation Menus, Accordions, Sliders, and more.
 - **[Lucide React](https://lucide.dev/)**: Beautiful, consistent icon set.
 
@@ -47,31 +45,32 @@ This project is engineered using a bleeding-edge frontend stack optimized for ex
 
 ### Build Tools & Deployment
 
-- **[Vite](https://vitejs.dev/)**: High-performance frontend build tooling.
-- **Cloudflare Integration**: Configured entirely for Cloudflare Workers & Pages deployments via `wrangler` (`wrangler.jsonc`) and `@cloudflare/vite-plugin`.
-- **TypeScript**: Strict Type checking (`v5.8+`).
+- **[Vercel](https://vercel.com/)**: Production hosting and edge delivery; DNS is managed on Cloudflare.
+- **TypeScript**: Strict type checking (`v5.8+`).
 - **Linting & Formatting**: Enforced automatically with `ESLint 9` and `Prettier`.
 
 ## 📁 Repository Structure
 
 ```text
 src/
+├── app/                 # Next.js App Router pages
+│   ├── page.tsx         # Homepage (hero, documentation preview)
+│   ├── about/           # Operator profile page
+│   ├── contact/         # Contact page with functional form
+│   ├── docs/            # Documentation Hub (28 long-form articles)
+│   ├── privacy-policy/  # Privacy policy
+│   ├── terms-of-service/# Terms of service
+│   ├── ads-and-cookies/ # Ads & cookies policy
+│   ├── sitemap.ts       # Generated sitemap.xml
+│   └── layout.tsx       # Root layout (metadata, consent mode, AdSense)
 ├── components/          # Reusable UI components
 │   ├── ui/              # shadcn/ui primitives (buttons, cards, dialogs, etc.)
 │   ├── SiteHeader.tsx   # Global site navigation
-│   └── SiteFooter.tsx   # Global site footer
-├── hooks/               # Custom React hooks (e.g., use-mobile)
+│   ├── SiteFooter.tsx   # Global site footer
+│   ├── CookieConsent.tsx# Google Consent Mode v2 banner
+│   └── AdsSlot.tsx      # AdSense ad slot component
 ├── lib/                 # Utility functions (e.g., Tailwind merge utilities)
-├── routes/              # TanStack Router definitions
-│   ├── __root.tsx       # Root layout and context providers
-│   ├── index.tsx        # Homepage (Hero, Bento grids, resources)
-│   ├── about.tsx        # Operator profile page
-│   ├── docs.tsx         # Documentation Hub entry point
-│   ├── labs.tsx         # Experimental tooling and benchmarks page
-│   └── ...              # Contact, Terms, Policies
-├── router.tsx           # Router initialization logic
-├── routeTree.gen.ts     # Auto-generated route tree definitions
-└── styles.css           # Global CSS variables and Tailwind entry
+└── styles/              # Global CSS (globals.css)
 ```
 
 ## 💻 Local Development

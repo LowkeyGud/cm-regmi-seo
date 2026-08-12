@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-export const runtime = "edge";
 const SITE_URL = "https://cmregmi.com.np";
 
 export const metadata: Metadata = {

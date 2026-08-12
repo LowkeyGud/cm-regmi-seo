@@ -5,7 +5,6 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const runtime = "edge";
 const SITE_URL = "https://cmregmi.com.np";
 export const metadata: Metadata = {
   title: "Incident Runbook Template | CM Regmi Docs",

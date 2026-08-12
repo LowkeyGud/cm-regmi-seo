@@ -5,13 +5,15 @@ import { useEffect, useRef, useState } from "react";
 /**
  * AdsSlot — Google AdSense ad unit component.
  *
- * Uses Google Consent Mode v2 for consent checking (not localStorage).
+ * Consent gating: reads the stored decision (localStorage, see CookieConsent)
+ * and listens for 'consent:update' events. gtag's consent 'default' is 'denied'
+ * at page load, so the stored choice is the hydration-time source of truth.
  * The global adsbygoogle.js script is loaded in <RootLayout> with the
  * correct data-ad-client, so this component only needs to render the
  * <ins> element and push to the adsbygoogle queue once consent is granted.
  *
  * adSlotId: optional numeric AdSense ad unit ID. When omitted, the slot
- *   runs in AdSense Auto-ads mode (data-ad-format="auto", no data-ad-slot).
+ *   renders as a responsive display unit (data-ad-format="auto", no data-ad-slot).
  *   When provided, it must be a numeric string from your AdSense dashboard.
  */
 export default function AdsSlot({
@@ -69,22 +71,18 @@ export default function AdsSlot({
   }
 
   // Build the ins element attributes
-  const insProps: Record<string, string> = {
-    className: "adsbygoogle",
-    style: "display:block",
-    "data-ad-client": adClientId || "",
-    "data-ad-format": "auto",
-    "data-full-width-responsive": "true",
-  };
-
-  // Only set data-ad-slot if a valid numeric ID is provided
-  if (adSlotId && /^\d+$/.test(adSlotId)) {
-    insProps["data-ad-slot"] = adSlotId;
-  }
+  const dataAdSlot = adSlotId && /^\d+$/.test(adSlotId) ? adSlotId : undefined;
 
   return (
     <div ref={insRef}>
-      <ins {...insProps}></ins>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client={adClientId}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+        data-ad-slot={dataAdSlot}
+      ></ins>
     </div>
   );
 }

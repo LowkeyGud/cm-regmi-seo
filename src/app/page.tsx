@@ -15,8 +15,6 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const runtime = "edge";
-
 const SITE_URL = "https://cmregmi.com.np";
 const SITE_NAME = "CM Regmi";
 const SITE_DESCRIPTION =

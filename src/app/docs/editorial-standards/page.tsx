@@ -13,8 +13,6 @@ import Link from "next/link";
 import AdsSlot from "@/components/AdsSlot";
 import Script from "next/script";
 
-export const runtime = "edge";
-
 const SITE_URL = "https://cmregmi.com.np";
 
 export const metadata: Metadata = {

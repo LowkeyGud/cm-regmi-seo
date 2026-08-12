@@ -6,8 +6,6 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const runtime = "edge";
-
 const SITE_URL = "https://cmregmi.com.np";
 const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID || "ca-pub-5019530661594566";
 

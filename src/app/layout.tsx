@@ -1,4 +1,3 @@
-import CookieConsent from "@/components/CookieConsent";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -89,28 +88,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="CM Regmi" />
 
-        {/* Google Consent Mode v2 — required for AdSense EEA/UK compliance */}
-        <script
-          id="google-consent-mode"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'analytics_storage': 'denied',
-                'functionality_storage': 'granted',
-                'personalization_storage': 'granted',
-                'security_storage': 'granted',
-                'region': ['ES', 'FR', 'DE', 'IT', 'GB', 'IE']
-              });
-            `,
-          }}
-        />
-        {/* Google AdSense — loaded with consent-aware attributes */}
+        {/* Google AdSense — loaded with consent-aware attributes; Google CMP injects consent UI */}
         <Script
           id="adsbygoogle-init"
           strategy="afterInteractive"
@@ -121,7 +99,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
         {children}
-        <CookieConsent />
       </body>
     </html>
   );

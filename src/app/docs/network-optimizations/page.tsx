@@ -47,8 +47,8 @@ export default function NetworkOptimizationsPage() {
     description:
       "Practical guide to TCP buffer tuning, congestion control, traffic shaping, DNS optimization, caching, and jumbo frames.",
     url: `${SITE_URL}/docs/network-optimizations`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-23",
+    dateModified: "2026-06-23",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function NetworkOptimizationsPage() {
               Network Optimization Techniques
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 23, 2026 • Updated June 23, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Squeezing the last bit of performance out of a network is rarely about adding

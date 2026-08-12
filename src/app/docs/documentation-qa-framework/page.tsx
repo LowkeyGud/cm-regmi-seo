@@ -34,8 +34,8 @@ export default function DocumentationQAFrameworkPage() {
     description:
       "Deep-dive methodology for creating, reviewing, and maintaining technical documents.",
     url: `${SITE_URL}/docs/documentation-qa-framework`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-27",
+    datePublished: "2026-08-10",
+    dateModified: "2026-08-10",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -82,7 +82,7 @@ export default function DocumentationQAFrameworkPage() {
               Technical Documentation, Writing & Quality Assurance Framework
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
+              By <strong>CM Regmi</strong> • Published August 10, 2026 • Updated August 10, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

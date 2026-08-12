@@ -32,8 +32,8 @@ export default function BatteryWearGuide() {
     description:
       "Comprehensive guide to lithium-ion battery health monitoring, degradation prevention, and thermal management for enterprise Android fleets without root permissions.",
     url: `${SITE_URL}/docs/battery-wear`,
-    datePublished: "2026-08-11",
-    dateModified: "2026-08-11",
+    datePublished: "2026-05-30",
+    dateModified: "2026-05-30",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -79,7 +79,7 @@ export default function BatteryWearGuide() {
               Battery Wear Diagnostics & Management
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published August 11, 2026
+              By <strong>CM Regmi</strong> • Published May 30, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

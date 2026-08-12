@@ -21,8 +21,8 @@ export default function IncidentRunbook() {
     headline: "Incident Runbook Template",
     description: "A compact incident runbook template and immediate actions checklist.",
     url: `${SITE_URL}/docs/incident-runbook`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-23",
+    dateModified: "2026-07-23",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -39,7 +39,7 @@ export default function IncidentRunbook() {
       <main className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
         <h1 className="text-3xl font-bold mb-4">Incident Runbook Template</h1>
         <p className="text-sm text-muted-foreground mb-4">
-          By <strong>CM Regmi</strong> • Published May 26, 2026
+          By <strong>CM Regmi</strong> • Published July 23, 2026
         </p>
 
         <p className="text-muted-foreground mb-4">

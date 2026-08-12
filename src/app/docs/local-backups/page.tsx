@@ -47,8 +47,8 @@ export default function LocalBackupsPage() {
     description:
       "Local backup targets, scheduled rsync and restic jobs, integrity verification, offsite copies, and recovery testing for personal and small-fleet data protection.",
     url: `${SITE_URL}/docs/local-backups`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-05",
+    dateModified: "2026-07-05",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function LocalBackupsPage() {
               Local Backup Strategies &amp; Verification
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 5, 2026 • Updated July 5, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               A backup that has never been restored is only a theory. This guide walks through

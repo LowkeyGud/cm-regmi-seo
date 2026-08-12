@@ -52,8 +52,8 @@ export default function SecureSshBasics() {
     description:
       "Master secure SSH fundamentals: ed25519 key-based authentication, ssh-agent, strict file permissions, sshd hardening, disabling password auth, two-factor, jump hosts, auth log monitoring, and key rotation.",
     url: `${SITE_URL}/docs/secure-ssh-basics`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-14",
+    dateModified: "2026-06-14",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -100,7 +100,7 @@ export default function SecureSshBasics() {
               Secure SSH Fundamentals
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 14, 2026 • Updated June 14, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

@@ -47,8 +47,8 @@ export default function DiskHealth() {
     description:
       "SMART attribute analysis, smartctl usage, error trend tracking, reallocated and pending sector interpretation, fsck, scrubs, TRIM, and disk replacement thresholds.",
     url: `${SITE_URL}/docs/disk-health`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-08",
+    dateModified: "2026-07-08",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -93,7 +93,7 @@ export default function DiskHealth() {
               Disk Health Monitoring
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 8, 2026 • Updated July 8, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Hard drives and solid-state drives fail on their own schedule, and the only warning

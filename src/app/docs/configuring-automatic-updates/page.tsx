@@ -47,8 +47,8 @@ export default function ConfiguringAutomaticUpdatesPage() {
     description:
       "Enterprise patch management with update rings and pilot groups, staged rollout, pre-deployment testing, rollback planning, and Windows Update policy configuration.",
     url: `${SITE_URL}/docs/configuring-automatic-updates`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-26",
+    dateModified: "2026-07-26",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function ConfiguringAutomaticUpdatesPage() {
               Configuring Automatic Updates Safely
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 26, 2026 • Updated July 26, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Automatic updates keep systems secure, but a misfired rollout can take down a fleet

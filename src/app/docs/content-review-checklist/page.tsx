@@ -50,8 +50,8 @@ export default function ContentReviewChecklistPage() {
     description:
       "A practical checklist for reviewing technical pages for accuracy, usefulness, clarity, and maintenance.",
     url: `${SITE_URL}/docs/content-review-checklist`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-08-13",
+    dateModified: "2026-08-13",
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -121,7 +121,7 @@ export default function ContentReviewChecklistPage() {
                   described.
                 </p>
               </section>
-              By <strong>CM Regmi</strong> • Published May 26, 2026
+              By <strong>CM Regmi</strong> • Published August 13, 2026
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground">

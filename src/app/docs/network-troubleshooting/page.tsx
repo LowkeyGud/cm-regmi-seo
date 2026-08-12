@@ -47,8 +47,8 @@ export default function NetworkTroubleshootingPage() {
     description:
       "Methodical approach to diagnosing latency, packet loss, and connectivity with ping, traceroute, mtr, tcpdump, iperf, and DNS queries.",
     url: `${SITE_URL}/docs/network-troubleshooting`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-26",
+    dateModified: "2026-06-26",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function NetworkTroubleshootingPage() {
               Network Troubleshooting Field Guide
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 26, 2026 • Updated June 26, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               A slow or flaky network usually announces its problem through three symptoms: latency,

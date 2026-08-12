@@ -47,8 +47,8 @@ export default function LogRotationPage() {
     description:
       "logrotate configurations, journald size limits, compression, retention windows, and centralized logging for keeping system logs manageable and auditable.",
     url: `${SITE_URL}/docs/log-rotation`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-17",
+    dateModified: "2026-07-17",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function LogRotationPage() {
               Log Rotation &amp; Retention Policies
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 17, 2026 • Updated July 17, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Logs are only useful while they remain readable and accessible. This guide covers

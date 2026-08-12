@@ -47,8 +47,8 @@ export default function ServiceMonitoringPage() {
     description:
       "systemd status checks, health checks, uptime, alerting, Prometheus metrics, SLOs, and incident response for keeping services reliable.",
     url: `${SITE_URL}/docs/service-monitoring`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-20",
+    dateModified: "2026-07-20",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function ServiceMonitoringPage() {
               Service Monitoring &amp; Alerting Guide
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 20, 2026 • Updated July 20, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               A service is only as reliable as your ability to notice when it is not working.

@@ -34,8 +34,8 @@ export default function NetworkArchitectureOptimizationPage() {
     description:
       "Deep-dive guide to enterprise networks, routing, and low-latency transport protocols.",
     url: `${SITE_URL}/docs/network-architecture-optimization`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-27",
+    datePublished: "2026-06-20",
+    dateModified: "2026-06-20",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -82,7 +82,7 @@ export default function NetworkArchitectureOptimizationPage() {
               Network Architecture, Optimization & Troubleshooting Guide
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
+              By <strong>CM Regmi</strong> • Published June 20, 2026 • Updated June 20, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

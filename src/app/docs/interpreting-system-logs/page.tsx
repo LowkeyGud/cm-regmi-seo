@@ -24,8 +24,8 @@ export default function InterpretingSystemLogs() {
     description:
       "How to approach system logs, what to look for, and a minimal verification workflow.",
     url: `${SITE_URL}/docs/interpreting-system-logs`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-14",
+    dateModified: "2026-07-14",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -42,7 +42,7 @@ export default function InterpretingSystemLogs() {
       <main className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
         <h1 className="text-3xl font-bold mb-4">Interpreting System Logs</h1>
         <p className="text-sm text-muted-foreground mb-4">
-          By <strong>CM Regmi</strong> • Published May 26, 2026
+          By <strong>CM Regmi</strong> • Published July 14, 2026
         </p>
 
         <p className="text-muted-foreground mb-4">

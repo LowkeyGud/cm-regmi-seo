@@ -47,8 +47,8 @@ export default function BackupStrategiesPage() {
     description:
       "A structured playbook for full, incremental, and differential backups, scheduling, retention, encryption, and verification so recovery actually works.",
     url: `${SITE_URL}/docs/backup-strategies`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-02",
+    dateModified: "2026-07-02",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function BackupStrategiesPage() {
               Backup Strategies &amp; Data Protection Playbook
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 2, 2026 • Updated July 2, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               A backup you have never restored is not a backup, it is a hope. This playbook walks

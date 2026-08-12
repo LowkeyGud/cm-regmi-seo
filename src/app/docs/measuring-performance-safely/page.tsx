@@ -21,8 +21,8 @@ export default function MeasuringPerformanceSafely() {
     headline: "Measuring Performance Safely",
     description: "Principles for measuring system performance without causing instability.",
     url: `${SITE_URL}/docs/measuring-performance-safely`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-08-01",
+    dateModified: "2026-08-01",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -39,7 +39,7 @@ export default function MeasuringPerformanceSafely() {
       <main className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
         <h1 className="text-3xl font-bold mb-4">Measuring Performance Safely</h1>
         <p className="text-sm text-muted-foreground mb-4">
-          By <strong>CM Regmi</strong> • Published May 26, 2026
+          By <strong>CM Regmi</strong> • Published August 1, 2026
         </p>
 
         <p className="text-muted-foreground mb-4">

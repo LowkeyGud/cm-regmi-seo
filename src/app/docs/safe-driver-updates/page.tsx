@@ -47,8 +47,8 @@ export default function SafeDriverUpdatesPage() {
     description:
       "Driver lifecycle, WHQL and certified drivers, staged rollouts, version pinning, rollback plans, driver signing, and regression testing to keep hardware updates safe.",
     url: `${SITE_URL}/docs/safe-driver-updates`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-08",
+    dateModified: "2026-06-08",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function SafeDriverUpdatesPage() {
               Safe Driver Update Procedures
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 8, 2026 • Updated June 8, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Driver updates are where the clean separation between operating system and hardware

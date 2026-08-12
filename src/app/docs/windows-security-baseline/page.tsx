@@ -34,8 +34,8 @@ export default function WindowsSecurityBaselinePage() {
     description:
       "Deep-dive manual for enterprise Windows security hardening, GPO compliance, and update management.",
     url: `${SITE_URL}/docs/windows-security-baseline`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-27",
+    datePublished: "2026-06-05",
+    dateModified: "2026-06-05",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -82,7 +82,7 @@ export default function WindowsSecurityBaselinePage() {
               Windows Security Baseline & Hardening Manual
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
+              By <strong>CM Regmi</strong> • Published June 5, 2026 • Updated June 5, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

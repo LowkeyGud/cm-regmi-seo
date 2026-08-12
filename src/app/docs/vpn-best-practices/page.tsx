@@ -47,8 +47,8 @@ export default function VPNBestPracticesPage() {
     description:
       "WireGuard, OpenVPN, and IPsec, split tunneling, kill switch, authentication, and enterprise VPN deployment for secure remote access.",
     url: `${SITE_URL}/docs/vpn-best-practices`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-17",
+    dateModified: "2026-06-17",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function VPNBestPracticesPage() {
               VPN Best Practices &amp; Deployment Guide
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 17, 2026 • Updated June 17, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               A virtual private network extends a trusted network across an untrusted one by

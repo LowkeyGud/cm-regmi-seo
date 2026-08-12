@@ -47,8 +47,8 @@ export default function RollbackOSUpdatesPage() {
     description:
       "Windows recovery, system restore points, snapshots, backup-based rollback, driver rollback, and rollback decision criteria.",
     url: `${SITE_URL}/docs/rollback-os-updates`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-07-29",
+    dateModified: "2026-07-29",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function RollbackOSUpdatesPage() {
               Rolling Back OS Updates Safely
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published July 29, 2026 • Updated July 29, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Every operating-system update carries a small risk, and occasionally one breaks a

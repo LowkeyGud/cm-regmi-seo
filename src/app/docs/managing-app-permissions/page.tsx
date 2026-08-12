@@ -32,8 +32,8 @@ export default function ManagingAppPermissions() {
     description:
       "Comprehensive guide to Android permission models, runtime permission handling, special access controls, and automated permission auditing for enterprise device management without root permissions.",
     url: `${SITE_URL}/docs/managing-app-permissions`,
-    datePublished: "2026-08-11",
-    dateModified: "2026-08-11",
+    datePublished: "2026-06-02",
+    dateModified: "2026-06-02",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -79,7 +79,7 @@ export default function ManagingAppPermissions() {
               Managing App Permissions on Android
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published August 11, 2026
+              By <strong>CM Regmi</strong> • Published June 2, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

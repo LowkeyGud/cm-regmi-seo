@@ -33,7 +33,7 @@ export default function AndroidHardeningOptimization() {
       "Deep-dive guide to securing and optimizing enterprise Android deployments without root permissions.",
     url: `${SITE_URL}/docs/android-hardening-optimization`,
     datePublished: "2026-05-24",
-    dateModified: "2026-05-27",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -79,7 +79,7 @@ export default function AndroidHardeningOptimization() {
               Android Systems Hardening & Optimization
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
+              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">

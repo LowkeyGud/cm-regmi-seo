@@ -47,8 +47,8 @@ export default function BrowserPrivacyPage() {
     description:
       "Hardening Firefox and Chrome, disabling telemetry, resisting fingerprinting, enabling DNS-over-HTTPS, and keeping browser extensions clean.",
     url: `${SITE_URL}/docs/browser-privacy`,
-    datePublished: "2026-05-24",
-    dateModified: "2026-05-24",
+    datePublished: "2026-06-11",
+    dateModified: "2026-06-11",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -92,7 +92,7 @@ export default function BrowserPrivacyPage() {
               Browser Privacy &amp; Hardening Guide
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 24, 2026 • Updated May 24, 2026
+              By <strong>CM Regmi</strong> • Published June 11, 2026 • Updated June 11, 2026
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               The browser is where most of your identity leaks, often through defaults you never

@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -99,6 +100,8 @@ export default function LocalBackupsPage() {
               keeping an offsite copy, and proving recovery works before you need it.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">

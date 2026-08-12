@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -49,8 +50,8 @@ export default function ContentReviewChecklistPage() {
     description:
       "A practical checklist for reviewing technical pages for accuracy, usefulness, clarity, and maintenance.",
     url: `${SITE_URL}/docs/content-review-checklist`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-24",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -120,7 +121,7 @@ export default function ContentReviewChecklistPage() {
                   described.
                 </p>
               </section>
-              By <strong>CM Regmi</strong> • Published May 26, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -129,6 +130,8 @@ export default function ContentReviewChecklistPage() {
               tactics so future readers and reviewers can confirm results quickly.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">Accuracy — concrete verification</h2>
@@ -202,7 +205,7 @@ restic restore <snapshot-id> --target /restored`}</code>
               hard-coded paths.
             </p>
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
-              <code>{`Date-Modified: 2025-05-24
+              <code>{`Date-Modified: 2026-05-24
 Tested-On: Ubuntu 22.04, Android 13
 Author: CM Regmi`}</code>
             </pre>

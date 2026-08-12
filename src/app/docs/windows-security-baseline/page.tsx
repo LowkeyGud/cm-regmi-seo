@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -33,8 +34,8 @@ export default function WindowsSecurityBaselinePage() {
     description:
       "Deep-dive manual for enterprise Windows security hardening, GPO compliance, and update management.",
     url: `${SITE_URL}/docs/windows-security-baseline`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-27",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-27",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -81,7 +82,7 @@ export default function WindowsSecurityBaselinePage() {
               Windows Security Baseline & Hardening Manual
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2025 • Updated May 27, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -92,6 +93,8 @@ export default function WindowsSecurityBaselinePage() {
               strategies.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">

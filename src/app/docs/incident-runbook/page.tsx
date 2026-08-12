@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import AdsSlot from "@/components/AdsSlot";
 import Script from "next/script";
 import type { Metadata } from "next";
@@ -20,8 +21,8 @@ export default function IncidentRunbook() {
     headline: "Incident Runbook Template",
     description: "A compact incident runbook template and immediate actions checklist.",
     url: `${SITE_URL}/docs/incident-runbook`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-24",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -38,7 +39,7 @@ export default function IncidentRunbook() {
       <main className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
         <h1 className="text-3xl font-bold mb-4">Incident Runbook Template</h1>
         <p className="text-sm text-muted-foreground mb-4">
-          By <strong>CM Regmi</strong> • Published May 26, 2025
+          By <strong>CM Regmi</strong> • Published May 26, 2026
         </p>
 
         <p className="text-muted-foreground mb-4">
@@ -56,6 +57,8 @@ export default function IncidentRunbook() {
           template has been refined through real-world operations across Linux services, container
           orchestration platforms, and hybrid cloud environments.
         </p>
+
+        <TableOfContents />
 
         <h2 className="text-xl font-semibold mt-6">Immediate actions (first 5 minutes)</h2>
         <p className="text-muted-foreground mb-3 leading-relaxed">

@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -31,8 +32,8 @@ export default function BatteryWearGuide() {
     description:
       "Comprehensive guide to lithium-ion battery health monitoring, degradation prevention, and thermal management for enterprise Android fleets without root permissions.",
     url: `${SITE_URL}/docs/battery-wear`,
-    datePublished: "2025-08-11",
-    dateModified: "2025-08-11",
+    datePublished: "2026-08-11",
+    dateModified: "2026-08-11",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -78,7 +79,7 @@ export default function BatteryWearGuide() {
               Battery Wear Diagnostics & Management
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published August 11, 2025
+              By <strong>CM Regmi</strong> • Published August 11, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -89,6 +90,8 @@ export default function BatteryWearGuide() {
               extend battery lifespan in demanding enterprise deployments.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">
@@ -872,9 +875,9 @@ adb shell dumpsys battery | grep -E "Max charging current|Max charging voltage|v
             <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
               <code>{`# Quick stock ledger you can maintain as plain text
 # Serial, Received, Storage SoC, Next Inspection
-BAT-0001, 2024-03-12, 52%, 2025-03-12
-BAT-0002, 2024-03-12, 48%, 2025-03-12
-BAT-0003, 2025-01-05, 55%, 2026-01-05
+BAT-0001, 2024-03-12, 52%, 2026-03-12
+BAT-0002, 2024-03-12, 48%, 2026-03-12
+BAT-0003, 2026-01-05, 55%, 2026-01-05
 
 # Every spare inspected quarterly: recharge below 30% back to ~50%`}</code>
             </pre>

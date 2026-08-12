@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -89,6 +90,8 @@ export default function ManagingAppPermissions() {
               organizational fleets without requiring root access.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">

@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -32,8 +33,8 @@ export default function StorageBackupDRPage() {
     headline: "Enterprise Storage, Backup & Disaster Recovery Playbook",
     description: "Deep-dive playbook for systems storage, backups, and disaster recovery.",
     url: `${SITE_URL}/docs/storage-backup-dr`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-27",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-27",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -80,7 +81,7 @@ export default function StorageBackupDRPage() {
               Enterprise Storage, Backup & Disaster Recovery Playbook
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2025 • Updated May 27, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -90,6 +91,8 @@ export default function StorageBackupDRPage() {
               enterprise-grade backup structures, disk metrics, and disaster recovery playbooks.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">

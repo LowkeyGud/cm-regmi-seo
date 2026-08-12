@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -33,8 +34,8 @@ export default function InfrastructureAdminMonitoringPage() {
     description:
       "Deep-dive standard operating procedure for secure infrastructure administration and system monitoring.",
     url: `${SITE_URL}/docs/infrastructure-admin-monitoring`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-27",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-27",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -81,7 +82,7 @@ export default function InfrastructureAdminMonitoringPage() {
               Secure Infrastructure Administration & Service Monitoring SOP
             </h1>
             <p className="text-sm text-muted-foreground">
-              By <strong>CM Regmi</strong> • Published May 26, 2025 • Updated May 27, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026 • Updated May 27, 2026
             </p>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -91,6 +92,8 @@ export default function InfrastructureAdminMonitoringPage() {
               structured monitoring and clear incident runbooks.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">

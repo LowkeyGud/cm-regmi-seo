@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -49,8 +50,8 @@ export default function TechnicalWritingWorkflowPage() {
     description:
       "A practical workflow for researching, drafting, verifying, and maintaining technical documentation.",
     url: `${SITE_URL}/docs/technical-writing-workflow`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-24",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -99,7 +100,7 @@ export default function TechnicalWritingWorkflowPage() {
               Technical Writing Workflow
             </h1>
             <p className="text-sm text-muted-foreground mb-4">
-              By <strong>CM Regmi</strong> • Published May 26, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -116,6 +117,8 @@ export default function TechnicalWritingWorkflowPage() {
               every article on this site.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">1. Define the reader and the job</h2>

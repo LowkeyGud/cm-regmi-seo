@@ -1,6 +1,7 @@
 import AdsSlot from "@/components/AdsSlot";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
@@ -23,8 +24,8 @@ export default function InterpretingSystemLogs() {
     description:
       "How to approach system logs, what to look for, and a minimal verification workflow.",
     url: `${SITE_URL}/docs/interpreting-system-logs`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-24",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",
   };
@@ -41,7 +42,7 @@ export default function InterpretingSystemLogs() {
       <main className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
         <h1 className="text-3xl font-bold mb-4">Interpreting System Logs</h1>
         <p className="text-sm text-muted-foreground mb-4">
-          By <strong>CM Regmi</strong> • Published May 26, 2025
+          By <strong>CM Regmi</strong> • Published May 26, 2026
         </p>
 
         <p className="text-muted-foreground mb-4">
@@ -49,6 +50,8 @@ export default function InterpretingSystemLogs() {
           pattern before the cause is obvious. Staying patient and comparing time windows has
           stopped me from chasing the first dramatic-looking line too many times.
         </p>
+
+        <TableOfContents />
 
         <h2 className="text-xl font-semibold mt-6">Quick filtering example</h2>
         <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
@@ -135,7 +138,7 @@ export default function InterpretingSystemLogs() {
             forensic review.
           </p>
           <code>{`# Show repeated errors with journalctl
-journalctl -u myservice --since "2025-05-24 09:00" --until "2025-05-24 10:00" | grep -i error | sort | uniq -c | sort -rn`}</code>
+journalctl -u myservice --since "2026-05-24 09:00" --until "2026-05-24 10:00" | grep -i error | sort | uniq -c | sort -rn`}</code>
         </pre>
 
         <h2 className="text-xl font-semibold mt-6">A minimal workflow</h2>
@@ -150,10 +153,10 @@ journalctl -u myservice --since "2025-05-24 09:00" --until "2025-05-24 10:00" | 
           <h2 className="text-xl font-semibold">Parsing and correlation examples</h2>
           <pre className="rounded-md bg-black/5 p-4 overflow-x-auto text-sm">
             <code>{`# Filter errors for a service and include timestamps
-journalctl -u myservice --since "2025-05-24 09:00" --until "2025-05-24 10:00" -o short-iso | grep -i error
+journalctl -u myservice --since "2026-05-24 09:00" --until "2026-05-24 10:00" -o short-iso | grep -i error
 
 # Show the most frequent error lines
-journalctl -u myservice --since "2025-05-24" | grep -i error | sort | uniq -c | sort -rn`}</code>
+journalctl -u myservice --since "2026-05-24" | grep -i error | sort | uniq -c | sort -rn`}</code>
           </pre>
         </section>
 
@@ -211,7 +214,7 @@ journalctl -u myservice --since "2025-05-24" | grep -i error | sort | uniq -c | 
 zgrep -i "connection reset" /var/log/app/access.log.* 2>/dev/null | sort | uniq -c | sort -rn
 
 # Read a gzip-compressed archive without extracting it
-zcat /var/log/archive/app-2025-05-24.log.gz | grep -i "out of memory" | tail -20`}</code>
+zcat /var/log/archive/app-2026-05-24.log.gz | grep -i "out of memory" | tail -20`}</code>
           </pre>
           <p className="text-muted-foreground leading-relaxed">
             Treat the archive as read-only evidence. If you suspect a pattern repeats over weeks, a

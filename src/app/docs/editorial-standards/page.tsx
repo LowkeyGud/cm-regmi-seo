@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TableOfContents } from "@/components/TableOfContents";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -49,8 +50,8 @@ export default function EditorialStandardsPage() {
     description:
       "How the CM Regmi documentation library is selected, written, reviewed, corrected, and updated.",
     url: `${SITE_URL}/docs/editorial-standards`,
-    datePublished: "2025-05-24",
-    dateModified: "2025-05-24",
+    datePublished: "2026-05-24",
+    dateModified: "2026-05-24",
     author: { "@id": `${SITE_URL}/#person` },
     publisher: { "@id": `${SITE_URL}/#person` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -97,7 +98,7 @@ export default function EditorialStandardsPage() {
             </p>
             <h1 className="text-4xl font-black tracking-tight md:text-5xl">Editorial Standards</h1>
             <p className="text-sm text-muted-foreground mb-4">
-              By <strong>CM Regmi</strong> • Published May 26, 2025
+              By <strong>CM Regmi</strong> • Published May 26, 2026
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -111,6 +112,8 @@ export default function EditorialStandardsPage() {
               know exactly what problem it solves and whether I would still stand behind it.
             </p>
           </header>
+
+          <TableOfContents />
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">What qualifies for publication</h2>

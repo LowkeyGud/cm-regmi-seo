@@ -23,6 +23,24 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <div className="flex-1 space-y-4">
+          <h3 className="font-bold text-lg tracking-tight text-white">Quick Links</h3>
+          <div className="flex flex-col space-y-2 text-sm">
+            <Link href="/" className="text-stone-300 hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link href="/docs" className="text-stone-300 hover:text-white transition-colors">
+              Documentation Hub
+            </Link>
+            <Link href="/about" className="text-stone-300 hover:text-white transition-colors">
+              About
+            </Link>
+            <Link href="/contact" className="text-stone-300 hover:text-white transition-colors">
+              Contact
+            </Link>
+          </div>
+        </div>
+
         <div className="flex-1 md:text-right space-y-4">
           <h3 className="font-bold text-lg tracking-tight text-white">Legal Documents</h3>
           <div className="flex flex-col space-y-2 text-sm md:items-end">

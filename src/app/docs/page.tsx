@@ -353,6 +353,150 @@ export default function Docs() {
                   A short, repeatable checklist for accuracy and usefulness.
                 </p>
               </Link>
+              <Link
+                href="/docs/android-device-maintenance"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Android Device Maintenance
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Routine upkeep: storage hygiene, thermal care, and update discipline.
+                </p>
+              </Link>
+              <Link
+                href="/docs/backup-strategies"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">Backup Strategies</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  The 3-2-1 rule, RPO/RTO planning, and restore verification.
+                </p>
+              </Link>
+              <Link
+                href="/docs/browser-privacy"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Browser Privacy Hardening
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Fingerprinting resistance, telemetry control, and DNS-over-HTTPS.
+                </p>
+              </Link>
+              <Link
+                href="/docs/configuring-automatic-updates"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Configuring Automatic Updates
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Staged rollout rings, maintenance windows, and rollback safeguards.
+                </p>
+              </Link>
+              <Link
+                href="/docs/disk-health"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Disk Health Monitoring
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  SMART attributes, error trends, and replacement thresholds.
+                </p>
+              </Link>
+              <Link
+                href="/docs/local-backups"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">Local Backups</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  External drives, NAS snapshots, encryption at rest, and restore tests.
+                </p>
+              </Link>
+              <Link
+                href="/docs/log-rotation"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Log Rotation &amp; Retention
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  logrotate, journald limits, retention compliance, and storage budgets.
+                </p>
+              </Link>
+              <Link
+                href="/docs/network-optimizations"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Network Optimizations
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  TCP tuning, BBR, QoS shaping, and latency reduction.
+                </p>
+              </Link>
+              <Link
+                href="/docs/network-troubleshooting"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Network Troubleshooting
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  OSI-layered diagnosis, packet capture, and common failure patterns.
+                </p>
+              </Link>
+              <Link
+                href="/docs/rollback-os-updates"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Rolling Back OS Updates
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Recovery environment, kernel pinning, and snapshot rollbacks.
+                </p>
+              </Link>
+              <Link
+                href="/docs/safe-driver-updates"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">Safe Driver Updates</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Signed drivers, staged validation, and rollback procedures.
+                </p>
+              </Link>
+              <Link
+                href="/docs/secure-ssh-basics"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">
+                  Secure SSH Fundamentals
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  ed25519 keys, sshd hardening, two-factor, and jump hosts.
+                </p>
+              </Link>
+              <Link
+                href="/docs/service-monitoring"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">Service Monitoring</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Health checks, alert thresholds, escalation, and on-call runbooks.
+                </p>
+              </Link>
+              <Link
+                href="/docs/vpn-best-practices"
+                className="group p-4 border rounded-lg hover:bg-muted transition-colors"
+              >
+                <h3 className="font-bold text-sm group-hover:text-primary">VPN Best Practices</h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  WireGuard vs OpenVPN, split tunneling, kill switches, and key hygiene.
+                </p>
+              </Link>
             </div>
           </section>
 

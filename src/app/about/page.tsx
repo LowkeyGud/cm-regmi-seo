@@ -189,6 +189,15 @@ export default function About() {
               >
                 YouTube
               </a>
+              <span className="px-2">•</span>
+              <a
+                href="https://github.com/LowkeyGud"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary underline"
+              >
+                GitHub
+              </a>
             </p>
           </div>
         </section>

@@ -109,6 +109,92 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
+    // Additional guides (full articles)
+    {
+      url: `${SITE_URL}/docs/android-device-maintenance`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/backup-strategies`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/browser-privacy`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/configuring-automatic-updates`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/disk-health`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/local-backups`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/log-rotation`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/network-optimizations`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/network-troubleshooting`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/rollback-os-updates`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/safe-driver-updates`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/secure-ssh-basics`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/service-monitoring`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/docs/vpn-best-practices`,
+      lastModified: new Date("2026-05-24"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+
     // Site utility pages
     {
       url: `${SITE_URL}/contact`,
